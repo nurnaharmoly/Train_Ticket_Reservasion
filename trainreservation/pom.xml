@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:mvc="http://www.springframework.org/schema/mvc"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -92,6 +93,8 @@
         <version>3.0.4.RELEASE</version>
         </dependency>
     </dependencies>
+
+    <mvc:resources mapping="images/**" location="/WEB-INF/images/" />
 
     <build>
         <plugins>
