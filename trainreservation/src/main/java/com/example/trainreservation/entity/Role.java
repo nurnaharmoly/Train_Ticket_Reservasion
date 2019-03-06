@@ -1,9 +1,8 @@
 package com.example.trainreservation.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -13,9 +12,20 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    @NotEmpty(message = "Enter Role Name")
+    @Size(min = 2,max = 20,message = "Rolename must be between 2 and 20 Characters")
     private String roleName;
 
+    public Role() {
+    }
+    public Role(Long id) {
+        this.id=id;
+    }
 
+    public Role(String roleName) {
+        this.roleName = roleName;
+    }
     public Long getId() {
         return id;
     }
@@ -32,12 +42,7 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public Role() {
-    }
 
-    public Role(Long id) {
-        this.id = id;
-    }
 
 
     @Override

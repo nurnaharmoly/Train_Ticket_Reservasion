@@ -1,8 +1,13 @@
 package com.example.trainreservation.entity;
 
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,35 +19,58 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "first_name")
-    @NotEmpty(message = "Please provide your first name")
+    @NotEmpty(message = "Enter First Name")
+    @Size(min = 1,max = 50,message = "Hey, Size must be between 1 and 50")
+    @Column(nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
-    @NotEmpty(message = "Please provide your last name")
     private String lastName;
 
 
+    @Column(nullable = false, name = "user_name", unique = true)
     private String userName;
 
-
-
-    @Column(name = "email", nullable = false, unique = true)
-    @Email(message = "Please provide a valid e-mail")
-    @NotEmpty(message = "Please provide an e-mail")
-    private String email;
-
-
-    @Column(name = "password")
-    @Transient
+    @Column(nullable = true)
     private String password;
 
+    @NotEmpty
+    @Email
+    @NotEmpty(message = "Enter An Email")
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(unique = true)
+    private String mobile;
+
+
+    private String gender;
 
     @Column(name = "enabled")
     private boolean enabled;
 
     @Column(name = "confirmation_token")
     private String confirmationToken;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date regiDate;
+
+    @LastModifiedDate
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date lastModifiedDate=new Date();
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birthDate;
+
+    //////File Upload==============
+    private long fileSize;
+    private String fileName;
+    //  @Lob
+    // private byte[] file;
+    private String filePath;
+    private String fileExtension;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -51,6 +79,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "r_id")
     )
     private Set<Role> roles;
+
+
+    public User() {
+    }
 
 
     public Long getId() {
@@ -85,6 +117,14 @@ public class User {
         this.userName = userName;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -93,12 +133,20 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public boolean isEnabled() {
@@ -117,6 +165,62 @@ public class User {
         this.confirmationToken = confirmationToken;
     }
 
+    public Date getRegiDate() {
+        return regiDate;
+    }
+
+    public void setRegiDate(Date regiDate) {
+        this.regiDate = regiDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getFileExtension() {
+        return fileExtension;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -125,15 +229,13 @@ public class User {
         this.roles = roles;
     }
 
-    public User() {
-    }
 
-    public User(@NotEmpty(message = "Please provide your first name") String firstName, @NotEmpty(message = "Please provide your last name") String lastName, String userName, @Email(message = "Please provide a valid e-mail") @NotEmpty(message = "Please provide an e-mail") String email, String password, boolean enabled, String confirmationToken, Set<Role> roles) {
+    public User(@NotEmpty(message = "Enter First Name") @Size(min = 1, max = 50, message = "Hey, Size must be between 1 and 50") String firstName, String lastName, @NotEmpty(message = "Enter Username") String userName, @NotEmpty @Email @NotEmpty(message = "Enter An Email") String email, Date birthDate, boolean enabled, String confirmationToken, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.email = email;
-        this.password = password;
+        this.birthDate = birthDate;
         this.enabled = enabled;
         this.confirmationToken = confirmationToken;
         this.roles = roles;
@@ -143,13 +245,21 @@ public class User {
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.userName = user.userName;
-        this.email = user.email;
         this.password = user.password;
+        this.email = user.email;
+        this.mobile = user.mobile;
+        this.gender = user.gender;
+        this.regiDate = user.regiDate;
+        this.lastModifiedDate = user.lastModifiedDate;
+        this.birthDate = user.birthDate;
         this.enabled = user.enabled;
         this.confirmationToken = user.confirmationToken;
+        this.fileSize = user.fileSize;
+        this.fileName = user.fileName;
+        this.filePath = user.filePath;
+        this.fileExtension = user.fileExtension;
         this.roles = user.roles;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -157,34 +267,27 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return enabled == user.enabled &&
+                fileSize == user.fileSize &&
                 Objects.equals(id, user.id) &&
                 Objects.equals(firstName, user.firstName) &&
                 Objects.equals(lastName, user.lastName) &&
                 Objects.equals(userName, user.userName) &&
-                Objects.equals(email, user.email) &&
                 Objects.equals(password, user.password) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(mobile, user.mobile) &&
+                Objects.equals(gender, user.gender) &&
                 Objects.equals(confirmationToken, user.confirmationToken) &&
+                Objects.equals(regiDate, user.regiDate) &&
+                Objects.equals(lastModifiedDate, user.lastModifiedDate) &&
+                Objects.equals(birthDate, user.birthDate) &&
+                Objects.equals(fileName, user.fileName) &&
+                Objects.equals(filePath, user.filePath) &&
+                Objects.equals(fileExtension, user.fileExtension) &&
                 Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, userName, email, password, enabled, confirmationToken, roles);
-    }
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", enabled=" + enabled +
-                ", confirmationToken='" + confirmationToken + '\'' +
-                ", roles=" + roles +
-                '}';
+        return Objects.hash(id, firstName, lastName, userName, password, email, mobile, gender, enabled, confirmationToken, regiDate, lastModifiedDate, birthDate, fileSize, fileName, filePath, fileExtension, roles);
     }
 }

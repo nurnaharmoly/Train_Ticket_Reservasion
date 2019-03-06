@@ -35,14 +35,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<h1><a href="index.html">Train Ticket Reservation</a></h1>
 		<div class="login-bottom">
 			<h2>Login</h2>
-			<form>
+			<form th:action="@{/login}" method="post">
 			<div class="col-md-6">
 				<div class="login-mail">
-					<input type="text" placeholder="Email" required="">
-					<i class="fa fa-envelope"></i>
+					<input type="text" placeholder="User Name" name="username" required>
+					<i class="fa fa-user"></i>
 				</div>
 				<div class="login-mail">
-					<input type="password" placeholder="Password" required="">
+					<input type="password" placeholder="Password" name="password" required>
 					<i class="fa fa-lock"></i>
 				</div>
 				   <a class="news-letter " href="#">
@@ -56,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="submit" value="login">
 					</label>
 					<p>Do not have an account?</p>
-				<a href="signup.html" class="hvr-shutter-in-horizontal">Signup</a>
+				<a th:href="@{/register}" class="hvr-shutter-in-horizontal">Signup</a>
 			</div>
 			
 			<div class="clearfix"> </div>
