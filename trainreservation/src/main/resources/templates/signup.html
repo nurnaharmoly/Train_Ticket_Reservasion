@@ -25,21 +25,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <div id="dp-container"  th:style="'background-image:url(' + @{/images/t4.jpg} + ');'">
 	<div class="login">
-		<h1><a href="index.html">Minimal </a></h1>
+		<h1><a th:href="@{/}">Train Ticket Reservation</a></h1>
 		<div class="login-bottom">
 			<h2>Register</h2>
+			<span th:class="succes" th:text="${successMsg}"></span>
+			<span th:class="err" th:text="${rejectMsg}"></span>
+			<form th:object="${user}" th:action="@{/sign-up}" th:method="POST">
 			<div class="col-md-6">
 				<div class="login-mail">
-					<input type="text" placeholder="Email" required="">
+					<input type="text"  th:field="*{firstName}" placeholder="Enter First Name" required="true">
+					<i class="fa fa-user"></i>
+				</div>
+				<div class="login-mail">
+					<input type="text"  th:field="*{lastName}" placeholder="Enter Last Name" required="true">
+					<i class="fa fa-user"></i>
+				</div>
+				<div class="login-mail">
+					<input type="email"  th:field="*{email}" placeholder="Enter Email" required="true">
 					<i class="fa fa-envelope"></i>
 				</div>
 				<div class="login-mail">
-					<input type="password" placeholder="Password" required="">
-					<i class="fa fa-lock"></i>
+					<input type="date" th:text="${#dates.format(user.birthDate, 'yyyy-MM-dd')}" th:field="*{birthDate}"  class="fa-calendar" placeholder="Enter Birth Date">
+					<i class="fa fa-calendar"></i>
 				</div>
 				<div class="login-mail">
-					<input type="password" placeholder="Repeated password" required="">
-					<i class="fa fa-lock"></i>
+					<ul>
+						<li>
+							<input type="radio" id="m" name="gender" value="m" th:field="*{gender}">
+							<label for="m"><span></span>Male</label>
+						</li>
+						<li>
+							<input type="radio" id="f" name="gender" value="f" th:field="*{gender}">
+							<label for="f"><span></span>Female</label>
+						</li>
+					</ul>
+					<i class="fa fa-genderless"></i>
 				</div>
 				  <a class="news-letter" href="#">
 						 <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>I agree with the terms</label>
@@ -51,14 +71,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="submit" value="Submit">
 					</label>
 					<p>Already register</p>
-				<a href="signin.html" class="hvr-shutter-in-horizontal">Login</a>
+				<a th:href="@{/login}" class="hvr-shutter-in-horizontal">Login</a>
 			</div>
 			<div class="clearfix"> </div>
+			</form>
 		</div>
 	</div>
 		<!---->
-<div class="copy-right">
-	<p> &copy; 2018 Train Ticket Reservation. All Rights Reserved .</p>   </div>
+	<div th:replace="~{fragments/footer.html :: footer}"></div>
 </div>
 <!---->
 <!--scrolling js-->

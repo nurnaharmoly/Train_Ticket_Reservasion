@@ -32,7 +32,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div id="dp-container"  th:style="'background-image:url(' + @{/images/t4.jpg} + ');'">
 
 	<div class="login">
-		<h1><a href="index.html">Train Ticket Reservation</a></h1>
+		<h1><a th:href="@{/}">Train Ticket Reservation</a></h1>
 		<div class="login-bottom">
 			<h2>Login</h2>
 			<form th:action="@{/login}" method="post">
@@ -56,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="submit" value="login">
 					</label>
 					<p>Do not have an account?</p>
-				<a th:href="@{/register}" class="hvr-shutter-in-horizontal">Signup</a>
+				<a th:href="@{/singup}" class="hvr-shutter-in-horizontal">Signup</a>
 			</div>
 			
 			<div class="clearfix"> </div>

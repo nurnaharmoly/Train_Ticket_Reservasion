@@ -93,8 +93,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <div id="wrapper">
     <div>
+
     <div th:replace="~{fragments/nav.html :: nav}"></div>
+        <!--<div th:replace="~{fragments/banner.html :: banner}"></div>-->
         <div layout:fragment="custom-content"></div>
+        <div th:replace="~{fragments/footer.html :: footer}"></div>
     </div>
 </div>
 

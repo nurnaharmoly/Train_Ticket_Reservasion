@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div layout:fragment="custom-content">
+<div id="page-wrapper" class="gray-bg dashbard-1" >
+    <div class="content-main">
+
+        <!--banner-->
+        <div class="banner">
+
+            <h2>
+                <a href="index.html">Home</a>
+                <i class="fa fa-angle-right"></i>
+                <span>Dashboard</span>
+            </h2>
+        </div>
+
+
+    <div class="clearfix"> </div>
+
+        <div class="validation-system min-height">
+        <div class="validation-form">
+            <!---->
+            <h3 id="forms-horizontal">Add Role</h3>
+            <span th:class="succes" th:text="${successMsg}"></span>
+            <span th:class="err" th:text="${rejectMsg}"></span>
+
+            <form th:object="${role}" th:action="@{/role/add}" th:method="POST">
+                <div class="vali-form">
+                    <div class="col-md-6 form-group1">
+                        <label class="control-label" for="rolename">Role Name</label>
+                        <input type="text" th:field="*{roleName}" id="rolename" placeholder="Role Name" required>
+                        <span th:class="err" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}">Rolename Error</span>
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="col-md-12 form-group">
+                    <button type="submit" class="btn btn-info">ADD</button>
+                    <button type="reset" class="btn btn-info">Reset</button>
+                </div>
+                <div class="clearfix"> </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
