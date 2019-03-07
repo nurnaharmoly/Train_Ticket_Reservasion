@@ -44,7 +44,7 @@ public class LoginController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    private static String USER_NAME = "molynur570@gmail.com";  // GMail user name (just the part before "@gmail.com")
+    private static String USER_NAME = "molynur570";  // GMail user name (just the part before "@gmail.com")
     private static String PASSWORD = "0987&654321"; // GMail password
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
@@ -64,15 +64,19 @@ public class LoginController {
     }
 
 
+    @GetMapping(value = "/signup")
+    public String viewSignUp(Model model){
+        model.addAttribute("user",new User());
+        return "signup";
+    }
 
-
-    @PostMapping(value = "/sign-up")
+    @PostMapping(value = "/signup")
     public String add(@Valid User user, BindingResult result, Model model, HttpServletRequest request){
         String username = user.getEmail().split("\\@")[0];
         user.setUserName(username);
         user.setEnabled(false);
         Set<Role> roles=new HashSet<>();
-        roles.add(new Role(4L));
+        roles.add(new Role(6L));
         user.setRegiDate(new Date());
         user.setRoles(roles);
         user.setConfirmationToken(UUID.randomUUID().toString());
@@ -104,11 +108,7 @@ public class LoginController {
         return "signup";
     }
 
-    @GetMapping(value = "/sign-up")
-    public String viewSignUp(Model model){
-        model.addAttribute("user",new User());
-        return "signup";
-    }
+
 
     // Process confirmation link
     @RequestMapping(value="/confirm", method = RequestMethod.GET)
@@ -177,7 +177,7 @@ public class LoginController {
         MimeMessage message = new MimeMessage(session);
 
         try {
-            message.setFrom(new InternetAddress("rajaul.cse@gmail.com", "SAMI LLC."));
+            message.setFrom(new InternetAddress("molynur570@gmail.com", "MOLY LLC."));
             InternetAddress[] toAddress = new InternetAddress[to.length];
 
             // To get the array of addresses

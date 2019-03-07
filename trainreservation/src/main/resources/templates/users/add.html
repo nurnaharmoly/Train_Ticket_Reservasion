@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div layout:fragment="custom-content">
+<div id="page-wrapper" class="gray-bg dashbard-1" >
+    <div class="content-main">
+
+        <!--banner-->
+        <div class="banner">
+
+            <h2>
+                <a href="index.html">Home</a>
+                <i class="fa fa-angle-right"></i>
+                <span>Dashboard</span>
+            </h2>
+        </div>
+
+
+    <div class="clearfix"> </div>
+
+        <div class="validation-system min-height">
+        <div class="validation-form">
+            <!---->
+            <h3 id="forms-horizontal">Add User</h3>
+            <span th:class="succes" th:text="${successMsg}"></span>
+            <span th:class="err" th:text="${rejectMsg}"></span>
+
+            <form th:object="${user}" th:action="@{/user/add}" th:method="POST">
+                <div class="vali-form">
+                    <div class="form-group">
+                        <label class="control-label">Role</label>
+                        <div class="col-sm-8">
+                            <select th:field="*{roles}" multiple>
+
+                                <option th:each="role : ${rolelist}" th:value="${role.id}"><span th:text="${role.roleName}"></span></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="control-label" for="firstName">First Name</label>
+                        <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name" required>
+                        <span th:class="err" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</span>
+                    </div>
+
+                    <div>
+                        <label class="control-label" for="firstName">Last Name</label>
+                        <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name" required>
+                        <span th:class="err" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</span>
+                    </div>
+
+                    <div>
+                        <label class="control-label" for="email">Email</label>
+                        <input type="email" th:field="*{email}" id="email" placeholder="Email" required>
+                        <span th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
+                    </div>
+
+                    <div>
+                        <label class="control-label">BirthDate</label>
+                        <input type="date" th:text="${#dates.format(user.birthDate, 'yyyy-MM-dd')}" th:field="*{birthDate}"  class="fa-calendar" placeholder="Enter Birth Date">
+                        <span th:class="err" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">BirthDate</span>
+                    </div>
+
+                    <div>
+                        <label class="control-label">Gender</label>
+                        <ul>
+                            <li>
+                                <input type="radio" id="m" name="gender" value="m" th:field="*{gender}">
+                                <label for="m"><span></span>Male</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="f" name="gender" value="f" th:field="*{gender}">
+                                <label for="f"><span></span>Female</label>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div>
+                        <label class="control-label" for="password">Password</label>
+                        <input type="password" th:field="*{password}" id="password" placeholder="Password" required>
+                        <span th:class="err" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password</span>
+                    </div>
+
+
+
+                    <div class="clearfix"> </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-info">ADD</button>
+                    <button type="reset" class="btn btn-info">Reset</button>
+                </div>
+                <div class="clearfix"> </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

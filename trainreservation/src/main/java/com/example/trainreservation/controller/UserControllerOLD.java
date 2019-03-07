@@ -75,20 +75,14 @@ public class UserControllerOLD {
         }));
 
         roles.add(new Role(1L));
-        roles.add(new Role(2L));
+        roles.add(new Role(6L));
 
-        User user = new User("Md.","R","sadmin","admin@pms.com",new Date(),true, UUID.randomUUID().toString(),roles);
-        user.setPassword(passwordEncoder.encode("1234456789"));
+        User user = new User("Md.","R","sadmin","admin@gmail.com",new Date(),true, UUID.randomUUID().toString(),roles);
+        user.setPassword(passwordEncoder.encode("123456789"));
         repo.save(user);
         return "success";
     }
 
-    @GetMapping(value = "/register")
-    public ModelAndView displayRegister(User user){
-        ModelAndView mv=new ModelAndView();
-        mv.addObject("user",user);
-        mv.setViewName("signup");
-        return mv;
-    }
+
 
                 }

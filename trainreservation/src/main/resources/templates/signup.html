@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Minimal an Admin Panel Category Flat Bootstrap Responsive Website Template | Signup :: w3layouts</title>
+<title> Signup | Train Ticket Reservation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -30,7 +30,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h2>Register</h2>
 			<span th:class="succes" th:text="${successMsg}"></span>
 			<span th:class="err" th:text="${rejectMsg}"></span>
-			<form th:object="${user}" th:action="@{/sign-up}" th:method="POST">
+			<form th:object="${user}" th:action="@{/signup}" th:method="POST">
 			<div class="col-md-6">
 				<div class="login-mail">
 					<input type="text"  th:field="*{firstName}" placeholder="Enter First Name" required="true">
@@ -42,7 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="login-mail">
 					<input type="email"  th:field="*{email}" placeholder="Enter Email" required="true">
-					<i class="fa fa-envelope"></i>
+					<i class="fa fa-envelope-o"></i>
 				</div>
 				<div class="login-mail">
 					<input type="date" th:text="${#dates.format(user.birthDate, 'yyyy-MM-dd')}" th:field="*{birthDate}"  class="fa-calendar" placeholder="Enter Birth Date">
@@ -59,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<label for="f"><span></span>Female</label>
 						</li>
 					</ul>
-					<i class="fa fa-genderless"></i>
+					<i class="fa fa"></i>
 				</div>
 				  <a class="news-letter" href="#">
 						 <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>I agree with the terms</label>

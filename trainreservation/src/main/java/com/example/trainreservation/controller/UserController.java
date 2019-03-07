@@ -63,15 +63,18 @@ public class UserController {
     @GetMapping(value = "add")
     public String viewAdd(Model model){
         model.addAttribute("user",new User());
+        model.addAttribute("rolelist", roleRepo.findAll());
         return "users/add";
     }
     @PostMapping(value = "add")
     public String add(@Valid User user, BindingResult result, Model model){
         if(result.hasErrors()){
+            model.addAttribute("rolelist", roleRepo.findAll());
             return "users/add";
         }
         if(repo.existsByEmail(user.getEmail())){
             model.addAttribute("rejectMsg","Already Have This Entry");
+            model.addAttribute("rolelist", roleRepo.findAll());
         }else{
             String username = user.getEmail().split("\\@")[0];
             user.setUserName(username);
@@ -80,6 +83,7 @@ public class UserController {
             user.setConfirmationToken(UUID.randomUUID().toString());
             this.repo.save(user);
             model.addAttribute("successMsg","Successfully Saved!");
+            model.addAttribute("rolelist", roleRepo.findAll());
         }
 
         return "users/add";
