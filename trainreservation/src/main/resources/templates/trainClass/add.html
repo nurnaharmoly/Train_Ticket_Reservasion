@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+
+<head>
+    <title>Role Create</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+    <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div class="content-main">
+
+            <!--banner-->
+            <div class="banner">
+
+                <h2>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
+
+
+            <div class="clearfix"> </div>
+
+            <div class="grid-form">
+                <div class="grid-form1 min-height">
+                    <div class="panel-body">
+
+                        <h3 id="forms-horizontal">Add TrainClass</h3>
+                        <span th:class="succes" th:text="${successMsg}"></span>
+                        <span th:class="err" th:text="${rejectMsg}"></span>
+                        <form th:object="${trainClass}" th:action="@{/trainclass/add}" th:method="POST">
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="className">ClassName</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{className}" id="className" placeholder="ClassName" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('className')}" th:errors="*{className}">ClassName Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="clearfix"> </div>
+
+                            <div>
+                                <h1><button type="submit" class="label label-success">ADD</button>&nbsp;<button type="reset" class="label label-success">Reset</button></h1>
+
+                            </div>
+                            <div class="clearfix"> </div>
+                        </form>
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

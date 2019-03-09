@@ -98,6 +98,7 @@ public class UserController {
     @PostMapping(value = "edit/{id}")
     public String edit(@Valid User user, BindingResult result, Model model,@PathVariable("id") Long id){
         if(result.hasErrors()){
+            model.addAttribute("rolelist", roleRepo.findAll());
             return "users/edit";
         }
         Optional<User> u = this.repo.findByEmail(user.getEmail());
@@ -106,7 +107,10 @@ public class UserController {
             return "users/edit";
         }else{
             user.setId(id);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             this.repo.save(user);
+            model.addAttribute("successMsg","Successfully Saved!");
+            model.addAttribute("rolelist", roleRepo.findAll());
         }
 
         return "redirect:/user/list";
