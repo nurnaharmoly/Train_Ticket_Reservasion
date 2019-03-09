@@ -24,7 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 
 <div id="dp-container"  th:style="'background-image:url(' + @{/images/t4.jpg} + ');'">
-	<div class="login">
+	<div class="login min-height">
 		<h1><a th:href="@{/}">Train Ticket Reservation</a></h1>
 		<div class="login-bottom">
 			<h2>Register</h2>
@@ -41,14 +41,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<i class="fa fa-user"></i>
 				</div>
 				<div class="login-mail">
-					<input type="email"  th:field="*{email}" placeholder="Enter Email" required="true">
-					<i class="fa fa-envelope-o"></i>
+					<input type="text" th:field="*{email}" placeholder="Enter Email" required="true">
+					<i class="fa fa-envelope"></i>
 				</div>
 				<div class="login-mail">
 					<input type="date" th:text="${#dates.format(user.birthDate, 'yyyy-MM-dd')}" th:field="*{birthDate}"  class="fa-calendar" placeholder="Enter Birth Date">
 					<i class="fa fa-calendar"></i>
 				</div>
 				<div class="login-mail">
+					<label>Gender</label>
 					<ul>
 						<li>
 							<input type="radio" id="m" name="gender" value="m" th:field="*{gender}">
@@ -59,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<label for="f"><span></span>Female</label>
 						</li>
 					</ul>
-					<i class="fa fa"></i>
+					<i class="fa"></i>
 				</div>
 				  <a class="news-letter" href="#">
 						 <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>I agree with the terms</label>

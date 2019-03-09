@@ -20,69 +20,74 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="css/custom.css" rel="stylesheet" th:href="@{/css/custom.css}">
     <script src="js/custom.js" th:src="@{/js/custom.js}"></script>
     <script src="js/screenfull.js" th:src="@{/js/screenfull.js}"></script>
-    <script>
-        $(function () {
-            $('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+    <!--<script>-->
+        <!--$(function () {-->
+            <!--$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);-->
 
-            if (!screenfull.enabled) {
-                return false;
-            }
-
-
-
-            $('#toggle').click(function () {
-                screenfull.toggle($('#container')[0]);
-            });
+            <!--if (!screenfull.enabled) {-->
+                <!--return false;-->
+            <!--}-->
 
 
 
-        });
-    </script>
+            <!--$('#toggle').click(function () {-->
+                <!--screenfull.toggle($('#container')[0]);-->
+            <!--});-->
+
+
+
+        <!--});-->
+    <!--</script>-->
 
     <!----->
 
     <!--pie-chart--->
-    <script src="js/pie-chart.js" type="text/javascript" th:src="@{/js/pie-chart.js}"></script>
-    <script type="text/javascript">
+    <!--<script src="js/pie-chart.js" type="text/javascript" th:src="@{/js/pie-chart.js}"></script>-->
+    <!--<script type="text/javascript">-->
 
-        $(document).ready(function () {
-            $('#demo-pie-1').pieChart({
-                barColor: '#3bb2d0',
-                trackColor: '#eee',
-                lineCap: 'round',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
+        <!--$(document).ready(function () {-->
+            <!--$('#demo-pie-1').pieChart({-->
+                <!--barColor: '#3bb2d0',-->
+                <!--trackColor: '#eee',-->
+                <!--lineCap: 'round',-->
+                <!--lineWidth: 8,-->
+                <!--onStep: function (from, to, percent) {-->
+                    <!--$(this.element).find('.pie-value').text(Math.round(percent) + '%');-->
+                <!--}-->
+            <!--});-->
 
-            $('#demo-pie-2').pieChart({
-                barColor: '#fbb03b',
-                trackColor: '#eee',
-                lineCap: 'butt',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
+            <!--$('#demo-pie-2').pieChart({-->
+                <!--barColor: '#fbb03b',-->
+                <!--trackColor: '#eee',-->
+                <!--lineCap: 'butt',-->
+                <!--lineWidth: 8,-->
+                <!--onStep: function (from, to, percent) {-->
+                    <!--$(this.element).find('.pie-value').text(Math.round(percent) + '%');-->
+                <!--}-->
+            <!--});-->
 
-            $('#demo-pie-3').pieChart({
-                barColor: '#ed6498',
-                trackColor: '#eee',
-                lineCap: 'square',
-                lineWidth: 8,
-                onStep: function (from, to, percent) {
-                    $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                }
-            });
+            <!--$('#demo-pie-3').pieChart({-->
+                <!--barColor: '#ed6498',-->
+                <!--trackColor: '#eee',-->
+                <!--lineCap: 'square',-->
+                <!--lineWidth: 8,-->
+                <!--onStep: function (from, to, percent) {-->
+                    <!--$(this.element).find('.pie-value').text(Math.round(percent) + '%');-->
+                <!--}-->
+            <!--});-->
 
 
-        });
+        <!--});-->
 
-    </script>
+    <!--</script>-->
     <!--skycons-icons-->
     <script src="js/skycons.js" th:src="@{/js/skycons.js}"></script>
     <!--//skycons-icons-->
+
+
+
+
+
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
@@ -94,6 +99,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $('#example').DataTable();
         } );
     </script>
+
+
+
+    <link rel="stylesheet" th:href="@{//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css}">
+
+    <link rel="stylesheet" th:href="@{tablecss/datatables/datas.css}">
+
+
+
+
+
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="css/datatables/datatables.css">-->
+    <style>
+        .table-striped tbody tr:nth-child(odd) td,
+        .table-striped tbody tr:nth-child(odd) th {
+            background-color: #DFF0D8;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -102,8 +127,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div>
 
         <div th:replace="~{fragments/nav.html :: nav}"></div>
-        <!--<div th:replace="~{fragments/banner.html :: banner}"></div>-->
 
+        <div layout:fragment="custom-content"></div>
         <div th:replace="~{fragments/footer.html :: footer}"></div>
     </div>
 </div>
@@ -114,5 +139,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/scripts.js" th:src="@{/js/scripts.js}"></script>
 <!--//scrolling js-->
 <script src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"> </script>
+
+
+
+<script th:src="@{//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js}"></script>
+
+<script th:src="@{//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js}"></script>
+
+<script th:src="@{//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js}"></script>
+
+<script th:src="@{js/datatables/datatables.js}"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.datatable').dataTable({
+            "sPaginationType": "bs_four_button"
+        });
+        $('.datatable').each(function(){
+            var datatable = $(this);
+            // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+            var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
+            search_input.attr('placeholder', 'Search');
+            search_input.addClass('form-control input-sm');
+            // LENGTH - Inline-Form control
+            var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
+            length_sel.addClass('form-control input-sm');
+        });
+    });
+</script>
 </body>
 </html>

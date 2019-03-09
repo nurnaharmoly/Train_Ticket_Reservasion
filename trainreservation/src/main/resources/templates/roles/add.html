@@ -25,30 +25,56 @@
 
     <div class="clearfix"> </div>
 
-        <div class="validation-system min-height">
-        <div class="validation-form">
-            <!---->
+        <div class="grid-form">
+            <div class="grid-form1 min-height">
+                <div class="panel-body">
+
             <h3 id="forms-horizontal">Add Role</h3>
             <span th:class="succes" th:text="${successMsg}"></span>
             <span th:class="err" th:text="${rejectMsg}"></span>
 
             <form th:object="${role}" th:action="@{/role/add}" th:method="POST">
-                <div class="vali-form">
-                    <div class="col-md-6 form-group1">
-                        <label class="control-label" for="rolename">Role Name</label>
-                        <input type="text" th:field="*{roleName}" id="rolename" placeholder="Role Name" required>
-                        <span th:class="err" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}">Rolename Error</span>
-                    </div>
 
-                    <div class="clearfix"> </div>
+
+                <div class="form-group has-success">
+                    <label class="col-md-12 control-label" for="rolename">Role Name</label>
+                    <div class="col-md-12">
+                        <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                            <input class="form-control1" type="text" th:field="*{roleName}" id="rolename" placeholder="Role Name" required>
+                            <span th:class="err" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}">Role Name Error</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-12 form-group">
-                    <button type="submit" class="btn btn-info">ADD</button>
-                    <button type="reset" class="btn btn-info">Reset</button>
+
+
+                <!--<div class="vali-form">-->
+                    <!--<div class="col-md-6 form-group1">-->
+                        <!--<label class="control-label" for="rolename">Role Name</label>-->
+                        <!--<input type="text" th:field="*{roleName}" id="rolename" placeholder="Role Name" required>-->
+                        <!--<span th:class="err" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}">Rolename Error</span>-->
+                    <!--</div>-->
+
+                    <!--<div class="clearfix"> </div>-->
+                <!--</div>-->
+                <!--<div class="col-md-12 form-group">-->
+                    <!--<button type="submit" class="btn btn-info">ADD</button>-->
+                    <!--<button type="reset" class="btn btn-info">Reset</button>-->
+                <!--</div>-->
+                <!--<div class="clearfix"> </div>-->
+
+                <div class="clearfix"> </div>
+
+                <div>
+                    <h1><button type="submit" class="label label-success">ADD</button>&nbsp;<button type="reset" class="label label-success">Reset</button></h1>
+
                 </div>
                 <div class="clearfix"> </div>
             </form>
         </div>
+    </div>
     </div>
     </div>
 </div>

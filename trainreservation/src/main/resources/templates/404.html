@@ -6,7 +6,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Minimal an Admin Panel Category Flat Bootstrap Responsive Website Template | 404 :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<div class="four">
-		<img src="images/404.png" alt="" />
+		<img th:src="@{/images/404.png}" alt="" />
 		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 		<a href="index.html" class="hvr-shutter-in-horizontal">Go To Home</a>
 	</div>

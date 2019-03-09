@@ -1438,7 +1438,7 @@ label.control-label {
 	line-height: 27px;
 	cursor: pointer;
 	position: relative;
-	color:#555;
+	color: rgba(56, 56, 56, 0.68);
 }
 .checkbox1:last-child {
 	margin-bottom: 0;
