@@ -103,10 +103,13 @@ public class UserController {
         }
         Optional<User> u = this.repo.findByEmail(user.getEmail());
         if(u.get().getId() != id){
+
             model.addAttribute("rejectMsg","Already Have This Entry");
             return "users/edit";
         }else{
+
             user.setId(id);
+
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             this.repo.save(user);
             model.addAttribute("successMsg","Successfully Saved!");

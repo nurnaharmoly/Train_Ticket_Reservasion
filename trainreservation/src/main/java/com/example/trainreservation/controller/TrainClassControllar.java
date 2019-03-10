@@ -2,6 +2,7 @@ package com.example.trainreservation.controller;
 
 import com.example.trainreservation.entity.Role;
 import com.example.trainreservation.entity.TrainClass;
+import com.example.trainreservation.repo.RoleRepo;
 import com.example.trainreservation.repo.TrainClassRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping(value = "/trainclass/")
 public class TrainClassControllar {
-    @Autowired
+
+ @Autowired
     private TrainClassRepo repo;
 
     @GetMapping(value = "add")
@@ -26,21 +28,22 @@ public class TrainClassControllar {
         model.addAttribute("trainClass",new TrainClass());
         return "trainClass/add";
     }
+
     @PostMapping(value = "add")
-    public String addRole(@Valid TrainClass trainClass, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
+    public String add(@Valid TrainClass trainClass, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             return "trainClass/add";
+        }else{
+                this.repo.save(trainClass);
+                model.addAttribute("trainClass", new TrainClass());
+                model.addAttribute("successMsg", "Successfully Saved!");
+                 }
 
-                } else {
-                    this.repo.save(trainClass);
-                    model.addAttribute("trainClass1", new TrainClass());
-                    model.addAttribute("successMsg", "Successfully Data");
-                }
+            return "trainClass/add";
+        }
 
 
-        return "trainClass/add";
-    }
-    @GetMapping(value = "edit/{id}")
+        @GetMapping(value = "edit/{id}")
     public String viewEdit(Model model, @PathVariable("id") Long id){
         model.addAttribute("trainClass",repo.getOne(id));
         return "trainClass/edit";
@@ -49,18 +52,16 @@ public class TrainClassControllar {
     public String edit(@Valid TrainClass trainClass, BindingResult result, Model model,@PathVariable("id") Long id){
         if(result.hasErrors()){
             return "trainClass/edit";
-        }
-        Optional<TrainClass> tra = this.repo.findByClassName(trainClass.getClassName());
-        if(tra.get().getId() != null){
-            model.addAttribute("rejectMsg","Already Have This Entry");
-            return "trainClass/edit";
-        }else{
-            trainClass.setId(id);
-           this.repo.save(trainClass);
-        }
+            } else {
+
+                this.repo.save(trainClass);
+            }
 
         return "redirect:/trainclass/list";
     }
+
+
+
 
     @GetMapping(value = "del/{id}")
     public String del(@PathVariable("id") Long id){
@@ -70,11 +71,72 @@ public class TrainClassControllar {
         return "redirect:/trainclass/list";
     }
 
+
     @GetMapping(value = "list")
     public String list(Model model){
         model.addAttribute("list",this.repo.findAll());
         return "trainClass/list";
     }
+
+
+
+//    @Autowired
+//    private TrainClassRepo repo;
+//
+//    @GetMapping(value = "add")
+//    public String viewAdd(Model model){
+//        model.addAttribute("trainClass",new TrainClass());
+//        return "trainClass/add";
+//    }
+//    @PostMapping(value = "add")
+//    public String addRole(@Valid TrainClass trainClass, BindingResult bindingResult, Model model) {
+//        if (bindingResult.hasErrors()) {
+//            return "trainClass/add";
+//
+//                } else {
+//                    this.repo.save(trainClass);
+//                    model.addAttribute("trainClass1", new TrainClass());
+//                    model.addAttribute("successMsg", "Successfully Data");
+//                }
+//
+//
+//        return "trainClass/add";
+//    }
+//    @GetMapping(value = "edit/{id}")
+//    public String viewEdit(Model model, @PathVariable("id") Long id){
+//        model.addAttribute("trainClass",repo.getOne(id));
+//        return "trainClass/edit";
+//    }
+//    @PostMapping(value = "edit/{id}")
+//    public String edit(@Valid TrainClass trainClass, BindingResult result, Model model,@PathVariable("id") Long id){
+//        if(result.hasErrors()){
+//            return "trainClass/edit";
+//        }
+//        Optional<TrainClass> tra = this.repo.findByClassName(trainClass.getClassName());
+//        if(tra.get().getId() != null){
+//            model.addAttribute("rejectMsg","Already Have This Entry");
+//            return "trainClass/edit";
+//        }else{
+//            trainClass.setId(id);
+//           this.repo.save(trainClass);
+//        }
+//
+//        return "redirect:/trainclass/list";
+//    }
+//
+//    @GetMapping(value = "del/{id}")
+//    public String del(@PathVariable("id") Long id){
+//        if(id != null) {
+//            this.repo.deleteById(id);
+//        }
+//        return "redirect:/trainclass/list";
+//    }
+//
+//    @GetMapping(value = "list")
+//    public String list(Model model){
+//        model.addAttribute("list",this.repo.findAll());
+//        return "trainClass/list";
+//    }
 
 
 

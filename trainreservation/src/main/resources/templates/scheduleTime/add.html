@@ -28,23 +28,43 @@
                 <div class="grid-form1 min-height">
                     <div class="panel-body">
 
-                        <h3 id="forms-horizontal">Add TrainClass</h3>
+                        <h3 id="forms-horizontal">Add ScheduleTime</h3>
                         <span th:class="succes" th:text="${successMsg}"></span>
 
-                        <form th:object="${trainClass}" th:action="@{/trainclass/add}" th:method="POST">
+                        <form th:object="${scheduleTime}" th:action="@{/scheduleTime/add}" th:method="POST">
+
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="className">ClassName</label>
+                                <label class="col-md-12 control-label">StartTime</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
 									<span class="input-group-addon">
-										<i class="fa fa-navicon"></i>
+										<i class="fa fa-times-circle"></i>
 									</span>
-                                        <input class="form-control1" type="text" th:field="*{className}" id="className" placeholder="ClassName" required>
-                                        <span th:class="err" th:if="${#fields.hasErrors('className')}" th:errors="*{className}">ClassName Error</span>
+                                        <input type="date" th:text="${#dates.setHour(scheduleTime.startTime)}" th:field="*{startTime}"  class="fa-times-circle" placeholder="StartTime">
+                                        <span th:class="err" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}">StartTime</span>
                                     </div>
                                 </div>
                             </div>
+
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label">ArrivalTime</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-times"></i>
+									</span>
+                                        <input type="date" th:text="${#dates.setHour(scheduleTime.arrivalTime )}" th:field="*{arrivalTime}"  class="fa-times" placeholder="ArrivalTime">
+                                        <span th:class="err" th:if="${#fields.hasErrors('arrivalTime')}" th:errors="*{arrivalTime}">arrivalTime</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
 
 
                             <div class="clearfix"> </div>
@@ -63,6 +83,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

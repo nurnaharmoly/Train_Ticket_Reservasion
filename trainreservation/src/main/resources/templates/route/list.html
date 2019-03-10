@@ -8,66 +8,67 @@
 </head>
 <body>
 <div layout:fragment="custom-content">
-    <div class="row">
-        <div class="col-12 grid-margin">
-            <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
-                <thead>
-                <tr>
-                    <th>Route Name</th>
-                    <th>stationFrom</th>
-                    <th>stationTo</th>
+    <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div class="content-main">
+
+            <!--banner-->
+            <div class="banner">
+
+                <h2>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
 
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>RajshahiEX</td>
-                    <td>Dhaka</td>
-                    <td>Rhajshahi</td>
+            <div class="clearfix"> </div>
 
-                </tr>
-                <tr>
-                    <td>KhulnEX</td>
-                    <td>Dhaka</td>
-                    <td>Khulna</td>
-                </tr>
-                <tr>
-                    <td>DhakaEX</td>
-                    <td>Dinajpur</td>
-                    <td>Dhaka</td>
-                </tr>
-                <tr>
-                    <td>ShyletEX</td>
-                    <td>Dhaka</td>
-                    <td>Shylet</td>
-                </tr>
-                <tr>
-                    <td>NilfamariEX</td>
-                    <td>Dhaka</td>
-                    <td>Nilfamari</td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="grid-form">
+                <div class="grid-form1 min-height">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>SL. No</th>
+                            <th>RouteName</th>
+                            <th>StationFrom</th>
+                            <th>StationTo</th>
+                            <th>Edit</th>
+                            <th>Del</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="route : ${list}">
+                            <td th:text="${route.id}" class="has-success"></td>
+                            <td th:text="${route.routeName}"></td>
+                            <td th:text="${route.stationFrom}"></td>
+                            <td th:text="${route.stationTo}"></td>
+                            <td>
+                                <a th:href="@{'/station/edit/'+${route.id}}">Edit</a>
+                            </td>
+                            <td>
+                                <a th:href="@{'/station/del/'+${route.id}}">Del</a>
+                            </td>
+                        </tr>
 
-            <table cellspacing="0" cellpadding="0" border="0">
-                <tbody>
-                <tr>
-                    <td class="gutter">
-                        <div class="line number1 index0 alt2" style="display: none;">1</div>
-                    </td>
-                    <td class="code">
-                        <div class="container" style="display: none;">
-                            <div class="line number1 index0 alt2" style="display: none;">&nbsp;</div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>SL. No</th>
+                            <th>RouteName</th>
+                            <th>StationFrom</th>
+                            <th>StationTo</th>
+                            <th>Edit</th>
+                            <th>Del</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
         </div>
-
+        <div class="clearfix"> </div>
     </div>
 </div>
-
 </body>
 </html>
