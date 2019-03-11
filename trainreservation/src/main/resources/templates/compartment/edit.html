@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutlist.html}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
 
 <head>
     <title>Role Create</title>
@@ -28,19 +28,20 @@
                 <div class="grid-form1 min-height">
                     <div class="panel-body">
 
-                        <h3 id="forms-horizontal">Update Route</h3>
+                        <h3 id="forms-horizontal">Update Compartment</h3>
 
-                        <form th:object="${route}" th:action="@{/route/edit/}+${id}" th:method="POST">
+
+                        <form th:object="${compartment}" th:action="@{/compartment/edit}+${id} " th:method="POST">
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="routeName">RouteName</label>
+                                <label class="col-md-12 control-label" for="compartmentName">Compartment Name</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
 									<span class="input-group-addon">
 										<i class="fa fa-navicon"></i>
 									</span>
-                                        <input class="form-control1" type="text" th:field="*{routeName}" id="routeName" placeholder="RouteName" required>
-                                        <span th:class="err" th:if="${#fields.hasErrors('routeName')}" th:errors="*{routeName}">RouteName Error</span>
+                                        <input class="form-control1" type="text" th:field="*{compartmentName}" id="compartmentName" placeholder="Compartment Name" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('compartmentName')}" th:errors="*{compartmentName}">Compartment Name Error</span>
                                     </div>
                                 </div>
                             </div>
@@ -48,29 +49,28 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="stationFrom">StationFrom</label>
+                                <label class="col-md-12 control-label" for="compartmentNo">CompartmentNo</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
 									<span class="input-group-addon">
 										<i class="fa fa-navicon"></i>
 									</span>
-                                        <input class="form-control1" type="text" th:field="*{stationFrom}" id="stationFrom" placeholder="StationFrom" required>
-                                        <span th:class="err" th:if="${#fields.hasErrors('stationFrom')}" th:errors="*{stationFrom}">StationFrom Error</span>
+                                        <input class="form-control1" type="text" th:field="*{compartmentNo}" id="compartmentNo" placeholder="CompartmentNo" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('compartmentNo')}" th:errors="*{compartmentNo}">CompartmentNo Error</span>
                                     </div>
                                 </div>
                             </div>
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="stationTo">StationTo</label>
-                                <div class="col-md-12">
-                                    <div class="input-group">
-									<span class="input-group-addon">
-										<i class="fa fa-navicon"></i>
-									</span>
-                                        <input class="form-control1" type="text" th:field="*{stationTo}" id="stationTo" placeholder="StationTo" required>
-                                        <span th:class="err" th:if="${#fields.hasErrors('stationTo')}" th:errors="*{stationTo}">StationTo Error</span>
-                                    </div>
+                                <label class="col-md-6 control-label">Train</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{train}"  class="form-control1">
+                                            <option th:each="train : ${traintlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>
+                                       </select>
+                                     </span>
                                 </div>
                             </div>
 
@@ -91,7 +91,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

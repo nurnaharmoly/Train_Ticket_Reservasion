@@ -93,6 +93,7 @@ public class UserController {
     @GetMapping(value = "edit/{id}")
     public String viewEdit(Model model, @PathVariable("id") Long id){
         model.addAttribute("user",repo.getOne(id));
+        model.addAttribute("rolelist", roleRepo.findAll());
         return "users/edit";
     }
     @PostMapping(value = "edit/{id}")

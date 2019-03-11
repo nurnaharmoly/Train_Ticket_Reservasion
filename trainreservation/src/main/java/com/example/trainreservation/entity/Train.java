@@ -22,6 +22,7 @@ public class Train {
     @ManyToOne
     @JoinColumn(name = "route_id")
     private Route route;
+
     @ManyToOne
     @JoinColumn(name = "station_id")
     private Station station;

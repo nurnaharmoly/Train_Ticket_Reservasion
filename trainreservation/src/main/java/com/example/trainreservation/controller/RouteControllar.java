@@ -55,17 +55,13 @@ public class RouteControllar {
         if(result.hasErrors()){
             return "route/edit";
         } else {
-
+            route.setId(id);
             this.repo.save(route);
+            return "redirect:/route/list";
         }
+}
 
-        return "redirect:/route/list";
-    }
-
-
-
-
-    @GetMapping(value = "del/{id}")
+@GetMapping(value = "del/{id}")
     public String del(@PathVariable("id") Long id){
         if(id != null) {
             this.repo.deleteById(id);

@@ -53,18 +53,15 @@ public class ScheduleTimeControllar {
     public String edit(@Valid ScheduleTime scheduleTime, BindingResult result, Model model,@PathVariable("id") Long id){
         if(result.hasErrors()){
             return "scheduleTime/edit";
-        } else {
-
-            this.repo.save(scheduleTime);
+        }
+        scheduleTime.setId(id);
+        this.repo.save(scheduleTime);
+        return "redirect:/scheduleTime/list";
         }
 
-        return "redirect:/scheduleTime/list";
-    }
 
 
-
-
-    @GetMapping(value = "del/{id}")
+     @GetMapping(value = "del/{id}")
     public String del(@PathVariable("id") Long id){
         if(id != null) {
             this.repo.deleteById(id);

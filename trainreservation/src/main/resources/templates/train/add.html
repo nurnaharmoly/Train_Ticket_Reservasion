@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+
+<head>
+    <title>Role Create</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+    <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div class="content-main">
+
+            <!--banner-->
+            <div class="banner">
+
+                <h2>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
+
+
+            <div class="clearfix"> </div>
+
+            <div class="grid-form">
+                <div class="grid-form1 min-height">
+                    <div class="panel-body">
+
+                        <h3 id="forms-horizontal">Add Train</h3>
+                        <span th:class="succes" th:text="${successMsg}"></span>
+
+                        <form th:object="${train}" th:action="@{/train/add}" th:method="POST">
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="trainName">Train Name</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{trainName}" id="trainName" placeholder="Train Name" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('trainName')}" th:errors="*{trainName}">Train Name Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="trainNo">Train No</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{trainNo}" id="trainNo" placeholder="Train No" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('trainNo')}" th:errors="*{trainNo}">Train No Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-6 control-label">SheduleTime</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{sheduleTime}"  class="form-control1">
+                                            <option th:each="sheduleTime : ${sheduleTimelist}" th:value="${sheduleTime.id}"><span th:text="${sheduleTime.startTime}"></span></option>
+                                       </select>
+                                     </span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-6 control-label">Route</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{route}"  class="form-control1">
+                                            <option th:each="route : ${routeList}" th:value="${route.id}"><span th:text="${route.routeName}"></span></option>
+                                       </select>
+                                     </span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-6 control-label">Station</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{station}"  class="form-control1">
+                                            <option th:each="station : ${stationlist}" th:value="${station.id}"><span th:text="${station.stationName}"></span></option>
+                                       </select>
+                                     </span>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"> </div>
+
+                            <div>
+                                <h1><button type="submit" class="label label-success">ADD</button>&nbsp;<button type="reset" class="label label-success">Reset</button></h1>
+
+                            </div>
+                            <div class="clearfix"> </div>
+                        </form>
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -49,19 +49,15 @@ public class TrainClassControllar {
         return "trainClass/edit";
     }
     @PostMapping(value = "edit/{id}")
-    public String edit(@Valid TrainClass trainClass, BindingResult result, Model model,@PathVariable("id") Long id){
-        if(result.hasErrors()){
+    public String edit(@Valid TrainClass trainClass, BindingResult result, Model model,@PathVariable("id") Long id) {
+        if (result.hasErrors()) {
             return "trainClass/edit";
-            } else {
-
-                this.repo.save(trainClass);
-            }
-
-        return "redirect:/trainclass/list";
+        } else {
+            trainClass.setId(id);
+            this.repo.save(trainClass);
+            return "redirect:/trainclass/list";
+        }
     }
-
-
-
 
     @GetMapping(value = "del/{id}")
     public String del(@PathVariable("id") Long id){

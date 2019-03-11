@@ -1,70 +1,75 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout2.html}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutlist.html}">
 
 <head>
     <title>Device Info List</title>
 </head>
 <body>
 <div layout:fragment="custom-content">
-    <div class="row">
-        <div class="col-12 grid-margin">
-            <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
-                <thead>
-                <tr>
-                    <th>Compartment No</th>
-                    <th>Compartment Name</th>
-                    <th>Train_id</th>
+    <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div class="content-main">
+
+            <!--banner-->
+            <div class="banner">
+
+                <h2>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
 
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>502</td>
-                    <td>KH-1</td>
-                    <td>709</td>
-                </tr>
-                <tr>
-                    <td>503</td>
-                    <td>KH-2</td>
-                    <td>707</td>
-                </tr>
-                <tr>
-                    <td>504</td>
-                    <td>KH-3</td>
-                    <td>706</td>
-                </tr>
-                <tr>
-                    <td>508</td>
-                    <td>KH-4</td>
-                    <td>705</td>
-                </tr>
-                <tr>
-                    <td>505</td>
-                    <td>KH-5</td>
-                    <td>708</td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="clearfix"> </div>
 
-            <table cellspacing="0" cellpadding="0" border="0">
-                <tbody>
-                <tr>
-                    <td class="gutter">
-                        <div class="line number1 index0 alt2" style="display: none;">1</div>
-                    </td>
-                    <td class="code">
-                        <div class="container" style="display: none;">
-                            <div class="line number1 index0 alt2" style="display: none;">&nbsp;</div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="grid-form">
+                <div class="grid-form1 min-height">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>SL. No</th>
+                            <th>CompartmentName</th>
+                            <th>CompartmentNo</th>
+                            <th>Train</th>
+                            <th>Edit</th>
+                            <th>Del</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="compartment : ${list}">
+                            <td th:text="${compartment.id}" class="has-success"></td>
+                            <td th:text="${compartment.compartmentName}"></td>
+                            <td th:text="${compartment.compartmentNo}"></td>
+                            <td th:each="t : ${compartment.train}">
+                                <span th:text="${t.id}"></span>
+                            </td>
+                            <td>
+                                <a th:href="@{'/compartment/edit/'+${compartment.id}}">Edit</a>
+                            </td>
+                            <td>
+                                <a th:href="@{'/compartment/del/'+${compartment.id}}">Del</a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>SL. No</th>
+                            <th>CompartmentName</th>
+                            <th>CompartmentNo</th>
+                            <th>Train</th>
+                            <th>Edit</th>
+                            <th>Del</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
         </div>
-
+        <div class="clearfix"> </div>
     </div>
 </div>
 

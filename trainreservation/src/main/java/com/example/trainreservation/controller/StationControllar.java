@@ -52,13 +52,14 @@ public class StationControllar {
     public String edit(@Valid Station station, BindingResult result, Model model,@PathVariable("id") Long id){
         if(result.hasErrors()){
             return "station/edit";
-        } else {
-
+        }
+            station.setId(id);
             this.repo.save(station);
+        return "redirect:/station/list";
         }
 
-        return "redirect:/station/list";
-    }
+
+
 
 
 
