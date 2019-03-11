@@ -28,6 +28,8 @@ public class SeatDetails {
 	private Boolean status;
 
 
+
+
 	public Long getId() {
 		return id;
 	}

@@ -8,69 +8,81 @@
 </head>
 <body>
 <div layout:fragment="custom-content">
-    <div class="row">
-        <div class="col-12 grid-margin">
-            <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+    <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div class="content-main">
+
+            <!--banner-->
+            <div class="banner">
+
+                <h2>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
+
+
+            <div class="clearfix"> </div>
+
+            <div class="grid-form">
+                <div class="grid-form1 min-height">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <tr>
-                    <th>Train_id</th>
-                    <th>Compartment_id</th>
-                    <th>SeatOrCabin_id</th>
+                    <th>SL. No</th>
+                    <th>TrainName</th>
+                    <th>CompartmentName</th>
+                    <th>SeatNo</th>
+                    <th>CabinNo</th>
                     <th>Status</th>
 
 
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>709</td>
-                    <td>503</td>
-                    <td>404</td>
-                    <td>True</td>
-                </tr>
-                <tr>
-                    <td>707</td>
-                    <td>504</td>
-                    <td>403</td>
-                    <td>False</td>
-                </tr>
-                <tr>
-                    <td>705</td>
-                    <td>502</td>
-                    <td>402</td>
-                    <td>True</td>
-                </tr>
-                <tr>
-                    <td>706</td>
-                    <td>502</td>
-                    <td>401</td>
-                    <td>True</td>
-                </tr>
-                <tr>
-                    <td>708</td>
-                    <td>506</td>
-                    <td>409</td>
-                    <td>False</td>
-                </tr>
-                </tbody>
-            </table>
+                <tr th:each="seatDetails : ${list}">
+                    <td th:text="${seatDetails.id}" class="has-success"></td>
 
-            <table cellspacing="0" cellpadding="0" border="0">
-                <tbody>
-                <tr>
-                    <td class="gutter">
-                        <div class="line number1 index0 alt2" style="display: none;">1</div>
+                    <td th:each="t : ${seatDetails.train}">
+                        <span th:text="${t.trainName}"></span>
                     </td>
-                    <td class="code">
-                        <div class="container" style="display: none;">
-                            <div class="line number1 index0 alt2" style="display: none;">&nbsp;</div>
-                        </div>
+                    <td th:each="c : ${seatDetails.compartment}">
+                        <span th:text="${c.compartmentName}"></span>
+                    </td>
+                    <td th:each="st: ${seatDetails.seatOrCabin}">
+                        <span th:text="${st.seatNo}"></span>
+                    </td>
+                    <td th:each="cb: ${seatDetails.seatOrCabin}">
+                        <span th:text="${cb.cabinNo}"></span>
+                    </td>
+                    <td th:text="${seatDetails.status}"></td>
+
+
+                    <td>
+                        <a th:href="@{'/seatDetails/edit/'+${seatDetails.id}}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/seatDetails/del/'+${seatDetails.id}}">Del</a>
                     </td>
                 </tr>
+
                 </tbody>
-            </table>
+                        <tfoot>
+                        <tr>
+                            <th>SL. No</th>
+                            <th>TrainName</th>
+                            <th>CompartmentName</th>
+                            <th>SeatNo</th>
+                            <th>CabinNo</th>
+                            <th>Status</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
         </div>
-
+        <div class="clearfix"> </div>
     </div>
 </div>
 

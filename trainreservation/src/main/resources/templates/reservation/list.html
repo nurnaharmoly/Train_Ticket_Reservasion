@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutlist.html}">
 
 <head>
     <title>Device Info List</title>
 </head>
 <body>
 <div layout:fragment="custom-content">
-    <div class="row">
-        <div class="col-12 grid-margin">
-            <table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+    <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div class="content-main">
+
+            <!--banner-->
+            <div class="banner">
+
+                <h2>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
+
+
+            <div class="clearfix"> </div>
+
+            <div class="grid-form">
+                <div class="grid-form1 min-height">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <thead>
                 <tr>
@@ -18,85 +34,63 @@
                     <th>Total Price</th>
                     <th>Unit Price</th>
                     <th>Journey Date</th>
-                    <th>Ticket_id</th>
+                    <th>TicketNo</th>
                     <th>Compartment_id</th>
-                    <th>Train_id</th>
-                    <th>User_id</th>
+                    <th>TrainName</th>
+                    <th>UserName</th>
 
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>56</td>
-                    <td>23000</td>
-                    <td>780</td>
-                    <td>3/2/2019</td>
-                    <td>232</td>
-                    <td>708</td>
-                    <td>503</td>
-                    <td>111</td>
+                <tr th:each="reservation : ${list}">
+                    <td th:text="${reservation.id}" class="has-success"></td>
+                    <td th:text="${reservation.noOffSeats}"></td>
+                    <td th:text="${reservation.totalPrice}"></td>
+                    <td th:text="${reservation.unitPrice}"></td>
+                    <td th:text="${reservation.journyDate}"></td>
+                    <td th:each="tc : ${reservation.ticket}">
+                        <span th:text="${tc.ticketNo}"></span>
+                    </td>
+                    <td th:each="c : ${reservation.compartment}">
+                        <span th:text="${c.compartmentName}"></span>
+                    </td>
+                    <td th:each="t: ${reservation.train}">
+                        <span th:text="${t.trainName}"></span>
+                    </td>
+                    <td th:each="u: ${reservation.user}">
+                        <span th:text="${u.userName}"></span>
+                    </td>
+
+
+
+                    <td>
+                        <a th:href="@{'/reservation/edit/'+${reservation.id}}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/reservation/del/'+${reservation.id}}">Del</a>
+                    </td>
                 </tr>
-                <tr>
-                    <td>45</td>
-                    <td>34000</td>
-                    <td>880</td>
-                    <td>3/3/2019</td>
-                    <td>341</td>
-                    <td>705</td>
-                    <td>504</td>
-                    <td>110</td>
-                </tr>
-                <tr>
-                    <td>85</td>
-                    <td>89000</td>
-                    <td>980</td>
-                    <td>3/5/2019</td>
-                    <td>233</td>
-                    <td>706</td>
-                    <td>505</td>
-                    <td>109</td>
-                </tr>
-                <tr>
-                    <td>67</td>
-                    <td>90000</td>
-                    <td>1000</td>
-                    <td>3/6/2019</td>
-                    <td>232</td>
-                    <td>707</td>
-                    <td>502</td>
-                    <td>101</td>
-                </tr>
-                <tr>
-                    <td>87</td>
-                    <td>78000</td>
-                    <td>780</td>
-                    <td>3/3/2019</td>
-                    <td>234</td>
-                    <td>709</td>
-                    <td>506</td>
-                    <td>112</td>
-                </tr>
+
                 </tbody>
+                <tfoot>
+                <tr>
+                    <th>No Off Seats</th>
+                    <th>Total Price</th>
+                    <th>Unit Price</th>
+                    <th>Journey Date</th>
+                    <th>TicketNo</th>
+                    <th>Compartment_id</th>
+                    <th>TrainName</th>
+                    <th>UserName</th>
+                </tr>
+                </tfoot>
             </table>
 
-            <table cellspacing="0" cellpadding="0" border="0">
-                <tbody>
-                <tr>
-                    <td class="gutter">
-                        <div class="line number1 index0 alt2" style="display: none;">1</div>
-                    </td>
-                    <td class="code">
-                        <div class="container" style="display: none;">
-                            <div class="line number1 index0 alt2" style="display: none;">&nbsp;</div>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
         </div>
-
     </div>
 </div>
-
+<div class="clearfix"> </div>
+</div>
+</div>
 </body>
 </html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+
+<head>
+    <title>Role Create</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+    <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div class="content-main">
+
+            <!--banner-->
+            <div class="banner">
+
+                <h2>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
+
+
+            <div class="clearfix"> </div>
+
+            <div class="grid-form">
+                <div class="grid-form1 min-height">
+                    <div class="panel-body">
+
+                        <h3 id="forms-horizontal">Update Reservation</h3>
+
+
+                        <form th:object="${reservation}"th:action="@{/reservation/edit/}+${id}" th:method="POST">
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="noOffSeats">NoOffSeats</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{noOffSeats}" id="noOffSeats" placeholder="NoOffSeats" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('noOffSeats')}" th:errors="*{noOffSeats}">NoOffSeats Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="totalPrice">Total Price</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{totalPrice}" id="totalPrice" placeholder="Total Price" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('totalPrice')}" th:errors="*{totalPrice}">Total Price Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="unitPrice">Unit Price</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{unitPrice}" id="unitPrice" placeholder="Unit Price" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}">Unit Price Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label">Journy Date</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</span>
+                                        <input type="date" th:text="${#dates.format(reservation.journyDate, 'yyyy-MM-dd')}" th:field="*{journyDate}"  class="fa-calendar" placeholder="Journy Date">
+                                        <span th:class="err" th:if="${#fields.hasErrors('journyDate')}" th:errors="*{journyDate}">Journy Date</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-6 control-label">TicketNo</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{ticket}"  class="form-control1">
+                                            <option th:each="ticket : ${ticketlist}" th:value="${ticket.id}"><span th:text="${ticket.ticketNo}"></span></option>
+                                       </select>
+                                     </span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-6 control-label">Compartment</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{compartment}"  class="form-control1">
+                                            <option th:each="compartment : ${compartmentlist}" th:value="${compartment.id}"><span th:text="${compartment.compartmentName}"></span></option>
+                                       </select>
+                                     </span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-6 control-label">Train</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{train}"  class="form-control1">
+                                            <option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>
+                                       </select>
+                                     </span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-6 control-label">UserName</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{user}"  class="form-control1">
+                                            <option th:each="user : ${userlist}" th:value="${user.id}"><span th:text="${user.userName}"></span></option>
+                                       </select>
+                                     </span>
+                                </div>
+                            </div>
+
+
+                            <div class="clearfix"> </div>
+
+                            <div>
+                                <h1><button type="submit" class="label label-success">ADD</button>&nbsp;<button type="reset" class="label label-success">Reset</button></h1>
+
+                            </div>
+                            <div class="clearfix"> </div>
+                        </form>
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

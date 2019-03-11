@@ -1,5 +1,7 @@
 package com.example.trainreservation.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -18,16 +20,23 @@ public class Reservation {
 
 	private double unitPrice;
 
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date journyDate;
+
 	@ManyToOne
 	@JoinColumn(name = "ticket_id")
 	private Ticket ticket;
+
 	@ManyToOne
 	@JoinColumn(name = "compartment_id")
 	private Compartment compartment;
+
 	@ManyToOne
 	@JoinColumn(name = "train_id")
 	private Train train;
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;

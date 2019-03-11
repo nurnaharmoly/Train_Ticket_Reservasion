@@ -29,46 +29,17 @@
                     <div class="panel-body">
 
                         <h3 id="forms-horizontal">Add Train</h3>
+                        <span th:class="succes" th:text="${successMsg}"></span>
 
-
-                        <form th:object="${ticket}"th:action="@{/ticket/edit/}+${id}" th:method="POST">
-
-                            <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="ticketNo">TicketNo</label>
-                                <div class="col-md-12">
-                                    <div class="input-group">
-									<span class="input-group-addon">
-										<i class="fa fa-navicon"></i>
-									</span>
-                                        <input class="form-control1" type="text" th:field="*{ticketNo}" id="ticketNo" placeholder="TicketNo" required>
-                                        <span th:class="err" th:if="${#fields.hasErrors('ticketNo')}" th:errors="*{ticketNo}">TicketNo Error</span>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                        <form th:object="${seatDetails}" th:action="@{/seatDetails/add}" th:method="POST">
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">User</label>
+                                <label class="col-md-6 control-label">Train</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
-                                       <select th:field="*{user}"  class="form-control1">
-                                            <option th:each="user : ${userlist}" th:value="${user.id}"><span th:text="${user.userName}"></span></option>
-                                       </select>
-                                     </span>
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group has-success">
-                                <label class="col-md-6 control-label">FareCategory</label>
-                                <div class="col-sm-12">
-                                     <span class="input-group-addon">
-										<i class="fa fa-dashcube"></i>
-                                       <select th:field="*{fareCategory}"  class="form-control1">
-                                            <option th:each="fareCategory : ${fareCategorylist}" th:value="${fareCategory.id}"><span th:text="${fareCategory.fareCategoreNo}"></span></option>
+                                       <select th:field="*{train}"  class="form-control1">
+                                            <option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>
                                        </select>
                                      </span>
                                 </div>
@@ -76,7 +47,7 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">Route</label>
+                                <label class="col-md-6 control-label">Compartment</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
@@ -89,7 +60,7 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">SeatOrCabin</label>
+                                <label class="col-md-6 control-label">SeatNo</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
@@ -101,7 +72,7 @@
                             </div>
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">SeatOrCabin</label>
+                                <label class="col-md-6 control-label">CabinNo</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
@@ -112,16 +83,22 @@
                                 </div>
                             </div>
 
-
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">SeatOrCabin</label>
-                                <div class="col-sm-12">
-                                     <span class="input-group-addon">
-										<i class="fa fa-dashcube"></i>
-                                       <select th:field="*{route}"  class="form-control1">
-                                            <option th:each="route : ${routelist}" th:value="${route.id}"><span th:text="${route.routeName}"></span></option>
-                                       </select>
-                                     </span>
+                                <label class="col-md-12 control-label">Status</label>
+                                <div class="col-md-12">
+                                    <div class="input-group ">
+                                        <ul>
+                                            <li>
+
+                                                <input type="radio" id="t" name="status" value="True" th:field="*{status}" class="has-success">
+                                                <label for="t"><span></span>True</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="f" name="status" value="False" th:field="*{status}" class="has-success">
+                                                <label for="f"><span></span>False</label>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
 

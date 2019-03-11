@@ -41,7 +41,7 @@
 									<span class="input-group-addon">
 										<i class="fa fa-times-circle"></i>
 									</span>
-                                        <input type="date" th:text="${#dates.setHour(scheduleTime.startTime)}" th:field="*{startTime}"  class="fa-times-circle" placeholder="StartTime">
+                                        <input type="time"  th:field="*{startTime}"  class="fa-times" placeholder="StartTime">
                                         <span th:class="err" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}">StartTime</span>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
 									<span class="input-group-addon">
 										<i class="fa fa-times"></i>
 									</span>
-                                        <input type="date" th:text="${#dates.setHour(scheduleTime.arrivalTime )}" th:field="*{arrivalTime}"  class="fa-times" placeholder="ArrivalTime">
+                                        <input type="time" th:field="*{arrivalTime}"  class="fa-times" placeholder="ArrivalTime">
                                         <span th:class="err" th:if="${#fields.hasErrors('arrivalTime')}" th:errors="*{arrivalTime}">arrivalTime</span>
                                     </div>
                                 </div>

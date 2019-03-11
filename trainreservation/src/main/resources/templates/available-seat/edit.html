@@ -28,20 +28,18 @@
                 <div class="grid-form1 min-height">
                     <div class="panel-body">
 
-                        <h3 id="forms-horizontal">Add Route</h3>
-
-
-                        <form th:object="${seatOrCabin}" th:action="@{/seatOrCabin/edit/}+${id}" th:method="POST">
+                        <h3 id="forms-horizontal">Add Train</h3>
+                        <form th:object="${availableSeats}" th:action="@{/availableSeats/edit/}+${id}" th:method="POST">
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="seatNo">SeatNo</label>
+                                <label class="col-md-12 control-label" for="availableSeats">AvailableSeats</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
 									<span class="input-group-addon">
 										<i class="fa fa-navicon"></i>
 									</span>
-                                        <input class="form-control1" type="text" th:field="*{seatNo}" id="seatNo" placeholder="SeatNo" required>
-                                        <span th:class="err" th:if="${#fields.hasErrors('seatNo')}" th:errors="*{seatNo}">SeatNo Error</span>
+                                        <input class="form-control1" type="text" th:field="*{availableSeats}" id="availableSeats" placeholder="AvailableSeats" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('availableSeats')}" th:errors="*{availableSeats}">AvailableSeats Error</span>
                                     </div>
                                 </div>
                             </div>
@@ -49,15 +47,44 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="cabinNo">CabinNo</label>
+                                <label class="col-md-12 control-label" for="soldSeats">Sold Seats</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
 									<span class="input-group-addon">
 										<i class="fa fa-navicon"></i>
 									</span>
-                                        <input class="form-control1" type="text" th:field="*{cabinNo}" id="cabinNo" placeholder="CabinNo" required>
-                                        <span th:class="err" th:if="${#fields.hasErrors('cabinNo')}" th:errors="*{cabinNo}">CabinNo Error</span>
+                                        <input class="form-control1" type="text" th:field="*{soldSeats}" id="soldSeats" placeholder="Sold Seats" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('soldSeats')}" th:errors="*{soldSeats}">Sold Seats Error</span>
                                     </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="totalSeats">Total Seats</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{totalSeats}" id="totalSeats" placeholder="Total Seats" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('totalSeats')}" th:errors="*{totalSeats}">Total Seats Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-6 control-label">SheduleTime</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{train}"  class="form-control1">
+                                            <option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>
+                                       </select>
+                                     </span>
                                 </div>
                             </div>
 
@@ -75,18 +102,6 @@
                             </div>
 
 
-                            <div class="form-group has-success">
-                                <label class="col-md-6 control-label">Station</label>
-                                <div class="col-sm-12">
-                                     <span class="input-group-addon">
-										<i class="fa fa-dashcube"></i>
-                                       <select th:field="*{trainClass}"  class="form-control1">
-                                            <option th:each="trainClass : ${trainClasslist}" th:value="${trainClass.id}"><span th:text="${trainClass.className}"></span></option>
-                                       </select>
-                                     </span>
-                                </div>
-                            </div>
-
                             <div class="clearfix"> </div>
 
                             <div>
@@ -103,6 +118,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 </html>
