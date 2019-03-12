@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutlist.html}">
 
 <head>
-    <title>Device Info List</title>
+    <title>Route List</title>
 </head>
 <body>
 <div layout:fragment="custom-content">
@@ -44,10 +44,10 @@
                             <td th:text="${route.stationFrom}"></td>
                             <td th:text="${route.stationTo}"></td>
                             <td>
-                                <a th:href="@{'/route/edit/'+${route.id}}">Edit</a>
+                                <a th:href="@{'/route/edit/'+${route.id}}"><span class="label label-success">Edit</span></a>
                             </td>
                             <td>
-                                <a th:href="@{'/route/del/'+${route.id}}">Del</a>
+                                <a th:href="@{'/route/del/'+${route.id}}"><span class="label label-danger">Delete</span></a>
                             </td>
                         </tr>
 

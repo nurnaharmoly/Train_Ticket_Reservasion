@@ -46,10 +46,10 @@
                                 <span th:text="${t.id}"></span>
                             </td>
                             <td>
-                                <a th:href="@{'/compartment/edit/'+${compartment.id}}">Edit</a>
+                                <a th:href="@{'/compartment/edit/'+${compartment.id}}"><span class="label label-success">Edit</span></a>
                             </td>
                             <td>
-                                <a th:href="@{'/compartment/del/'+${compartment.id}}">Del</a>
+                                <a th:href="@{'/compartment/del/'+${compartment.id}}"><span class="label label-danger">Delete</span></a>
                             </td>
                         </tr>
 

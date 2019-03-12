@@ -42,10 +42,10 @@
                             <td th:text="${scheduleTime.startTime}"></td>
                             <td th:text="${scheduleTime.arrivalTime}"></td>
                             <td>
-                                <a th:href="@{'/scheduleTime/edit/'+${scheduleTime.id}}">Edit</a>
+                                <a th:href="@{'/scheduleTime/edit/'+${scheduleTime.id}}"><span class="label label-success">Edit</span></a>
                             </td>
                             <td>
-                                <a th:href="@{'/scheduleTime/del/'+${scheduleTime.id}}">Del</a>
+                                <a th:href="@{'/scheduleTime/del/'+${scheduleTime.id}}"><span class="label label-danger">Delete</span></a>
                             </td>
                         </tr>
 

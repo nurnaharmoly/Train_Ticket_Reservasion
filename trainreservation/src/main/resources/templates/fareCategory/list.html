@@ -40,10 +40,10 @@
                             <td th:text="${fareCategory.id}" class="has-success"></td>
                             <td th:text="${fareCategory.fareCategoreNo}"></td>
                             <td>
-                                <a th:href="@{'/fareCategory/edit/'+${fareCategory.id}}">Edit</a>
+                                <a th:href="@{'/fareCategory/edit/'+${fareCategory.id}}"><span class="label label-success">Edit</span></a>
                             </td>
                             <td>
-                                <a th:href="@{'/fareCategory/del/'+${fareCategory.id}}">Del</a>
+                                <a th:href="@{'/fareCategory/del/'+${fareCategory.id}}"><span class="label label-danger">Delete</span></a>
                             </td>
                         </tr>
 

@@ -21,61 +21,61 @@ import javax.validation.Valid;
 @RequestMapping(value = "/scheduleTime/")
 public class ScheduleTimeControllar {
 
-    @Autowired
-    private ScheduleTimeRepo repo;
-
-    @GetMapping(value = "add")
-    public String viewAdd(Model model){
-        model.addAttribute("scheduleTime",new ScheduleTime());
-        return "scheduleTime/add";
-    }
-
-    @PostMapping(value = "add")
-    public String add(@Valid ScheduleTime scheduleTime, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "scheduleTime/add";
-        }else{
-            this.repo.save(scheduleTime);
-            model.addAttribute("scheduleTime", new ScheduleTime());
-            model.addAttribute("successMsg", "Successfully Saved!");
-        }
-
-        return "station/add";
-    }
-
-
-    @GetMapping(value = "edit/{id}")
-    public String viewEdit(Model model, @PathVariable("id") Long id){
-        model.addAttribute("scheduleTime",repo.getOne(id));
-        return "scheduleTime/edit";
-    }
-    @PostMapping(value = "edit/{id}")
-    public String edit(@Valid ScheduleTime scheduleTime, BindingResult result, Model model,@PathVariable("id") Long id){
-        if(result.hasErrors()){
-            return "scheduleTime/edit";
-        }
-        scheduleTime.setId(id);
-        this.repo.save(scheduleTime);
-        return "redirect:/scheduleTime/list";
-        }
-
-
-
-     @GetMapping(value = "del/{id}")
-    public String del(@PathVariable("id") Long id){
-        if(id != null) {
-            this.repo.deleteById(id);
-        }
-        return "redirect:/scheduleTime/list";
-    }
-
-
-    @GetMapping(value = "list")
-    public String list(Model model){
-        model.addAttribute("list",this.repo.findAll());
-        return "scheduleTime/list";
-    }
-
+//    @Autowired
+//    private ScheduleTimeRepo repo;
+//
+//    @GetMapping(value = "add")
+//    public String viewAdd(Model model){
+//        model.addAttribute("scheduleTime",new ScheduleTime());
+//        return "scheduleTime/add";
+//    }
+//
+//    @PostMapping(value = "add")
+//    public String add(@Valid ScheduleTime scheduleTime, BindingResult result, Model model) {
+//        if (result.hasErrors()) {
+//            return "scheduleTime/add";
+//        }else{
+//            this.repo.save(scheduleTime);
+//            model.addAttribute("scheduleTime", new ScheduleTime());
+//            model.addAttribute("successMsg", "Successfully Saved!");
+//        }
+//
+//        return "station/add";
+//    }
+//
+//
+//    @GetMapping(value = "edit/{id}")
+//    public String viewEdit(Model model, @PathVariable("id") Long id){
+//        model.addAttribute("scheduleTime",repo.getOne(id));
+//        return "scheduleTime/edit";
+//    }
+//    @PostMapping(value = "edit/{id}")
+//    public String edit(@Valid ScheduleTime scheduleTime, BindingResult result, Model model,@PathVariable("id") Long id){
+//        if(result.hasErrors()){
+//            return "scheduleTime/edit";
+//        }
+//        scheduleTime.setId(id);
+//        this.repo.save(scheduleTime);
+//        return "redirect:/scheduleTime/list";
+//        }
+//
+//
+//
+//     @GetMapping(value = "del/{id}")
+//    public String del(@PathVariable("id") Long id){
+//        if(id != null) {
+//            this.repo.deleteById(id);
+//        }
+//        return "redirect:/scheduleTime/list";
+//    }
+//
+//
+//    @GetMapping(value = "list")
+//    public String list(Model model){
+//        model.addAttribute("list",this.repo.findAll());
+//        return "scheduleTime/list";
+//    }
+//
 
 
 

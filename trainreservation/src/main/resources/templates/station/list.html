@@ -42,10 +42,10 @@
                             <td th:text="${station.stationName}"></td>
                             <td th:text="${station.adress}"></td>
                             <td>
-                                <a th:href="@{'/station/edit/'+${station.id}}">Edit</a>
+                                <a th:href="@{'/station/edit/'+${station.id}}"><span class="label label-success">Edit</span></a>
                             </td>
                             <td>
-                                <a th:href="@{'/station/del/'+${station.id}}">Del</a>
+                                <a th:href="@{'/station/del/'+${station.id}}"><span class="label label-danger">Delete</span></a>
                             </td>
                         </tr>
 

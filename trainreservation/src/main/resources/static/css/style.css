@@ -1790,7 +1790,7 @@ td i{
 	color:#999;
 }
 td span{
-	color:#fff;
+	color: rgba(74, 76, 102, 0.91);
 	font-size: 0.8em;
 	padding: 4px 7px;
 	font-family: 'Muli-Regular';

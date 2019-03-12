@@ -50,10 +50,10 @@
                         <span th:text="${c.compartmentName}"></span>
                     </td>
                     <td>
-                        <a th:href="@{'/availableSeats/edit/'+${availableSeats.id}}">Edit</a>
+                        <a th:href="@{'/availableSeats/edit/'+${availableSeats.id}}"><span class="label label-success">Edit</span></a>
                     </td>
                     <td>
-                        <a th:href="@{'/availableSeats/del/'+${availableSeats.id}}">Del</a>
+                        <a th:href="@{'/availableSeats/del/'+${availableSeats.id}}"><span class="label label-danger">Delete</span></a>
                     </td>
                 </tr>
 

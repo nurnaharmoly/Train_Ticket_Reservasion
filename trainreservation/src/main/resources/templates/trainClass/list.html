@@ -40,10 +40,10 @@
                             <td th:text="${trainClass.id}" class="has-success"></td>
                             <td th:text="${trainClass.className}"></td>
                             <td>
-                                <a th:href="@{'/trainclass/edit/'+${trainClass.id}}">Edit</a>
+                                <a th:href="@{'/trainclass/edit/'+${trainClass.id}}"><span class="label label-success">Edit</span></a>
                             </td>
                             <td>
-                                <a th:href="@{'/trainclass/del/'+${trainClass.id}}">Del</a>
+                                <a th:href="@{'/trainclass/del/'+${trainClass.id}}"><span class="label label-danger">Delete</span></a>
                             </td>
                         </tr>
 

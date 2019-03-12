@@ -82,6 +82,7 @@ public class UserController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setConfirmationToken(UUID.randomUUID().toString());
             this.repo.save(user);
+            model.addAttribute("user", new User());
             model.addAttribute("successMsg","Successfully Saved!");
             model.addAttribute("rolelist", roleRepo.findAll());
         }

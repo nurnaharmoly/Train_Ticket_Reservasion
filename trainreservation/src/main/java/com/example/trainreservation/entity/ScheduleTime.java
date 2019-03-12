@@ -14,36 +14,36 @@ public class ScheduleTime {
 	private  Long id;
 
 
-	@Temporal(TemporalType.TIME)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-	private LocalDateTime startTime;
-
-	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    private LocalDateTime arrivalTime;
-
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-    public LocalDateTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public LocalDateTime getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setArrivalTime(LocalDateTime arrivalTime) {
-        this.arrivalTime = arrivalTime;
-    }
+//	@Temporal(TemporalType.TIME)
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+//	private LocalDateTime startTime;
+//
+//	@Temporal(TemporalType.TIME)
+//	@DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+//    private LocalDateTime arrivalTime;
+//
+//
+//	public Long getId() {
+//		return id;
+//	}
+//
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
+//
+//    public LocalDateTime getStartTime() {
+//        return startTime;
+//    }
+//
+//    public void setStartTime(LocalDateTime startTime) {
+//        this.startTime = startTime;
+//    }
+//
+//    public LocalDateTime getArrivalTime() {
+//        return arrivalTime;
+//    }
+//
+//    public void setArrivalTime(LocalDateTime arrivalTime) {
+//        this.arrivalTime = arrivalTime;
+//    }
 }
