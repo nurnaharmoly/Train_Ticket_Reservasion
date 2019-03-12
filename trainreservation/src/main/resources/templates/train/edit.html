@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutlist.html}">
 
 <head>
-    <title>Role Create</title>
+    <title>Train Add</title>
 </head>
 <body>
 <div layout:fragment="custom-content">
@@ -28,7 +28,7 @@
                 <div class="grid-form1 min-height">
                     <div class="panel-body">
 
-                        <h3 id="forms-horizontal">Add Route</h3>
+                        <h3 id="forms-horizontal">Add Train</h3>
 
 
                         <form th:object="${train}" th:action="@{/train/edit/}+${id}" th:method="POST">

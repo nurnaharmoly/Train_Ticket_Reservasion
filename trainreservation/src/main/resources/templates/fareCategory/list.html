@@ -31,6 +31,7 @@
                         <tr>
                             <th>SL. No</th>
                             <th>FareCategoryNo</th>
+                            <th>FareCategoryName</th>
                             <th>Edit</th>
                             <th>Del</th>
                         </tr>
@@ -39,6 +40,7 @@
                         <tr th:each="fareCategory : ${list}">
                             <td th:text="${fareCategory.id}" class="has-success"></td>
                             <td th:text="${fareCategory.fareCategoreNo}"></td>
+                            <td th:text="${fareCategory.fareCategoreName}"></td>
                             <td>
                                 <a th:href="@{'/fareCategory/edit/'+${fareCategory.id}}"><span class="label label-success">Edit</span></a>
                             </td>
@@ -52,6 +54,7 @@
                         <tr>
                             <th>SL. No</th>
                             <th>FareCategoryNo</th>
+                            <th>FareCategoryName</th>
                             <th>Edit</th>
                             <th>Del</th>
                         </tr>

@@ -39,7 +39,7 @@ public class TicketControllar {
 
     @GetMapping(value = "add")
     public String viewAdd(Model model){
-        model.addAttribute("ticket",new Train());
+        model.addAttribute("ticket", new Ticket());
         model.addAttribute("userlist", userRepo.findAll());
         model.addAttribute("fareCategorylist", fareCategoryRepo.findAll());
         model.addAttribute("compartmentlist", compartmentRepo.findAll());

@@ -10,7 +10,9 @@ public class FareCategory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private  Long id;
 
-	private String fareCategoreNo;
+	private String fareCategoreName;
+
+	private int fareCategoreNo;
 
 
 	public Long getId() {
@@ -21,40 +23,54 @@ public class FareCategory {
 		this.id = id;
 	}
 
-	public String getFareCategoreNo() {
+	public String getFareCategoreName() {
+		return fareCategoreName;
+	}
+
+	public void setFareCategoreName(String fareCategoreName) {
+		this.fareCategoreName = fareCategoreName;
+	}
+
+	public int getFareCategoreNo() {
 		return fareCategoreNo;
 	}
 
-	public void setFareCategoreNo(String fareCategoreNo) {
+	public void setFareCategoreNo(int fareCategoreNo) {
 		this.fareCategoreNo = fareCategoreNo;
 	}
 
 	public FareCategory() {
 	}
 
-	public FareCategory(String fareCategoreNo) {
+
+	public FareCategory(String fareCategoreName, int fareCategoreNo) {
+		this.fareCategoreName = fareCategoreName;
 		this.fareCategoreNo = fareCategoreNo;
 	}
+
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		FareCategory that = (FareCategory) o;
-		return Objects.equals(id, that.id) &&
-				Objects.equals(fareCategoreNo, that.fareCategoreNo);
+		return fareCategoreNo == that.fareCategoreNo &&
+				Objects.equals(id, that.id) &&
+				Objects.equals(fareCategoreName, that.fareCategoreName);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, fareCategoreNo);
+		return Objects.hash(id, fareCategoreName, fareCategoreNo);
 	}
+
 
 	@Override
 	public String toString() {
 		return "FareCategory{" +
 				"id=" + id +
-				", fareCategoreNo='" + fareCategoreNo + '\'' +
+				", fareCategoreName='" + fareCategoreName + '\'' +
+				", fareCategoreNo=" + fareCategoreNo +
 				'}';
 	}
 }

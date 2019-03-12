@@ -44,16 +44,18 @@
                             <td th:text="${train.id}" class="has-success"></td>
                             <td th:text="${train.trainName}"></td>
                             <td th:text="${train.trainNo}"></td>
+                            <td th:text="${train.sheduleTime.startTime}"></td>
+                            <td th:text="${train.route.routeName}"></td>
 
-                            <td th:each="s : ${train.sheduleTime}">
-                                <span th:text="${s.id}"></span>
-                            </td>
-                            <td th:each="r : ${train.route}">
-                                <span th:text="${r.id}"></span>
-                            </td>
-                            <td th:each="st: ${train.station}">
-                                <span th:text="${st.id}"></span>
-                            </td>
+                            <!--<td th:each="s : ${train.sheduleTime}">-->
+                                <!--<span th:text="${s.id}"></span>-->
+                            <!--</td>-->
+                            <!--<td th:each="r : ${train.route}">-->
+                                <!--<span th:text="${r.id}"></span>-->
+                            <!--</td>-->
+                            <!--<td th:each="st: ${train.station}">-->
+                                <!--<span th:text="${st.id}"></span>-->
+                            <!--</td>-->
 
 
                             <td>
