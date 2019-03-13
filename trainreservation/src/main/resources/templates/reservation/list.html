@@ -15,7 +15,7 @@
             <div class="banner">
 
                 <h2>
-                    <a href="index.html">Home</a>
+                    <a th:href="@{/}">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
@@ -26,6 +26,9 @@
 
             <div class="grid-form">
                 <div class="grid-form1 min-height">
+
+                    <h1>Reservation List</h1><br/><br/>
+
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <thead>
@@ -34,10 +37,12 @@
                     <th>Total Price</th>
                     <th>Unit Price</th>
                     <th>Journey Date</th>
-                    <th>TicketNo</th>
-                    <th>Compartment_id</th>
-                    <th>TrainName</th>
-                    <th>UserName</th>
+                    <th>Ticket No</th>
+                    <th>Compartment</th>
+                    <th>Train</th>
+                    <th>User</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
 
                 </tr>
                 </thead>
@@ -48,21 +53,24 @@
                     <td th:text="${reservation.totalPrice}"></td>
                     <td th:text="${reservation.unitPrice}"></td>
                     <td th:text="${reservation.journyDate}"></td>
-                    <td th:each="tc : ${reservation.ticket}">
-                        <span th:text="${tc.ticketNo}"></span>
-                    </td>
-                    <td th:each="c : ${reservation.compartment}">
-                        <span th:text="${c.compartmentName}"></span>
-                    </td>
-                    <td th:each="t: ${reservation.train}">
-                        <span th:text="${t.trainName}"></span>
-                    </td>
-                    <td th:each="u: ${reservation.user}">
-                        <span th:text="${u.userName}"></span>
-                    </td>
+                    <td th:text="${reservation.ticket.ticketNo}"></td>
+                    <td th:text="${reservation.compartment.compartmentName}"></td>
+                    <td th:text="${reservation.train.trainName}"></td>
+                    <td th:text="${reservation.user.userName}"></td>
 
 
-
+                    <!--<td th:each="tc : ${reservation.ticket}">-->
+                        <!--<span th:text="${tc.ticketNo}"></span>-->
+                    <!--</td>-->
+                    <!--<td th:each="c : ${reservation.compartment}">-->
+                        <!--<span th:text="${c.compartmentName}"></span>-->
+                    <!--</td>-->
+                    <!--<td th:each="t: ${reservation.train}">-->
+                        <!--<span th:text="${t.trainName}"></span>-->
+                    <!--</td>-->
+                    <!--<td th:each="u: ${reservation.user}">-->
+                        <!--<span th:text="${u.userName}"></span>-->
+                    <!--</td>-->
                     <td>
                         <a th:href="@{'/reservation/edit/'+${reservation.id}}"><span class="label label-success">Edit</span></a>
                     </td>
@@ -79,9 +87,11 @@
                     <th>Unit Price</th>
                     <th>Journey Date</th>
                     <th>TicketNo</th>
-                    <th>Compartment_id</th>
-                    <th>TrainName</th>
-                    <th>UserName</th>
+                    <th>Compartment</th>
+                    <th>Train</th>
+                    <th>User</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
                 </tfoot>
             </table>

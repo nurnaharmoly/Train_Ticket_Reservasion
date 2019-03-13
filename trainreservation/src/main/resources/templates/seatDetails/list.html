@@ -15,7 +15,7 @@
             <div class="banner">
 
                 <h2>
-                    <a href="index.html">Home</a>
+                    <a th:href="@{/}">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
@@ -26,15 +26,20 @@
 
             <div class="grid-form">
                 <div class="grid-form1 min-height">
+
+                    <h1>Seat Details List</h1><br/><br/>
+
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <tr>
                     <th>SL. No</th>
-                    <th>TrainName</th>
-                    <th>CompartmentName</th>
-                    <th>SeatNo</th>
-                    <th>CabinNo</th>
+                    <th>Train Name</th>
+                    <th>Compartment Name</th>
+                    <th>Seat No</th>
+                    <th>Cabin No</th>
                     <th>Status</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
 
 
                 </tr>
@@ -42,20 +47,26 @@
                 <tbody>
                 <tr th:each="seatDetails : ${list}">
                     <td th:text="${seatDetails.id}" class="has-success"></td>
+                    <td th:text="${seatDetails.train.trainName}" class="has-success"></td>
+                    <td th:text="${seatDetails.compartment.compartmentName}" class="has-success"></td>
+                    <td th:text="${seatDetails.seatOrCabin.seatNo}" class="has-success"></td>
+                    <td th:text="${seatDetails.seatOrCabin.cabinNo}" class="has-success"></td>
+                    <td th:text="${seatDetails.id}" class="has-success"></td>
 
-                    <td th:each="t : ${seatDetails.train}">
-                        <span th:text="${t.trainName}"></span>
-                    </td>
-                    <td th:each="c : ${seatDetails.compartment}">
-                        <span th:text="${c.compartmentName}"></span>
-                    </td>
-                    <td th:each="st: ${seatDetails.seatOrCabin}">
-                        <span th:text="${st.seatNo}"></span>
-                    </td>
-                    <td th:each="cb: ${seatDetails.seatOrCabin}">
-                        <span th:text="${cb.cabinNo}"></span>
-                    </td>
                     <td th:text="${seatDetails.status}"></td>
+                    <!--<td th:each="t : ${seatDetails.train}">-->
+                        <!--<span th:text="${t.trainName}"></span>-->
+                    <!--</td>-->
+                    <!--<td th:each="c : ${seatDetails.compartment}">-->
+                        <!--<span th:text="${c.compartmentName}"></span>-->
+                    <!--</td>-->
+                    <!--<td th:each="st: ${seatDetails.seatOrCabin}">-->
+                        <!--<span th:text="${st.seatNo}"></span>-->
+                    <!--</td>-->
+                    <!--<td th:each="cb: ${seatDetails.seatOrCabin}">-->
+                        <!--<span th:text="${cb.cabinNo}"></span>-->
+                    <!--</td>-->
+                    <!--<td th:text="${seatDetails.status}"></td>-->
 
 
                     <td>
@@ -70,11 +81,13 @@
                         <tfoot>
                         <tr>
                             <th>SL. No</th>
-                            <th>TrainName</th>
-                            <th>CompartmentName</th>
-                            <th>SeatNo</th>
-                            <th>CabinNo</th>
+                            <th>Train Name</th>
+                            <th>Compartment Name</th>
+                            <th>Seat No</th>
+                            <th>Cabin No</th>
                             <th>Status</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                         </tfoot>
                     </table>

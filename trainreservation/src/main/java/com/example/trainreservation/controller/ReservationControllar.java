@@ -67,7 +67,7 @@ public class ReservationControllar {
 
     @GetMapping(value = "edit/{id}")
     public String viewEdit(Model model, @PathVariable("id") Long id){
-        model.addAttribute("route",repo.getOne(id));
+        model.addAttribute("reservation",repo.getOne(id));
         model.addAttribute("ticketlist", ticketRepo.findAll());
         model.addAttribute("compartmentlist", compartmentRepo.findAll());
         model.addAttribute("trainlist", trainRepo.findAll());

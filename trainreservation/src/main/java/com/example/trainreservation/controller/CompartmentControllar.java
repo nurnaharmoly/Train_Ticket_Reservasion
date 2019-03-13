@@ -42,6 +42,7 @@ public class CompartmentControllar {
         }else{
             this.repo.save(compartment);
             model.addAttribute("compartment", new Compartment());
+            model.addAttribute("successMsg", "Successfully Saved!");
             model.addAttribute("traintlist",trainRepo.findAll());
 
         }

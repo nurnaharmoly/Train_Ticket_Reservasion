@@ -15,7 +15,7 @@
             <div class="banner">
 
                 <h2>
-                    <a href="index.html">Home</a>
+                    <a th:href="@{/}">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
@@ -28,13 +28,13 @@
                 <div class="grid-form1 min-height">
                     <div class="panel-body">
 
-                        <h3 id="forms-horizontal">Add TrainClass</h3>
+                        <h3 id="forms-horizontal">Add Fare Category</h3>
                         <span th:class="succes" th:text="${successMsg}"></span>
 
                         <form th:object="${fareCategory}" th:action="@{/fareCategory/add}" th:method="POST">
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="fareCategoreNo">FareCategoreNo</label>
+                                <label class="col-md-12 control-label" for="fareCategoreNo">Fare Categore No</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
 									<span class="input-group-addon">
@@ -48,7 +48,7 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="fareCategoreName">FareCategoreName</label>
+                                <label class="col-md-12 control-label" for="fareCategoreName">Fare Categore Name</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
 									<span class="input-group-addon">

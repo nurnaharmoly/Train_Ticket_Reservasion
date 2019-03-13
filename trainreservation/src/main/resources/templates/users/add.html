@@ -17,7 +17,7 @@
         <div class="banner">
 
             <h2>
-                <a href="index.html">Home</a>
+                <a th:href="@{/}">Home</a>
                 <i class="fa fa-angle-right"></i>
                 <span>Dashboard</span>
             </h2>
@@ -130,11 +130,11 @@
                                         <ul>
                                             <li>
 
-                                                <input type="radio" id="m" name="gender" value="m" th:field="*{gender}" class="has-success">
+                                                <input type="radio" id="m" name="gender" value="Mele" th:field="*{gender}" class="has-success">
                                                 <label for="m"><span></span>Male</label>
                                             </li>
                                             <li>
-                                                <input type="radio" id="f" name="gender" value="f" th:field="*{gender}" class="has-success">
+                                                <input type="radio" id="f" name="gender" value="Female" th:field="*{gender}" class="has-success">
                                                 <label for="f"><span></span>Female</label>
                                             </li>
                                         </ul>

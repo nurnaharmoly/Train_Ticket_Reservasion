@@ -15,7 +15,7 @@
             <div class="banner">
 
                 <h2>
-                    <a href="index.html">Home</a>
+                    <a th:href="@{/}">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
@@ -34,7 +34,7 @@
                         <form th:object="${reservation}"th:action="@{/reservation/edit/}+${id}" th:method="POST">
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="noOffSeats">NoOffSeats</label>
+                                <label class="col-md-12 control-label" for="noOffSeats">No Off Seats</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
 									<span class="input-group-addon">
@@ -89,7 +89,7 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">TicketNo</label>
+                                <label class="col-md-6 control-label">Ticket No</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
@@ -129,7 +129,7 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">UserName</label>
+                                <label class="col-md-6 control-label">User Name</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
@@ -144,7 +144,7 @@
                             <div class="clearfix"> </div>
 
                             <div>
-                                <h1><button type="submit" class="label label-success">ADD</button>&nbsp;<button type="reset" class="label label-success">Reset</button></h1>
+                                <h1><button type="submit" class="label label-success">Update</button>&nbsp;<button type="reset" class="label label-success">Reset</button></h1>
 
                             </div>
                             <div class="clearfix"> </div>

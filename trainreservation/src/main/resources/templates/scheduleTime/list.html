@@ -15,7 +15,7 @@
             <div class="banner">
 
                 <h2>
-                    <a href="index.html">Home</a>
+                    <a th:href="@{/}">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
@@ -26,14 +26,17 @@
 
             <div class="grid-form">
                 <div class="grid-form1 min-height">
+
+                    <h1>ScheduleTime List</h1><br/><br/>
+
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
                             <th>SL. No</th>
-                            <th>StartTime</th>
-                            <th>ArrivalTime</th>
+                            <th>Start Time</th>
+                            <th>Arrival Time</th>
                             <th>Edit</th>
-                            <th>Del</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -53,10 +56,10 @@
                         <tfoot>
                         <tr>
                             <th>SL. No</th>
-                            <th>StartTime</th>
-                            <th>ArrivalTime</th>
+                            <th>Start Time</th>
+                            <th>Arrival Time</th>
                             <th>Edit</th>
-                            <th>Del</th>
+                            <th>Delete</th>
                         </tr>
                         </tfoot>
                     </table>

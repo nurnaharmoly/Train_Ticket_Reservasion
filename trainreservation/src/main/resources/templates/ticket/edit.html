@@ -15,7 +15,7 @@
             <div class="banner">
 
                 <h2>
-                    <a href="index.html">Home</a>
+                    <a th:href="@{/}">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
@@ -34,7 +34,7 @@
                         <form th:object="${ticket}"th:action="@{/ticket/edit/}+${id}" th:method="POST">
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="ticketNo">TicketNo</label>
+                                <label class="col-md-12 control-label" for="ticketNo">Ticket No</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
 									<span class="input-group-addon">
@@ -46,14 +46,8 @@
                                 </div>
                             </div>
 
-
-
-
-
-
-
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">FareCategory</label>
+                                <label class="col-md-6 control-label">Fare Category</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
@@ -66,7 +60,7 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">Route</label>
+                                <label class="col-md-6 control-label">Compartment</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
@@ -79,7 +73,7 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">SeatOrCabin</label>
+                                <label class="col-md-6 control-label">Seat No</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
@@ -91,7 +85,7 @@
                             </div>
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">SeatOrCabin</label>
+                                <label class="col-md-6 control-label">Cabin No</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
@@ -104,7 +98,7 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">SeatOrCabin</label>
+                                <label class="col-md-6 control-label">Route</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>

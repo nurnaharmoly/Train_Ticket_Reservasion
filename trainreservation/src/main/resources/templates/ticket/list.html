@@ -15,7 +15,7 @@
             <div class="banner">
 
                 <h2>
-                    <a href="index.html">Home</a>
+                    <a th:href="@{/}">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
@@ -26,47 +26,47 @@
 
             <div class="grid-form">
                 <div class="grid-form1 min-height">
-                    <h1>Ticket List</h1>
+                    <h1>Ticket List</h1><br/><br/>
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                 <tr>
                     <th>SL NO</th>
                     <th>Ticket NO</th>
-                    <th>FareCategore</th>
+                    <th>Fare Categore</th>
                     <th>Compartment</th>
-                    <th>SeatNo</th>
-                    <th>CabinNo</th>
+                    <th>Seat No</th>
+                    <th>Cabin No</th>
                     <th>Route</th>
-
-
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="ticket : ${list}">
                     <td th:text="${ticket.id}" class="has-success"></td>
                     <td th:text="${ticket.ticketNo}"></td>
+                    <td th:text="${ticket.fareCategore.fareCategoreName}"></td>
+                    <td th:text="${ticket.compartment.compartmentName}"></td>
+                    <td th:text="${ticket.seatOrCabin.seatNo}"></td>
+                    <td th:text="${ticket.seatOrCabin.cabinNo}"></td>
+                    <td th:text="${ticket.route.routeName}"></td>
 
 
-                    <td th:each="f : ${ticket.fareCategore}">
-                        <span th:text="${f.fareCategoreNo}"></span>
-                    </td>
-                    <td th:each="c: ${ticket.compartment}">
-                        <span th:text="${c.compartmentName}"></span>
-                    </td>
-                    <td th:each="se: ${ticket.seatOrCabin}">
-                        <span th:text="${se.seatNo}"></span>
-                    </td>
-                    <td th:each="cb: ${ticket.seatOrCabin}">
-                        <span th:text="${cb.cabinNo}"></span>
-                    </td>
-                    <td th:each="r: ${ticket.route}">
-                        <span th:text="${r.routeName}"></span>
-                    </td>
-
-
-
-
-
+                    <!--<td th:each="f : ${ticket.fareCategore}">-->
+                        <!--<span th:text="${f.fareCategoreNo}"></span>-->
+                    <!--</td>-->
+                    <!--<td th:each="c: ${ticket.compartment}">-->
+                        <!--<span th:text="${c.compartmentName}"></span>-->
+                    <!--</td>-->
+                    <!--<td th:each="se: ${ticket.seatOrCabin}">-->
+                        <!--<span th:text="${se.seatNo}"></span>-->
+                    <!--</td>-->
+                    <!--<td th:each="cb: ${ticket.seatOrCabin}">-->
+                        <!--<span th:text="${cb.cabinNo}"></span>-->
+                    <!--</td>-->
+                    <!--<td th:each="r: ${ticket.route}">-->
+                        <!--<span th:text="${r.routeName}"></span>-->
+                    <!--</td>-->
                     <td>
                         <a th:href="@{'/ticket/edit/'+${ticket.id}}"><span class="label label-success">Edit</span></a>
                     </td>
@@ -80,11 +80,13 @@
                         <tr>
                             <th>SL NO</th>
                             <th>Ticket Categore</th>
-                            <th>FareCategore</th>
+                            <th>Fare Categore</th>
                             <th>Compartment</th>
-                            <th>SeatNo</th>
-                            <th>CabinNo</th>
+                            <th>Seat No</th>
+                            <th>Cabin No</th>
                             <th>Route</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                         </tfoot>
                     </table>

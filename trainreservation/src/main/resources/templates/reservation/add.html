@@ -15,7 +15,7 @@
             <div class="banner">
 
                 <h2>
-                    <a href="index.html">Home</a>
+                    <a th:href="@{/}">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Dashboard</span>
                 </h2>
@@ -28,13 +28,13 @@
                 <div class="grid-form1 min-height">
                     <div class="panel-body">
 
-                        <h3 id="forms-horizontal">Add Train</h3>
+                        <h3 id="forms-horizontal">Add Reservation</h3>
                         <span th:class="succes" th:text="${successMsg}"></span>
 
                         <form th:object="${reservation}"th:action="@{/reservation/add}" th:method="POST">
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="noOffSeats">NoOffSeats</label>
+                                <label class="col-md-12 control-label" for="noOffSeats">No Off Seats</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
 									<span class="input-group-addon">
@@ -89,7 +89,7 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">TicketNo</label>
+                                <label class="col-md-6 control-label">Ticket No</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
@@ -129,7 +129,7 @@
 
 
                             <div class="form-group has-success">
-                                <label class="col-md-6 control-label">UserName</label>
+                                <label class="col-md-6 control-label">User Name</label>
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
