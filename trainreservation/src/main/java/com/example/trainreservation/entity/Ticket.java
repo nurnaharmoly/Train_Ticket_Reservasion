@@ -13,19 +13,19 @@ public class Ticket {
 	private int ticketNo;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "fareCategore_id")
+	@JoinColumn(name = "fareCategore_id", nullable = false)
 	private FareCategory fareCategore;
 
 	@ManyToOne
-	@JoinColumn(name = "compartment_id")
+	@JoinColumn(name = "compartment_id", nullable = false)
 	private Compartment compartment;
 
 	@OneToOne
-	@JoinColumn(name = "seatOrCabin_id")
+	@JoinColumn(name = "seatOrCabin_id", nullable = false)
 	private  SeatOrCabin seatOrCabin;
 
 	@OneToOne

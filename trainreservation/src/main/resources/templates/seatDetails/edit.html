@@ -31,7 +31,7 @@
                         <h3 id="forms-horizontal">Update Seat Details</h3>
 
 
-                        <form th:object="${seatDetails}" th:action="@{/seatDetails/edit/}+{id}" th:method="POST">
+                        <form th:object="${seatDetails}" th:action="@{/seatDetails/edit/}+${id}" th:method="POST">
 
                             <div class="form-group has-success">
                                 <label class="col-md-6 control-label">Train</label>

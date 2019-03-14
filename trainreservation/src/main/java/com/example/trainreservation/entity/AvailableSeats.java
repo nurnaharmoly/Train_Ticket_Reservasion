@@ -18,12 +18,14 @@ public class AvailableSeats {
 	private int totalSeats;
 
 	@ManyToOne
-	@JoinColumn(name = "train_id")
+	@JoinColumn(name = "train_id", nullable = false)
 	private Train train;
 
 	@ManyToOne
-	@JoinColumn(name = "compartment_id")
+	@JoinColumn(name = "compartment_id", nullable = false)
 	private Compartment compartment;
+
+
 
 
 	public Long getId() {

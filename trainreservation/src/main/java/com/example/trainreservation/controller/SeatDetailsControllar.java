@@ -39,7 +39,7 @@ public class SeatDetailsControllar {
 
     @GetMapping(value = "add")
     public String viewAdd(Model model){
-        model.addAttribute("seatDetails",new Route());
+        model.addAttribute("seatDetails",new SeatDetails());
         model.addAttribute("trainlist", trainRepo.findAll());
         model.addAttribute("compartmentlist", compartmentRepo.findAll());
         model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
@@ -54,12 +54,13 @@ public class SeatDetailsControllar {
             model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
             return "seatDetails/add";
         }else{
+
             this.repo.save(seatDetails);
             model.addAttribute("seatDetails", new SeatDetails());
+            model.addAttribute("successMsg", "Successfully Saved!");
             model.addAttribute("trainlist", trainRepo.findAll());
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
             model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
-            model.addAttribute("successMsg", "Successfully Saved!");
         }
 
         return "seatDetails/add";

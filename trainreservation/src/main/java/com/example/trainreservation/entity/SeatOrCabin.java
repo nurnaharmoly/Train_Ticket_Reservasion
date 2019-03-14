@@ -17,13 +17,18 @@ public class SeatOrCabin {
 
 
 	@ManyToOne
-	@JoinColumn(name = "compartment_id")
+	@JoinColumn(name = "compartment_id", nullable = false)
 	private Compartment compartment;
 
 
 	@ManyToOne
-	@JoinColumn(name = "trainClass_id")
+	@JoinColumn(name = "trainClass_id", nullable = false)
 	private TrainClass trainClass;
+
+
+	@ManyToOne
+	@JoinColumn(name = "train_id", nullable = false)
+	private Train train;
 
 
 	public Long getId() {
@@ -66,17 +71,24 @@ public class SeatOrCabin {
 		this.trainClass = trainClass;
 	}
 
+	public Train getTrain() {
+		return train;
+	}
+
+	public void setTrain(Train train) {
+		this.train = train;
+	}
+
 	public SeatOrCabin() {
 	}
 
-
-	public SeatOrCabin(int seatNo, int cabinNo, Compartment compartment, TrainClass trainClass) {
+	public SeatOrCabin(int seatNo, int cabinNo, Compartment compartment, TrainClass trainClass, Train train) {
 		this.seatNo = seatNo;
 		this.cabinNo = cabinNo;
 		this.compartment = compartment;
 		this.trainClass = trainClass;
-	}
 
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -88,6 +100,7 @@ public class SeatOrCabin {
 				Objects.equals(id, that.id) &&
 				Objects.equals(compartment, that.compartment) &&
 				Objects.equals(trainClass, that.trainClass);
+
 	}
 
 	@Override
@@ -103,6 +116,7 @@ public class SeatOrCabin {
 				", cabinNo=" + cabinNo +
 				", compartment=" + compartment +
 				", trainClass=" + trainClass +
+
 				'}';
 	}
 }

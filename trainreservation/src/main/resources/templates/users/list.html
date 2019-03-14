@@ -32,9 +32,9 @@
             <thead>
             <tr>
                 <th>SL. No</th>
-                <th>User Name</th>
+                <th>UserName</th>
                 <th>Email</th>
-                <th>Password</th>
+
                 <th>BirthDate</th>
                 <th>Gender</th>
                 <th>Role</th>
@@ -45,10 +45,10 @@
             <tbody>
             <tr th:each="user : ${list}">
                 <td th:text="${user.id}"></td>
-                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.userName}"></td>
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.email}"></td>
-                <td th:text="${user.password}"></td>
+
                 <td th:text="${user.birthDate}"></td>
                 <td th:text="${user.gender}"></td>
                 <td th:each="r : ${user.roles}">

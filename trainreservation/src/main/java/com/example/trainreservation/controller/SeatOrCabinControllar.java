@@ -1,9 +1,6 @@
 package com.example.trainreservation.controller;
 
-import com.example.trainreservation.entity.AvailableSeats;
-import com.example.trainreservation.entity.Compartment;
-import com.example.trainreservation.entity.Route;
-import com.example.trainreservation.entity.SeatOrCabin;
+import com.example.trainreservation.entity.*;
 import com.example.trainreservation.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,11 +27,19 @@ public class SeatOrCabinControllar {
     @Autowired
     private TrainClassRepo trainClassRepo;
 
+    @Autowired
+    private TrainRepo trainRepo;
+
+    @Autowired
+    private SeatDetailsRepo seatDetailsRepo;
+
     @GetMapping(value = "add")
     public String viewAdd(Model model){
+        model.addAttribute("seatOrCabin",new SeatOrCabin());
         model.addAttribute("compartmentlist", compartmentRepo.findAll());
         model.addAttribute("trainClasslist", trainClassRepo.findAll());
-        model.addAttribute("seatOrCabin",new SeatOrCabin());
+        model.addAttribute("trainlist", trainRepo.findAll());
+
         return "seatOrCabin/add";
     }
 
@@ -43,13 +48,23 @@ public class SeatOrCabinControllar {
         if (result.hasErrors()) {
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
             model.addAttribute("trainClasslist", trainClassRepo.findAll());
+            model.addAttribute("trainlist", trainRepo.findAll());
             return "seatOrCabin/add";
         }else{
             this.repo.save(seatOrCabin);
+
+            SeatDetails sd=new SeatDetails();
+            sd.setStatus(true);
+            sd.setCompartment(seatOrCabin.getCompartment());
+            sd.setTrain(seatOrCabin.getTrain());
+            sd.setSeatOrCabin(seatOrCabin);
+            this.seatDetailsRepo.save(sd);
+
             model.addAttribute("seatOrCabin", new SeatOrCabin());
             model.addAttribute("successMsg", "Successfully Saved!");
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
             model.addAttribute("trainClasslist", trainClassRepo.findAll());
+            model.addAttribute("trainlist", trainRepo.findAll());
         }
 
         return "seatOrCabin/add";
@@ -61,6 +76,7 @@ public class SeatOrCabinControllar {
         model.addAttribute("seatOrCabin",repo.getOne(id));
         model.addAttribute("compartmentlist", compartmentRepo.findAll());
         model.addAttribute("trainClasslist", trainClassRepo.findAll());
+        model.addAttribute("trainlist", trainRepo.findAll());
         return "seatOrCabin/edit";
     }
     @PostMapping(value = "edit/{id}")
@@ -68,12 +84,14 @@ public class SeatOrCabinControllar {
         if(result.hasErrors()){
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
             model.addAttribute("trainClasslist", trainClassRepo.findAll());
+            model.addAttribute("trainlist", trainRepo.findAll());
             return "seatOrCabin/edit";
         } else {
              seatOrCabin.setId(id);
             this.repo.save(seatOrCabin);
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
             model.addAttribute("trainClasslist", trainClassRepo.findAll());
+            model.addAttribute("trainlist", trainRepo.findAll());
             return "redirect:/seatOrCabin/list";
         }
     }
@@ -89,7 +107,7 @@ public class SeatOrCabinControllar {
 
     @GetMapping(value = "list")
     public String list(Model model){
-        model.addAttribute("list",this.repo.findAll());
+        model.addAttribute("list", this.repo.findAll());
         return "seatOrCabin/list";
     }
 

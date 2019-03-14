@@ -40,7 +40,7 @@ public class ScheduleTimeControllar {
             model.addAttribute("successMsg", "Successfully Saved!");
         }
 
-        return "station/add";
+        return "scheduleTime/add";
     }
 
 

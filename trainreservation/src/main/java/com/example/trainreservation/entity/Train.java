@@ -16,15 +16,15 @@ public class Train {
 
     private int trainNo;
     @ManyToOne
-    @JoinColumn(name = "sheduleTime_id")
+    @JoinColumn(name = "sheduleTime_id", nullable = false)
     private ScheduleTime sheduleTime;
 
     @ManyToOne
-    @JoinColumn(name = "route_id")
+    @JoinColumn(name = "route_id", nullable = false)
     private Route route;
 
     @ManyToOne
-    @JoinColumn(name = "station_id")
+    @JoinColumn(name = "station_id", nullable = false)
     private Station station;
 
 

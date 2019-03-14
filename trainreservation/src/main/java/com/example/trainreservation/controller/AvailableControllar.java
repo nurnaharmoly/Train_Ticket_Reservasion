@@ -34,7 +34,7 @@ public class AvailableControllar {
 
     @GetMapping(value = "add")
     public String viewAdd(Model model){
-        model.addAttribute("route",new Route());
+        model.addAttribute("availableSeats",new AvailableSeats());
         model.addAttribute("trainlist", trainRepo.findAll());
         model.addAttribute("compartmentlist", compartmentRepo.findAll());
         return "available-seat/add";

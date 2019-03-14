@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutlist.html}">
 
 <head>
-    <title>Device Info List</title>
+    <title></title>
 </head>
 <body>
 <div layout:fragment="custom-content">
@@ -36,6 +36,7 @@
                             <th>Seat No</th>
                             <th>Cabin No</th>
                             <th>Compartment</th>
+                            <th>Train Class</th>
                             <th>Train</th>
                             <th>Edit</th>
                             <th>Delete</th>
@@ -48,13 +49,14 @@
                             <td th:text="${seatOrCabin.cabinNo}"></td>
                             <td th:text="${seatOrCabin.compartment.compartmentName}"></td>
                             <td th:text="${seatOrCabin.trainClass.className}"></td>
-                            <!--<td th:each="c : ${seatOrCabin.compartment}">-->
-                                <!--<span th:text="${c.compartmentName}"></span>-->
-                            <!--</td>-->
+                            <!--<td th:text="${seatOrCabin.train.trainName}"></td>-->
+                            <td th:each="c : ${seatOrCabin.train}">
+                                <span th:text="${c.trainName}"></span>
+                            </td>
                             <!--<td th:each="t : ${seatOrCabin.trainClass}">-->
                                 <!--<span th:text="${t.className}"></span>-->
                             <!--</td>-->
-                            <!--<td>-->
+                            <td>
                                 <a th:href="@{'/seatOrCabin/edit/'+${seatOrCabin.id}}"><span class="label label-success">Edit</span></a>
                             </td>
                             <td>
@@ -69,6 +71,7 @@
                             <th>SeatNo</th>
                             <th>CabinNo</th>
                             <th>Compartment</th>
+                            <th>Train Class</th>
                             <th>Train</th>
                             <th>Edit</th>
                             <th>Delete</th>

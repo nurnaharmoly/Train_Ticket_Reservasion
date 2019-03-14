@@ -15,7 +15,7 @@ public class Compartment {
 	private int compartmentNo;
 
 	@ManyToOne
-	@JoinColumn(name = "train_id")
+	@JoinColumn(name = "train_id", nullable = false)
 	private Train train;
 
 

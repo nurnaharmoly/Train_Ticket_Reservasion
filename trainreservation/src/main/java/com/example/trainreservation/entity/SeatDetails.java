@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "availableSeats")
+@Table(name = "seatsDetails")
 public class SeatDetails {
 
 	@Id
@@ -13,15 +13,15 @@ public class SeatDetails {
 
 
 	@ManyToOne
-	@JoinColumn(name = "train_id")
+	@JoinColumn(name = "train_id", nullable = false)
 	private Train train;
 
 	@ManyToOne
-	@JoinColumn(name = "compartment_id")
+	@JoinColumn(name = "compartment_id", nullable = false)
 	private Compartment compartment;
 
 	@ManyToOne
-	@JoinColumn(name = "seatOrCabin_id")
+	@JoinColumn(name = "seatOrCabin_id", nullable = false)
 	private SeatOrCabin seatOrCabin;
 
 

@@ -1,5 +1,6 @@
 package com.example.trainreservation.entity;
 
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -21,24 +22,25 @@ public class Reservation {
 	private double unitPrice;
 
 
+	@LastModifiedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date journyDate;
+	private Date journyDate=new Date();
 
 	@ManyToOne
-	@JoinColumn(name = "ticket_id")
+	@JoinColumn(name = "ticket_id", nullable = false)
 	private Ticket ticket;
 
 	@ManyToOne
-	@JoinColumn(name = "compartment_id")
+	@JoinColumn(name = "compartment_id", nullable = false)
 	private Compartment compartment;
 
 	@ManyToOne
-	@JoinColumn(name = "train_id")
+	@JoinColumn(name = "train_id", nullable = false)
 	private Train train;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
 

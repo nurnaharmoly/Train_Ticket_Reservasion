@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutlist.html}">
 
 <head>
-    <title>Device Info List</title>
+    <title></title>
 </head>
 <body>
 <div layout:fragment="custom-content">
@@ -45,11 +45,11 @@
                             <td th:text="${compartment.id}" class="has-success"></td>
                             <td th:text="${compartment.compartmentName}"></td>
                             <td th:text="${compartment.compartmentNo}"></td>
-                            <td th:text="${compartment.train.trainName}"></td>
+                            <!--<td th:text="${compartment.train.trainName}"></td>-->
 
-                            <!--<td th:each="t : ${compartment.train}">-->
-                                <!--<span th:text="${t.id}"></span>-->
-                            <!--</td>-->
+                            <td th:each="t : ${compartment.train}">
+                                <span th:text="${t.trainName}"></span>
+                            </td>
                             <td>
                                 <a th:href="@{'/compartment/edit/'+${compartment.id}}"><span class="label label-success">Edit</span></a>
                             </td>
