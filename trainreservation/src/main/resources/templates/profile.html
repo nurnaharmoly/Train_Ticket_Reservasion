@@ -4,7 +4,25 @@
       xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title></title>
+    <style>
+        .err{
+            color: red;
+        }
+        .mm{
+            color: green;
+        }
+        .sform{
+            background-color: #f88845;
+        }
+        .inner {
+            width: 45%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+
+</style>
 </head>
 <body>
 
@@ -12,26 +30,49 @@
 <div layout:fragment="custom-content">
 
 
+    <div id="page-wrapper" class="gray-bg dashbard-1" >
+    <div class="content-main">
+
+    <!--banner-->
+    <div class="banner">
+
+    <h2>
+    <a th:href="@{/}">Home</a>
+    <i class="fa fa-angle-right"></i>
+    <span>Dashboard</span>
+    </h2>
+    </div>
 
 
+        <div class="clearfix"> </div>
+        <br>
 
-
-
-
-    <div class="container">
-        <div class="row m-y-2">
+<div class="grid-form1 min-height">
+        <div class="row m-y-2 ">
             <!-- edit form column -->
+
+            <div class="col-lg-12 pull-lg-8 text-xs-center inner" >
+                <br>
+                <br>
+                <h4>Photo Of <span th:text="${name}" class="inner"></span></h4>
+                <br><br>
+
+                <img th:src="@{${user.filePath}}" class="m-x-auto img-fluid img-circle inner"  th:alt="${user.fileName}" />
+                <br>
+
+            </div>
             <div class="col-lg-6 text-lg-center">
-                <h3><i class="fa fa-user"><h1>Profile Summary Of <span th:text="${name}"></span></h1></i></h3>
+                <h3><i class="fa fa-user sform"><h1>Profile Summary Of <span th:text="${name}"></span></h1></i></h3>
             </div>
             <br>
-            <div class="col-lg-12">
+            <br>
+            <div class="col-lg-6">
 
             </div>
-            <div class="col-lg-8 push-lg-4 personal-info">
+            <div class="col-lg-6 push-lg-4 personal-info">
                 <form role="form" th:object="${user}" th:action="@{/profile/} + ${id}"  th:method="POST">
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Roles</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Roles:</label>
                         <div class="col-lg-9">
                                <span th:each="r : ${user.roles}" multiple>
                            <span th:text="${r.roleName}"></span>
@@ -40,28 +81,28 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">First Name</label>
+                        <label class="col-lg-3 col-form-label form-control-label">First Name:</label>
                         <div class="col-lg-9">
                             <span th:text="*{firstName}"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Last Name</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Last Name:</label>
                         <div class="col-lg-9">
                             <span th:text="*{lastName}"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">User Name</label>
+                        <label class="col-lg-3 col-form-label form-control-label">User Name:</label>
                         <div class="col-lg-9">
                             <span th:text="*{userName}"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Email:</label>
                         <div class="col-lg-9">
                             <span th:text="*{email}"></span>
                         </div>
@@ -69,14 +110,14 @@
 
 
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Mobile</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Mobile:</label>
                         <div class="col-lg-9">
                             <span th:text="*{mobile}"></span>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Gender</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Gender:</label>
                         <div class="col-lg-9">
                             <span th:text="*{gender}"></span>
                         </div>
@@ -84,19 +125,19 @@
 
 
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Birth Date</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Birth Date:</label>
                         <div class="col-lg-9">
                             <span th:text="*{birthDate}"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Regi Date</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Regi Date:</label>
                         <div class="col-lg-9">
                             <span th:text="*{regiDate}"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Last Update</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Last Update:</label>
                         <div class="col-lg-9">
                             <span th:text="*{lastModifiedDate}"></span>
                         </div>
@@ -116,7 +157,7 @@
 
 
                     <div class="form-group row">
-                        <label class="col-lg-3 col-form-label form-control-label">Status</label>
+                        <label class="col-lg-3 col-form-label form-control-label">Status:</label>
                         <div class="col-lg-9">
                             <span th:text="*{enabled}"></span>
                         </div>
@@ -126,18 +167,16 @@
 
                 </form>
             </div>
-            <div class="col-lg-4 pull-lg-8 text-xs-center">
-                <img th:src="@{${user.filePath}}" class="m-x-auto img-fluid img-circle" th:alt="${user.fileName}" />
-                <br>
-                <h4>Photo Of <span th:text="${name}"></span></h4>
 
-
-            </div>
         </div>
     </div>
-    <hr />
+    <hr/>
 
-
+    </div>
+    </div>
+</div>
+</body>
+</html>
 
 
 
@@ -314,9 +353,7 @@
     <!--</div>-->
 <!--</div>-->
 <!--</div>-->
-</div>
-</body>
-</html>
+
 
 
 <!--<div class="form-group has-success">-->
