@@ -93,6 +93,19 @@
                                 </div>
                             </div>
 
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="mobile">Mobile</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-mobile"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{mobile}" id="mobile" placeholder="Mobile" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}">Mobile Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="form-group has-success">
                                 <label class="col-md-12 control-label" for="password">Password</label>
