@@ -33,7 +33,10 @@
                      <h3 id="forms-horizontal">Update User</h3>
                      <span th:class="succes" th:text="${successMsg}"></span>
                      <span th:class="err" th:text="${rejectMsg}"></span>
-                        <form th:object="${user}" th:action="@{/user/edit/}+${id}" th:method="POST">
+                        <form th:object="${user}" th:action="@{/user/edit/}+${id}" th:method="POST" enctype="multipart/form-data">
+
+                            <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
+                            <input type="hidden" th:field="*{regiDate}" th:value="${user.regiDate}"/>
 
                     <div class="form-group has-success">
                         <label class="col-md-6 control-label">Role</label>
@@ -52,32 +55,34 @@
                             <br/>
                             <br/>
 
-                    <div class="form-group has-success">
-                        <label class="col-md-12 control-label" for="firstName">First Name</label>
-                        <div class="col-md-12">
-                            <div class="input-group">
-									<span class="input-group-addon">
-										<i class="fa fa-navicon"></i>
-									</span>
-                                <input class="form-control1" type="text" th:field="*{firstName}" id="firstName" placeholder="First Name" required>
-                                <span th:class="err" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</span>
-                            </div>
-                        </div>
-                    </div>
-
-
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="lastName">Last Name</label>
+                                <label class="col-md-12 control-label" for="firstName">Frist Name</label>
                                 <div class="col-md-12">
                                     <div class="input-group">
 									<span class="input-group-addon">
 										<i class="fa fa-navicon"></i>
 									</span>
-                                        <input class="form-control1" type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name" required>
-                                        <span th:class="err" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</span>
+                                        <input class="form-control1" type="text" th:field="*{firstName}" id="firstName" placeholder="Frist Name" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Frist Name Error</span>
                                     </div>
                                 </div>
                             </div>
+
+                    <div class="form-group has-success">
+                        <label class="col-md-12 control-label" for="firstName">Last Name</label>
+                        <div class="col-md-12">
+                            <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                <input class="form-control1" type="text" th:field="*{lastName}" id="lastName" placeholder="LastName" required>
+                                <span th:class="err" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
 
 
                             <div class="form-group has-success">
@@ -94,18 +99,18 @@
                             </div>
 
 
-                            <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="password">Password</label>
-                                <div class="col-md-12">
-                                    <div class="input-group">
-									<span class="input-group-addon">
-										<i class="fa fa-key"></i>
-									</span>
-                                        <input class="form-control1" type="password" th:field="*{password}" id="password" placeholder="Password" required>
-                                        <span th:class="err" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-12 control-label" for="password">Password</label>-->
+                                <!--<div class="col-md-12">-->
+                                    <!--<div class="input-group">-->
+									<!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-key"></i>-->
+									<!--</span>-->
+                                        <!--<input class="form-control1" type="password" th:field="*{password}" id="password" placeholder="Password" required>-->
+                                        <!--<span th:class="err" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
 
 
@@ -138,6 +143,18 @@
                                                 <label for="f"><span></span>Female</label>
                                             </li>
                                         </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label">Image</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-image"></i>
+									</span>
+                                        <input class="form-control1" type="file" name="file">
                                     </div>
                                 </div>
                             </div>

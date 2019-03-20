@@ -13,10 +13,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import java.io.File;
-import javax.validation.Path;
+
 import javax.validation.Valid;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -73,30 +73,63 @@ private static String UPLOADED_FOLDER = "src/main/resources/static/images/";
 
 
 
+//    @PostMapping(value = "add")
+//    public String add(@Valid User user, BindingResult result, Model model, @RequestParam("file") MultipartFile file){
+//        if(result.hasErrors()){
+//            model.addAttribute("rolelist", roleRepo.findAll());
+//            return "users/add";
+//        }
+//        user.setRegiDate(new Date());
+//
+//        if(repo.existsByEmail(user.getEmail())){
+//            model.addAttribute("rejectMsg","Already Have This Entry");
+//            model.addAttribute("rolelist", roleRepo.findAll());
+//        }else {
+//            try {
+//                //////////////////////For Image Upload start /////////////////////
+//                byte[] bytes = file.getBytes();
+//                Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+//
+//                Files.write(path, bytes);
+//                user.setFileName("new-" + file.getOriginalFilename());
+//                user.setFileSize(file.getSize());
+//                // user.setFile(file.getBytes());
+//                user.setFilePath("images/" + "new-" + file.getOriginalFilename());
+//                user.setFileExtension(file.getContentType());
+//
+//                String username = user.getEmail().split("\\@")[0];
+//                user.setUserName(username);
+//                user.setEnabled(true);
+//                user.setPassword(passwordEncoder.encode(user.getPassword()));
+//                user.setConfirmationToken(UUID.randomUUID().toString());
+//                this.repo.save(user);
+//                model.addAttribute("user", new User());
+//                model.addAttribute("successMsg", "Successfully Saved!");
+//                model.addAttribute("rolelist", roleRepo.findAll());
+//                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 0.3f, 100, 100);
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            model.addAttribute("roleList", this.roleRepo.findAll());
+//        }
+//
+//        return "users/add";
+//    }
+
+
+
+
     @PostMapping(value = "add")
-    public String add(@Valid User user, BindingResult result, Model model, @RequestParam("file") MultipartFile file){
+    public String add(@Valid User user, BindingResult result, Model model){
         if(result.hasErrors()){
             model.addAttribute("rolelist", roleRepo.findAll());
             return "users/add";
         }
-        user.setRegiDate(new Date());
-
         if(repo.existsByEmail(user.getEmail())){
             model.addAttribute("rejectMsg","Already Have This Entry");
             model.addAttribute("rolelist", roleRepo.findAll());
         }else{
-            try {
-                //////////////////////For Image Upload start /////////////////////
-                byte[] bytes = file.getBytes();
-                Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-
-                Files.write(path, bytes);
-                user.setFileName("new-" + file.getOriginalFilename());
-                user.setFileSize(file.getSize());
-                // user.setFile(file.getBytes());
-                user.setFilePath("images/" + "new-" + file.getOriginalFilename());
-                user.setFileExtension(file.getContentType());
-
             String username = user.getEmail().split("\\@")[0];
             user.setUserName(username);
             user.setEnabled(true);
@@ -106,43 +139,10 @@ private static String UPLOADED_FOLDER = "src/main/resources/static/images/";
             model.addAttribute("user", new User());
             model.addAttribute("successMsg","Successfully Saved!");
             model.addAttribute("rolelist", roleRepo.findAll());
-                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 0.3f, 100, 100);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            model.addAttribute("roleList", this.roleRepo.findAll());
         }
 
         return "users/add";
     }
-
-
-
-
-//    @PostMapping(value = "add")
-//    public String add(@Valid User user, BindingResult result, Model model){
-//        if(result.hasErrors()){
-//            model.addAttribute("rolelist", roleRepo.findAll());
-//            return "users/add";
-//        }
-//        if(repo.existsByEmail(user.getEmail())){
-//            model.addAttribute("rejectMsg","Already Have This Entry");
-//            model.addAttribute("rolelist", roleRepo.findAll());
-//        }else{
-//            String username = user.getEmail().split("\\@")[0];
-//            user.setUserName(username);
-//            user.setEnabled(true);
-//            user.setPassword(passwordEncoder.encode(user.getPassword()));
-//            user.setConfirmationToken(UUID.randomUUID().toString());
-//            this.repo.save(user);
-//            model.addAttribute("user", new User());
-//            model.addAttribute("successMsg","Successfully Saved!");
-//            model.addAttribute("rolelist", roleRepo.findAll());
-//        }
-//
-//        return "users/add";
-//    }
 
 
     @GetMapping(value = "edit/{id}")
@@ -152,7 +152,7 @@ private static String UPLOADED_FOLDER = "src/main/resources/static/images/";
         return "users/edit";
     }
     @PostMapping(value = "edit/{id}")
-    public String edit(@Valid User user, BindingResult result, Model model,@PathVariable("id") Long id){
+    public String edit(@Valid User user, BindingResult result, Model model, @PathVariable("id") Long id, @RequestParam("file") MultipartFile file){
         if(result.hasErrors()){
             model.addAttribute("rolelist", roleRepo.findAll());
             return "users/edit";
@@ -162,16 +162,36 @@ private static String UPLOADED_FOLDER = "src/main/resources/static/images/";
 
             model.addAttribute("rejectMsg","Already Have This Entry");
             return "users/edit";
-        }else{
+        }else {
+            try {
+                //////////////////////For Image Upload start /////////////////////
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
 
-            user.setId(id);
+                Files.write(path, bytes);
+                user.setFileName("new-" + file.getOriginalFilename());
+                user.setFileSize(file.getSize());
+                // user.setFile(file.getBytes());
+                user.setFilePath("/images/" + "new-" + file.getOriginalFilename());
+                user.setFileExtension(file.getContentType());
 
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            this.repo.save(user);
-            model.addAttribute("successMsg","Successfully Saved!");
-            model.addAttribute("rolelist", roleRepo.findAll());
+                user.setId(id);
+                user.setUserName(u.get().getUserName());
+                user.setRegiDate(u.get().getRegiDate());
+                user.setEnabled(true);
+                user.setPassword(u.get().getPassword());
+                user.setConfirmationToken(u.get().getConfirmationToken());
+
+//                user.setPassword(passwordEncoder.encode(user.getPassword()));
+                this.repo.save(user);
+                model.addAttribute("successMsg", "Successfully Saved!");
+                model.addAttribute("rolelist", roleRepo.findAll());
+                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 0.3f, 100, 100);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            model.addAttribute("roleList", this.roleRepo.findAll());
         }
-
         return "redirect:/user/list";
     }
 
