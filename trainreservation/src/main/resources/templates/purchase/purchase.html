@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+
+<head>
+    <!--<title></title>-->
+    <!--<style>-->
+        <!--.err{-->
+            <!--color: red;-->
+        <!--}-->
+        <!--.mm{-->
+            <!--color: green;-->
+        <!--}-->
+        <!--.sform{-->
+            <!--background-color: aqua;-->
+        <!--}-->
+    <!--</style>-->
+</head>
+<body>
+<div layout:fragment="custom-content">
+    <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div class="content-main">
+
+            <!--banner-->
+            <div class="banner">
+
+                <h2>
+                    <a th:href="@{/}">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
+
+
+            <div class="clearfix"> </div>
+
+            <div class="grid-form">
+                <div class="grid-form1 min-height">
+                    <div class="panel-body">
+
+
+
+                        <h3 id="forms-horizontal">Add Purchase</h3>
+
+                        <!--<form th:object="${purchase}" th:action="@{/purchase/add}" th:method="POST">-->
+
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-6 control-label">Ticket</label>-->
+                                <!--<div class="col-sm-12">-->
+                            <!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-dashcube"></i>-->
+                                <!--<select th:field="*{ticket}" multiple class="form-control1">-->
+                                  <!--<option th:each="t : ${ticketlist}" th:value="${t.id}"><span th:text="${t.ticketNo}"></span></option>-->
+                                <!--</select>-->
+                            <!--</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<br/>-->
+                            <!--<br/>-->
+                            <!--<br/>-->
+                            <!--<br/>-->
+                            <!--<br/>-->
+
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-12 control-label" for="f-qty">Quantity</label>-->
+                                <!--<div class="col-md-12">-->
+                                    <!--<div class="input-group">-->
+									<!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-navicon"></i>-->
+									<!--</span>-->
+                                        <!--<input class="form-control1" type="text" placeholder="0" id="f-qty" required>-->
+                                        <!--<span th:field="*{qty}" required="true"></span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-12 control-label" for="f-unit">Unit Price</label>-->
+                                <!--<div class="col-md-12">-->
+                                    <!--<div class="input-group">-->
+									<!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-navicon"></i>-->
+									<!--</span>-->
+                                        <!--<input class="form-control1" type="text" placeholder="0.0" id="f-unit" required>-->
+                                        <!--<span th:field="*{unitPrice}" required="true"></span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-12 control-label" for="f-tprice">Total Price</label>-->
+                                <!--<div class="col-md-12">-->
+                                    <!--<div class="input-group">-->
+									<!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-envelope-o"></i>-->
+									<!--</span>-->
+                                        <!--<input class="form-control1" type="text" placeholder="0.0" id="f-tprice" required>-->
+                                        <!--<span th:field="*{totalPrice}" required="true"></span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+
+                            <!--<div class="clearfix"> </div>-->
+
+                            <!--<div>-->
+                                <!--<h1><button type="submit" class="label label-success">ADD</button>&nbsp;<button type="reset" class="label label-success">Reset</button></h1>-->
+
+                            <!--</div>-->
+                            <!--<div class="clearfix"> </div>-->
+                        <!--</form>-->
+
+
+
+
+                        <!--<h3><i class="fa fa-book"></i> Drug Purchase</h3>-->
+
+                        <!--&lt;!&ndash; BASIC FORM VALIDATION &ndash;&gt;-->
+                        <!--<div class="row mt">-->
+                            <!--<div class="col-lg-12">-->
+
+                                <!--<div class="form-panel">-->
+
+                                    <!--<form role="form" class="form-horizontal style-form" th:object="${purchase}" th:action="@{/pur/add}"  th:method="POST">-->
+                                        <!--<div class="form-group has-success">-->
+                                            <!--<label class="col-lg-2 control-label">DrugName</label>-->
+                                            <!--<div class="col-lg-10">-->
+                                                <!--<select th:field="*{ticket}" id="f-dname" class="form-control">-->
+                                                    <!--<option th:each="t : ${ticketlist}" th:value="${t.id}"><span th:text="${t.ticketNo}"></span></option>-->
+                                                <!--</select>-->
+
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="form-group has-success">-->
+                                            <!--<label class="col-lg-2 control-label">Quantity</label>-->
+                                            <!--<div class="col-lg-10">-->
+                                                <!--<input type="text" placeholder="0" id="f-qty" class="form-control"-->
+                                                       <!--th:field="*{qty}" required="true">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="form-group has-success">-->
+                                            <!--<label class="col-lg-2 control-label">UnitPrice</label>-->
+                                            <!--<div class="col-lg-10">-->
+                                                <!--<input type="text" placeholder="0.0" id="f-unit" class="form-control"-->
+                                                       <!--th:field="*{unitPrice}" required="true">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+
+                                        <!--<div class="form-group has-success">-->
+                                            <!--<label class="col-lg-2 control-label">TotalPrice</label>-->
+                                            <!--<div class="col-lg-10">-->
+                                                <!--<input type="text" placeholder="0.0" id="f-tprice" class="form-control"-->
+                                                       <!--th:field="*{totalPrice}" required="true">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+
+
+                                        <!--<div class="form-group">-->
+                                            <!--<div class="col-lg-offset-2 col-lg-10">-->
+                                                <!--<button class="btn btn-theme" type="submit">Submit</button>-->
+                                                <!--<button class="btn btn-theme" type="reset">Reset</button>-->
+                                            <!--</div>-->
+
+
+                                        <!--</div>-->
+                                    <!--</form>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /form-panel &ndash;&gt;-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash; /col-lg-12 &ndash;&gt;-->
+                        <!--</div>-->
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

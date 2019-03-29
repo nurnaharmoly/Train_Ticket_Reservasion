@@ -107,6 +107,11 @@ public class SeatDetailsControllar {
         return "seatDetails/list";
     }
 
+    @GetMapping(value = "seatV")
+    public String seat(){
+        return "seatDetails/seatView";
+    }
+
 
 
 

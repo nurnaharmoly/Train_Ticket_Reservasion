@@ -22,10 +22,10 @@ public class Reservation {
 	private double unitPrice;
 
 
-	@LastModifiedDate
+//	@LastModifiedDate
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date journyDate=new Date();
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date journyDate;
 
 	@ManyToOne
 	@JoinColumn(name = "ticket_id", nullable = false)
@@ -39,9 +39,12 @@ public class Reservation {
 	@JoinColumn(name = "train_id", nullable = false)
 	private Train train;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id", nullable = false)
-	private User user;
+
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "pasenger_id", nullable = false)
+	private User pasenger;
+
 
 
 	public Long getId() {
@@ -108,18 +111,18 @@ public class Reservation {
 		this.train = train;
 	}
 
-	public User getUser() {
-		return user;
+	public User getPasenger() {
+		return pasenger;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setPasenger(User pasenger) {
+		this.pasenger = pasenger;
 	}
 
 	public Reservation() {
 	}
 
-	public Reservation(String noOffSeats, double totalPrice, double unitPrice, Date journyDate, Ticket ticket, Compartment compartment, Train train, User user) {
+	public Reservation(String noOffSeats, double totalPrice, double unitPrice, Date journyDate, Ticket ticket, Compartment compartment, Train train, User pasenger) {
 		this.noOffSeats = noOffSeats;
 		this.totalPrice = totalPrice;
 		this.unitPrice = unitPrice;
@@ -127,7 +130,7 @@ public class Reservation {
 		this.ticket = ticket;
 		this.compartment = compartment;
 		this.train = train;
-		this.user = user;
+		this.pasenger = pasenger;
 	}
 
 
@@ -144,12 +147,12 @@ public class Reservation {
 				Objects.equals(ticket, that.ticket) &&
 				Objects.equals(compartment, that.compartment) &&
 				Objects.equals(train, that.train) &&
-				Objects.equals(user, that.user);
+				Objects.equals(pasenger, that.pasenger);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, noOffSeats, totalPrice, unitPrice, journyDate, ticket, compartment, train, user);
+		return Objects.hash(id, noOffSeats, totalPrice, unitPrice, journyDate, ticket, compartment, train, pasenger);
 	}
 
 	@Override
@@ -163,7 +166,7 @@ public class Reservation {
 				", ticket=" + ticket +
 				", compartment=" + compartment +
 				", train=" + train +
-				", user=" + user +
+				", user=" + pasenger +
 				'}';
 	}
 }

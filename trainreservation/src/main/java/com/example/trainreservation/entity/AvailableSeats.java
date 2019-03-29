@@ -11,7 +11,7 @@ public class AvailableSeats {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private  Long id;
 
-	private int availableSeats;
+	private int availableSeat;
 
 	private int soldSeats;
 
@@ -36,12 +36,12 @@ public class AvailableSeats {
 		this.id = id;
 	}
 
-	public int getAvailableSeats() {
-		return availableSeats;
+	public int getAvailableSeat() {
+		return availableSeat;
 	}
 
-	public void setAvailableSeats(int availableSeats) {
-		this.availableSeats = availableSeats;
+	public void setAvailableSeat(int availableSeat) {
+		this.availableSeat = availableSeat;
 	}
 
 	public int getSoldSeats() {
@@ -80,8 +80,8 @@ public class AvailableSeats {
 	public AvailableSeats() {
 	}
 
-	public AvailableSeats(int availableSeats, int soldSeats, int totalSeats, Train train, Compartment compartment) {
-		this.availableSeats = availableSeats;
+	public AvailableSeats(int availableSeat, int soldSeats, int totalSeats, Train train, Compartment compartment) {
+		this.availableSeat = availableSeat;
 		this.soldSeats = soldSeats;
 		this.totalSeats = totalSeats;
 		this.train = train;
@@ -93,7 +93,7 @@ public class AvailableSeats {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		AvailableSeats that = (AvailableSeats) o;
-		return availableSeats == that.availableSeats &&
+		return availableSeat == that.availableSeat &&
 				soldSeats == that.soldSeats &&
 				totalSeats == that.totalSeats &&
 				Objects.equals(id, that.id) &&
@@ -103,14 +103,14 @@ public class AvailableSeats {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, availableSeats, soldSeats, totalSeats, train, compartment);
+		return Objects.hash(id, availableSeat, soldSeats, totalSeats, train, compartment);
 	}
 
 	@Override
 	public String toString() {
 		return "AvailableSeats{" +
 				"id=" + id +
-				", availableSeats=" + availableSeats +
+				", availableSeats=" + availableSeat +
 				", soldSeats=" + soldSeats +
 				", totalSeats=" + totalSeats +
 				", train=" + train +
