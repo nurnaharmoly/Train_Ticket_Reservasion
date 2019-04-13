@@ -31,6 +31,9 @@ public class AvailableTrainScheduleController {
     @Autowired
     private TrainRepo trainRepo;
 
+    @Autowired
+    private CompartmentRepo compartmentRepo;
+
 
     @GetMapping(value = "add")
     public String viewAdd(Model model){
@@ -38,6 +41,7 @@ public class AvailableTrainScheduleController {
 //        model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
         model.addAttribute("train",this.trainRepo.findByTrainNo(734));
         model.addAttribute("trainlist",this.trainRepo.findAll());
+        model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
 
         return "availableTrainSchedule/add";
     }
@@ -56,7 +60,7 @@ public class AvailableTrainScheduleController {
             model.addAttribute("successMsg", "Successfully Saved!");
             model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
 
-
+        model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
         return "availableTrainSchedule/add";
     }
 
@@ -65,17 +69,20 @@ public class AvailableTrainScheduleController {
     public String viewEdit(Model model, @PathVariable("id") Long id){
         model.addAttribute("availableTrainSchedule",repo.getOne(id));
         model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
+        model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
         return "availableTrainSchedule/edit";
     }
     @PostMapping(value = "edit/{id}")
     public String edit(@Valid AvailableTrainSchedule availableTrainSchedule, BindingResult result, Model model,@PathVariable("id") Long id){
         if(result.hasErrors()){
             model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
+            model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
             return "availableTrainSchedule/edit";
         } else {
             availableTrainSchedule.setId(id);
             this.repo.save(availableTrainSchedule);
             model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
+            model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
             return "redirect:/availableTrainSchedule/list";
         }
     }
