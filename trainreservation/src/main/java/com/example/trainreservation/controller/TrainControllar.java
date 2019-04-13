@@ -1,7 +1,6 @@
 package com.example.trainreservation.controller;
 
-import com.example.trainreservation.entity.AvailableSeats;
-import com.example.trainreservation.entity.Route;
+
 import com.example.trainreservation.entity.Train;
 import com.example.trainreservation.repo.RouteRepo;
 import com.example.trainreservation.repo.ScheduleTimeRepo;
@@ -106,6 +105,13 @@ public class TrainControllar {
     public String list(Model model){
         model.addAttribute("list",this.repo.findAll());
         return "train/list";
+    }
+
+    @GetMapping(value = "traindetails")
+    public String listbytrain(Model model){
+        model.addAttribute("train",this.repo.findByTrainNo(734));
+        model.addAttribute("trainlist",this.repo.findAll());
+        return "train/listbytrain";
     }
 
 }

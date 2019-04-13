@@ -10,7 +10,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 .min-height{
     min-height: 600px;
 }
-
+.min-heightt{
+    min-height: 1000px;
+}
 /* custom css */
 
 
@@ -228,11 +230,11 @@ nav.top1.navbar.navbar-default.navbar-static-top {
 }
 h1 a.navbar-brand {
 	color: #fff !important;
-	font-size: 30px;
+	font-size: 17px;
 	font-weight: 500;
-    padding: 20px 0px;
+    padding: 20px 0px 0px 2px;
     background: #d95459;
-    text-align: center;
+    text-align: justify;
 	width:248px;
 	height: 60px;
 	
@@ -596,6 +598,7 @@ i.fa.fa-globe {
     -ms-border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    height: 528px;
 }
 .content-top-2 {
     padding-left: 0;
@@ -672,7 +675,7 @@ i.fa.fa-globe {
 	padding-left: 0;
 }
 .middle-content{
- 	background: #fff;
+ 	background: #f88845;
  	padding:2.15em;
     border: 1px solid #ebeff6;
     border-radius: 4px;
@@ -1387,7 +1390,7 @@ label.control-label {
 }
 .login-bottom h2{
 	font-size: 1.4em;
-	color:#000;
+	color:#f88845;
 	 padding: 0em 0.9em 1em;
 }
 .login-mail{
@@ -1438,7 +1441,7 @@ label.control-label {
 	line-height: 27px;
 	cursor: pointer;
 	position: relative;
-	color: rgba(56, 56, 56, 0.68);
+	color: rgb(255, 234, 254);
 }
 .checkbox1:last-child {
 	margin-bottom: 0;
@@ -1499,7 +1502,7 @@ label.control-label {
 	font-size: 2.5em;
 }
 .login h1 a{
-	color:#d95459;
+	color:#f86600;
 	text-decoration: none;
 }
 

@@ -21,4 +21,5 @@ public interface UserRepo extends JpaRepository<User, Long> {
     User findByConfirmationToken(String token);
 
 
+//    void setTokenExpiredByEmail(boolean b, String email);
 }

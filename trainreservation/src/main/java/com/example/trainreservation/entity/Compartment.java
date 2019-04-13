@@ -1,6 +1,7 @@
 package com.example.trainreservation.entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +19,16 @@ public class Compartment {
 	@JoinColumn(name = "train_id", nullable = false)
 	private Train train;
 
+	@OneToMany(mappedBy = "compartment")
+	private List<SeatDetails> seatDetailsList;
+
+	public List<SeatDetails> getSeatDetailsList() {
+		return seatDetailsList;
+	}
+
+	public void setSeatDetailsList(List<SeatDetails> seatDetailsList) {
+		this.seatDetailsList = seatDetailsList;
+	}
 
 	public Long getId() {
 		return id;

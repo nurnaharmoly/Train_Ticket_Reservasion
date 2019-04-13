@@ -11,11 +11,11 @@ public class AvailableSeats {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private  Long id;
 
-	private int availableSeat;
+	private String availSeat;
 
-	private int soldSeats;
+	private String soldSeats;
 
-	private int totalSeats;
+	private String totalSeats;
 
 	@ManyToOne
 	@JoinColumn(name = "train_id", nullable = false)
@@ -26,8 +26,6 @@ public class AvailableSeats {
 	private Compartment compartment;
 
 
-
-
 	public Long getId() {
 		return id;
 	}
@@ -36,27 +34,27 @@ public class AvailableSeats {
 		this.id = id;
 	}
 
-	public int getAvailableSeat() {
-		return availableSeat;
+	public String getAvailSeat() {
+		return availSeat;
 	}
 
-	public void setAvailableSeat(int availableSeat) {
-		this.availableSeat = availableSeat;
+	public void setAvailSeat(String availSeat) {
+		this.availSeat = availSeat;
 	}
 
-	public int getSoldSeats() {
+	public String getSoldSeats() {
 		return soldSeats;
 	}
 
-	public void setSoldSeats(int soldSeats) {
+	public void setSoldSeats(String soldSeats) {
 		this.soldSeats = soldSeats;
 	}
 
-	public int getTotalSeats() {
+	public String getTotalSeats() {
 		return totalSeats;
 	}
 
-	public void setTotalSeats(int totalSeats) {
+	public void setTotalSeats(String totalSeats) {
 		this.totalSeats = totalSeats;
 	}
 
@@ -80,39 +78,42 @@ public class AvailableSeats {
 	public AvailableSeats() {
 	}
 
-	public AvailableSeats(int availableSeat, int soldSeats, int totalSeats, Train train, Compartment compartment) {
-		this.availableSeat = availableSeat;
+
+	public AvailableSeats(String availSeat, String soldSeats, String totalSeats, Train train, Compartment compartment) {
+		this.availSeat = availSeat;
 		this.soldSeats = soldSeats;
 		this.totalSeats = totalSeats;
 		this.train = train;
 		this.compartment = compartment;
 	}
 
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		AvailableSeats that = (AvailableSeats) o;
-		return availableSeat == that.availableSeat &&
-				soldSeats == that.soldSeats &&
-				totalSeats == that.totalSeats &&
-				Objects.equals(id, that.id) &&
+		return Objects.equals(id, that.id) &&
+				Objects.equals(availSeat, that.availSeat) &&
+				Objects.equals(soldSeats, that.soldSeats) &&
+				Objects.equals(totalSeats, that.totalSeats) &&
 				Objects.equals(train, that.train) &&
 				Objects.equals(compartment, that.compartment);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, availableSeat, soldSeats, totalSeats, train, compartment);
+		return Objects.hash(id, availSeat, soldSeats, totalSeats, train, compartment);
 	}
+
 
 	@Override
 	public String toString() {
 		return "AvailableSeats{" +
 				"id=" + id +
-				", availableSeats=" + availableSeat +
-				", soldSeats=" + soldSeats +
-				", totalSeats=" + totalSeats +
+				", availSeat='" + availSeat + '\'' +
+				", soldSeats='" + soldSeats + '\'' +
+				", totalSeats='" + totalSeats + '\'' +
 				", train=" + train +
 				", compartment=" + compartment +
 				'}';

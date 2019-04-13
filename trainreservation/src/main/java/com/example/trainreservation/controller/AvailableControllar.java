@@ -1,12 +1,8 @@
 package com.example.trainreservation.controller;
 
 import com.example.trainreservation.entity.AvailableSeats;
-import com.example.trainreservation.entity.Role;
-import com.example.trainreservation.entity.Route;
-import com.example.trainreservation.entity.Train;
 import com.example.trainreservation.repo.AvailableSeatRepo;
 import com.example.trainreservation.repo.CompartmentRepo;
-import com.example.trainreservation.repo.RouteRepo;
 import com.example.trainreservation.repo.TrainRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +33,7 @@ public class AvailableControllar {
         model.addAttribute("availableSeats",new AvailableSeats());
         model.addAttribute("trainlist", trainRepo.findAll());
         model.addAttribute("compartmentlist", compartmentRepo.findAll());
-        return "available-seat/add";
+        return "availableseat/add";
     }
 
     @PostMapping(value = "add")
@@ -45,7 +41,7 @@ public class AvailableControllar {
         if (result.hasErrors()) {
             model.addAttribute("trainlist", trainRepo.findAll());
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
-            return "available-seat/add";
+            return "availableseat/add";
         }else{
             this.repo.save(availableSeats);
             model.addAttribute("availableSeats", new AvailableSeats());
@@ -54,7 +50,7 @@ public class AvailableControllar {
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
         }
 
-        return "available-seat/add";
+        return "availableseat/add";
     }
 
 
@@ -63,14 +59,14 @@ public class AvailableControllar {
         model.addAttribute("availableSeats",repo.getOne(id));
         model.addAttribute("trainlist", trainRepo.findAll());
         model.addAttribute("compartmentlist", compartmentRepo.findAll());
-        return "available-seat/edit";
+        return "availableseat/edit";
     }
     @PostMapping(value = "edit/{id}")
     public String edit(@Valid AvailableSeats availableSeats, BindingResult result, Model model,@PathVariable("id") Long id){
         if(result.hasErrors()){
             model.addAttribute("trainlist", trainRepo.findAll());
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
-            return "available-seat/edit";
+            return "availableseat/edit";
         } else {
             availableSeats.setId(id);
             this.repo.save(availableSeats);
@@ -92,20 +88,9 @@ public class AvailableControllar {
     @GetMapping(value = "list")
     public String list(Model model){
         model.addAttribute("list",this.repo.findAll());
-        return "available-seat/list";
+        return "availableseat/list";
     }
 
 
-//    @GetMapping(value = "create.jsf")
-//    public String displayAvailable(Model model){
-//        model.addAttribute("obj", new AvailableSeats());
-//        return "available-seat/create";
-//
-//    }
-//
-//    @GetMapping(value = "list.jsf")
-//    public String getList(){
-//        return "available-seat/list";
-//
-//    }
+
 }

@@ -49,53 +49,53 @@ public class ReservationControllar {
         return "reservation/add";
     }
 
-//    @PostMapping(value = "add")
-//    public String add(@Valid Reservation reservation, BindingResult result, Model model) {
-//        if (result.hasErrors()) {
-//            model.addAttribute("ticketlist", ticketRepo.findAll());
-//            model.addAttribute("compartmentlist", compartmentRepo.findAll());
-//            model.addAttribute("trainlist", trainRepo.findAll());
-//            model.addAttribute("userlist", userRepo.findAll());
-//            return "reservation/add";
-//        }
-//        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-//        User user=this.userRepo.findByUserName(auth.getName());
-//        reservation.setPasenger(user);
-//        reservation.setJournyDate(new Date());
-//            this.repo.save(reservation);
-//            model.addAttribute("reservation", new Reservation());
-//            model.addAttribute("successMsg", "Successfully Saved!");
-//            model.addAttribute("ticketlist", ticketRepo.findAll());
-//            model.addAttribute("compartmentlist", compartmentRepo.findAll());
-//            model.addAttribute("trainlist", trainRepo.findAll());
-//            model.addAttribute("userlist", userRepo.findAll());
-//
+    @PostMapping(value = "add")
+    public String add(@Valid Reservation reservation, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("ticketlist", ticketRepo.findAll());
+            model.addAttribute("compartmentlist", compartmentRepo.findAll());
+            model.addAttribute("trainlist", trainRepo.findAll());
+            model.addAttribute("userlist", userRepo.findAll());
+            return "reservation/add";
+        }
+        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+        User user=this.userRepo.findByUserName(auth.getName());
+        reservation.setPasenger(user);
+        reservation.setJournyDate(new Date());
+            this.repo.save(reservation);
+            model.addAttribute("reservation", new Reservation());
+            model.addAttribute("successMsg", "Successfully Saved!");
+            model.addAttribute("ticketlist", ticketRepo.findAll());
+            model.addAttribute("compartmentlist", compartmentRepo.findAll());
+            model.addAttribute("trainlist", trainRepo.findAll());
+            model.addAttribute("userlist", userRepo.findAll());
+
 //        try {
 //
 //            Summary summary = this.summaryRepo.findByTicket(reservation.getTicket());
 //            AvailableSeats availableSeat = new AvailableSeats();
 //
-//            int avialseat = summary.getAvailableSeat(availableSeat)+ reservation.getNoOffSeats();
-//            summary.setAvailableSeat(avialseat);
-//            summary.setLastUpdate(new Date());
-//            summary.setTotalQty(summary.getTotalQty() + reservation.getNoOffSeats().);
+////            int avialseat = summary.getAvailableSeat(availableSeat)+ reservation.getNoOffSeats();
+////            summary.setAvailableSeat(avialseat);
+////            summary.setLastUpdate(new Date());
+////            summary.setTotalQty(summary.getTotalQty() + reservation.getNoOffSeats().);
 //            summaryRepo.save(summary);
 //
 //        } catch (NullPointerException ne) {
 //            Summary summary1 = new Summary();
 ////            summary1.setTicketNo(purchase.getTicket().getTicketNo();
 //
-//            summary1.setTotalQty(reservation.getNoOffSeats());
-//            summary1.setSoldQty(0);
-//            summary1.setAvailableSeat(reservation.getNoOffSeats());
+////            summary1.setTotalQty(reservation.getNoOffSeats());
+////            summary1.setSoldQty(0);
+////            summary1.setAvailableSeat(reservation.getNoOffSeats());
 //            summary1.setLastUpdate(new Date());
 //            summary1.setTicket(reservation.getTicket());
 //            summaryRepo.save(summary1);
 //
 //        }
-//
-//        return "reservation/add";
-//    }
+
+        return "reservation/add";
+    }
 
 
     @GetMapping(value = "edit/{id}")

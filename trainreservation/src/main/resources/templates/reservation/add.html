@@ -4,7 +4,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
 
 <head>
-    <title>Role Create</title>
+    <title></title>
+
+    <script>
+        function callToatl() {
+            document.getElementById("totalPrice").value = document.getElementById("unitPrice").value * document.getElementById("noOffSeats").value;
+        }
+    </script>
 </head>
 <body>
 <div layout:fragment="custom-content">
@@ -40,25 +46,14 @@
 									<span class="input-group-addon">
 										<i class="fa fa-navicon"></i>
 									</span>
-                                        <input class="form-control1" type="text" th:field="*{noOffSeats}" id="noOffSeats" placeholder="NoOffSeats" required>
+                                        <input class="form-control1" type="text" th:field="*{noOffSeats}"  id="noOffSeats" placeholder="NoOffSeats" oninput="callToatl()" required>
                                         <span th:class="err" th:if="${#fields.hasErrors('noOffSeats')}" th:errors="*{noOffSeats}">NoOffSeats Error</span>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="totalPrice">Total Price</label>
-                                <div class="col-md-12">
-                                    <div class="input-group">
-									<span class="input-group-addon">
-										<i class="fa fa-navicon"></i>
-									</span>
-                                        <input class="form-control1" type="text" th:field="*{totalPrice}" id="totalPrice" placeholder="Total Price" required>
-                                        <span th:class="err" th:if="${#fields.hasErrors('totalPrice')}" th:errors="*{totalPrice}">Total Price Error</span>
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <div class="form-group has-success">
                                 <label class="col-md-12 control-label" for="unitPrice">Unit Price</label>
@@ -67,8 +62,21 @@
 									<span class="input-group-addon">
 										<i class="fa fa-navicon"></i>
 									</span>
-                                        <input class="form-control1" type="text" th:field="*{unitPrice}" id="unitPrice" placeholder="Unit Price" required>
+                                        <input class="form-control1" type="text" th:field="*{unitPrice}"  id="unitPrice" placeholder="Unit Price" oninput="callToatl()" required>
                                         <span th:class="err" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}">Unit Price Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="totalPrice">Total Price</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{totalPrice}"   id="totalPrice" placeholder="Total Price"  required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('totalPrice')}" th:errors="*{totalPrice}">Total Price Error</span>
                                     </div>
                                 </div>
                             </div>
@@ -124,6 +132,29 @@
                                             <option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>
                                        </select>
                                      </span>
+                                </div>
+                            </div>
+
+
+                            <div th:each="com : ${train.compartmentList}">
+
+                                <div id="container">
+
+                                    <div class="seatside">
+                                        <input type="checkbox" onClick="checkAll(this);" class="checkbox2"/>
+
+                                        <h1 th:text="${com.compartmentName}"></h1>
+                                        <div th:each=" sd , iter : ${com.seatDetailsList}" class="seat">
+                                            <!--<span th:if="${iter.index} % 2">-->
+                                            <!--<button type="button" class="btn">FAKA</button>-->
+                                            <!--</span>-->
+                                            <span class="btn">
+                                                    <input type="checkbox" class="checkbox1" th:field="*{seatDetails}" th:value="${sd?.seatOrCabin?.seatNo}"/>
+                                                    <span type="button" th:text="${sd.seatOrCabin.seatNo}"></span>
+</span>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

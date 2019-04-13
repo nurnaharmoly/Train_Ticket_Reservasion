@@ -23,11 +23,11 @@ public class Summary {
     private Date lastUpdate;
 
     @ManyToOne
-    @JoinColumn(name = "availableSeat_id", unique = true)
+    @JoinColumn(name = "availableSeat_id", nullable = false)
     private AvailableSeats availableSeat;
 
     @OneToOne
-    @JoinColumn(name = "ticket_id", unique = true)
+    @JoinColumn(name = "ticket_id", nullable = false)
     private Ticket ticket;
 
 

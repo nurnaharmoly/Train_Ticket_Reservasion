@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layoutlist.html}">
+
+<head>
+    <title></title>
+    <style type="text/css">
+        #container{
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            padding: 0px 0px 0px 0px ;
+        }
+
+        #con-left{
+            width: 20%;
+            height: auto;
+            margin: 0 auto;
+            float: left;
+
+        }
+
+        #train{
+            width: 60%;
+            height: 500px;
+            float: left;
+
+        }
+        #t-left{
+            width: 25%;
+            height: 500px;
+            float: left;
+            background: #54e;
+
+        }
+        #t-middle{
+            width: 10%;
+            height: 500px;
+            float: left;
+            background: rgba(115, 115, 116, 0.69);
+
+        }
+        #t-right{
+            width: 66%;
+            height: 500px;
+            float: left;
+            background: #54e;
+
+        }
+
+        #con-right{
+            width: 20%;
+            height: auto;
+            margin: 0 auto;
+            float: left;
+
+        }
+        .seatside {
+            width: 30%;
+            height: 550px;
+            float: left;
+            background: #bbbcb9;
+            padding: 15px 25px;
+            margin: 10px 10px;
+            border: #0d0d0d;
+
+        }
+        .seat{
+            width: 20%;
+            float: left;
+
+
+        }
+
+        .btn{
+            width: 50px;
+            height: 50px;
+            background-color: #a6ea7d;
+            border: none;
+            color: #8a8acb;
+            padding: 1px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 12px;
+            margin: 10px 4px ;
+            cursor: pointer;
+            bottom: 50px;
+        }
+
+        .btnNo{
+            width: 40px;
+            height: 25px;
+            background-color: #bbbcb9;
+            border: none;
+            color: white;
+            padding: 15px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 10px 4px ;
+            cursor: pointer;
+        }
+        .checkbox1{
+
+            left: 0px;
+            top: 12px;
+            width: 30px;
+            height: 30px;
+            float:right;
+            background-color: #ccc;
+        }
+
+
+
+
+    </style>
+
+    <!--<style>-->
+        <!--table,th,td {-->
+            <!--border : 1px solid black;-->
+            <!--border-collapse: collapse;-->
+        <!--}-->
+        <!--th,td {-->
+            <!--padding: 5px;-->
+        <!--}-->
+    <!--</style>-->
+
+
+
+</head>
+<body>
+<div layout:fragment="custom-content">
+    <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div class="content-main">
+
+            <!--banner-->
+            <div class="banner">
+
+                <h2>
+                    <a th:href="@{/}">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
+
+
+            <div class="clearfix"> </div>
+
+            <div class="grid-form">
+                <div class="grid-form1 min-heightt">
+
+                    <h1>Train List</h1><br/><br/>
+
+
+                    <!--<h2 th:text="${train.trainName}"></h2>-->
+                    <!--<h2 th:text="${train.trainNo}"></h2>-->
+                    <!--<h2 th:text="${train.sheduleTime.startTime}"></h2>-->
+                    <!--<h2 th:text="${train.route.routeName}"></h2>-->
+
+                    <!--<select th:field="*{sheduleTime}"  class="form-control1">-->
+                        <!--<option th:each="sheduleTime : ${sheduleTimelist}" th:value="${sheduleTime.id}"><span th:text="${sheduleTime.startTime}"></span></option>-->
+                    <!--</select>-->
+
+                    <form action="">
+                        <select name="train" onchange="showCustomer(this.value)" th:field="*{train}">
+                            <option value="">Select a Train:</option>
+                            <option th:each="t : ${trainlist}" th:value="${t.id}" th:text="${t.trainName}"></option>
+
+                        </select>
+                    </form>
+                        <hr/>
+                        <!--<select id="locality-dropdown" name="locality">-->
+                            <!--<option th:each="t : ${trainlist}" th:value="${t.id}" th:text="${t.trainNo}"></option>-->
+                        <!--</select>-->
+
+                        <!--<select id="locality-dropdown" name="locality">-->
+                            <!--<option th:each="t : ${train}" th:value="${t.id}" th:text="${t.sheduleTime.startTime}"></option>-->
+                        <!--</select>-->
+
+                    <br>
+                    <!--<div id="txtHint">Customer info will be listed here...</div>-->
+
+
+                    <!--<script>-->
+
+
+                        <!--///////////////////-->
+                        <!--function showCustomer(id) {-->
+                            <!--var dropdown = document.getElementById('locality-dropdown');-->
+                            <!--dropdown.length = 0;-->
+
+                            <!--var defaultOption = document.createElement('option');-->
+                            <!--defaultOption.text = 'Choose State/Province';-->
+                            <!--defaultOption.value = '0';-->
+                            <!--dropdown.add(defaultOption);-->
+                            <!--dropdown.selectedIndex = 0;-->
+
+
+
+                            <!--var xhttp;-->
+                            <!--if (id == "") {-->
+                                <!--document.getElementById("txtHint").innerHTML = "";-->
+                                <!--return;-->
+                            <!--}-->
+                            <!--xhttp = new XMLHttpRequest();-->
+                            <!--xhttp.onreadystatechange = function() {-->
+                                <!--if (this.readyState == 4 && this.status == 200) {-->
+                                    <!--document.getElementById("txtHint").innerHTML = this.responseText;-->
+                                    <!--var data = JSON.parse(this.responseText);-->
+                                    <!--var option;-->
+                                    <!--for (var i = 0; i < data.length; i++) {-->
+                                        <!--option = document.createElement('option');-->
+                                        <!--option.text = data[i].city;-->
+                                        <!--option.value = data[i].id;-->
+                                        <!--dropdown.add(option);-->
+                                    <!--}-->
+                                <!--}-->
+                            <!--};-->
+                            <!--xhttp.open("GET", "http://localhost:5000/city?id="+id, true);-->
+                            <!--xhttp.send();-->
+                        <!--}-->
+                    <!--</script>-->
+
+
+
+
+
+                  <!--<ul>-->
+                      <!--<li th:each="c : ${train.compartmentList}" th:text="${c.compartmentName}">-->
+
+                         <!--<ol>-->
+                             <!--<li th:each="sd : ${c.seatDetailsList}" th:text="${sd.seatOrCabin.seatNo}"></li>-->
+                         <!--</ol>-->
+
+
+                      <!--</li>-->
+                  <!--</ul>-->
+
+
+
+
+                        <div th:each="com : ${train.compartmentList}">
+
+                                <div id="container">
+
+
+                                    <!--<div id="train">-->
+                                        <!--<div id="t-left">-->
+
+
+                                            <div class="seatside"  >
+                                                <h1 th:text="${com.compartmentName}"></h1>
+                                                <div th:each=" sd , iter : ${com.seatDetailsList}" class="seat">
+                                                    <!--<span th:if="${iter.index} % 2">-->
+                                                        <!--<button type="button" class="btn">FAKA</button>-->
+                                                    <!--</span>-->
+                                                    <span class="btn">
+                                                    <input type="checkbox" class="checkbox1"/>
+                                                    <span type="button" th:text="${sd.seatOrCabin.seatNo}" ></span>
+</span>
+
+                                                </div>
+                                            </div>
+                                </div>
+                            <!--<div class="seat">-->
+                                                    <!--<button type="button" class="btn" value="1">1</button>-->
+                                                <!--</div>-->
+                                                <!--<div class="seat">-->
+                                                    <!--<button type="button" class="btnNo" value="1"></button>-->
+                                                <!--</div>-->
+                                                <!--<div class="seat">-->
+                                                    <!--<button type="button" class="btn" value="1">1</button>-->
+                                                <!--</div>-->
+                                                <!--<div class="seat">-->
+                                                    <!--<button type="button" class="btn" value="1">1</button>-->
+                                                <!--</div>-->
+
+
+
+                                    </div>
+                                <!--</div>-->
+                                <!--<div id="con-right"></div>-->
+                            <!--</div>-->
+
+                        <!--</div>-->
+
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>
