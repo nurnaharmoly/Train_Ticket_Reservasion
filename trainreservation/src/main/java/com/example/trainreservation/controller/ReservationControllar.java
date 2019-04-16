@@ -36,16 +36,27 @@ public class ReservationControllar {
     @Autowired
     private UserRepo userRepo;
 
+//    @Autowired
+//    private SummaryRepo summaryRepo;
+
+
     @Autowired
-    private SummaryRepo summaryRepo;
+    private SeatDetailsRepo seatDetailsRepo;
+
+    @Autowired
+    private AvailableTrainScheduleRepo availableTrainScheduleRepo;
+    @Autowired
+    private SeatAvailableDetailsRepo seatAvailableDetailsRepo;
 
     @GetMapping(value = "add")
     public String viewAdd(Model model){
         model.addAttribute("reservation",new Reservation());
-        model.addAttribute("ticketlist", ticketRepo.findAll());
-        model.addAttribute("compartmentlist", compartmentRepo.findAll());
-        model.addAttribute("trainlist", trainRepo.findAll());
-        model.addAttribute("userlist", userRepo.findAll());
+            model.addAttribute("availableTrainSchedule",new AvailableTrainSchedule());
+//        model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
+            model.addAttribute("sad",this.seatAvailableDetailsRepo.findByTrain(new Train(10L)).get(0));
+            model.addAttribute("trainlist",this.trainRepo.findAll());
+//        model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
+
         return "reservation/add";
     }
 
@@ -56,12 +67,14 @@ public class ReservationControllar {
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
             model.addAttribute("trainlist", trainRepo.findAll());
             model.addAttribute("userlist", userRepo.findAll());
+            model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
+            model.addAttribute("availableTrainSchedulelist", availableTrainScheduleRepo.findAll());
             return "reservation/add";
         }
-        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
-        User user=this.userRepo.findByUserName(auth.getName());
-        reservation.setPasenger(user);
-        reservation.setJournyDate(new Date());
+//        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+//        User user=this.userRepo.findByUserName(auth.getName());
+//        reservation.setPasenger(user);
+//        reservation.setJournyDate(new Date());
             this.repo.save(reservation);
             model.addAttribute("reservation", new Reservation());
             model.addAttribute("successMsg", "Successfully Saved!");
@@ -69,6 +82,8 @@ public class ReservationControllar {
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
             model.addAttribute("trainlist", trainRepo.findAll());
             model.addAttribute("userlist", userRepo.findAll());
+        model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
+        model.addAttribute("availableTrainSchedulelist", availableTrainScheduleRepo.findAll());
 
 //        try {
 //
@@ -105,6 +120,8 @@ public class ReservationControllar {
         model.addAttribute("compartmentlist", compartmentRepo.findAll());
         model.addAttribute("trainlist", trainRepo.findAll());
         model.addAttribute("userlist", userRepo.findAll());
+        model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
+        model.addAttribute("availableTrainSchedulelist", availableTrainScheduleRepo.findAll());
         return "reservation/edit";
     }
     @PostMapping(value = "edit/{id}")
@@ -114,6 +131,8 @@ public class ReservationControllar {
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
             model.addAttribute("trainlist", trainRepo.findAll());
             model.addAttribute("userlist", userRepo.findAll());
+            model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
+            model.addAttribute("availableTrainSchedulelist", availableTrainScheduleRepo.findAll());
             return "reservation/edit";
         } else {
             reservation.setId(id);
@@ -122,6 +141,8 @@ public class ReservationControllar {
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
             model.addAttribute("trainlist", trainRepo.findAll());
             model.addAttribute("userlist", userRepo.findAll());
+            model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
+            model.addAttribute("availableTrainSchedulelist", availableTrainScheduleRepo.findAll());
             return "redirect:/reservation/list";
         }
     }

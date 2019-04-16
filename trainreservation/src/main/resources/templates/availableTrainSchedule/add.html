@@ -127,30 +127,18 @@
             float: right;
             background-color: #ccc;
         }
-
+.true{
+    background: #2b542c!important;
+}
+        .false{
+            background: #a94442!important;
+        }
 
     </style>
-    <script language="javascript">
-        function checkAll(ele) {
-            var checkboxes = document.getElementsByTagName('input');
-            if (ele.checked) {
-                for (var i = 0; i < checkboxes.length; i++) {
-                    if (checkboxes[i].type == 'checkbox') {
-                        checkboxes[i].checked = true;
-                    }
-                }
-            } else {
-                for (var i = 0; i < checkboxes.length; i++) {
-                    console.log(i)
-                    if (checkboxes[i].type == 'checkbox') {
-                        checkboxes[i].checked = false;
-                    }
-                }
-            }
-        }
-    </script>
+
+
 </head>
-<body>
+<body onload="disabledCheckBox()">
 <div layout:fragment="custom-content">
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="content-main">
@@ -194,11 +182,11 @@
                         <!--</div>-->
 
                         <div class="form-group has-success">
-                            <label class="col-md-6 control-label">Train</label>
-                            <div class="col-sm-12">
+                            <label class="col-md-1 control-label">Train</label>
+                            <div class="col-sm-3">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
-                                       <select th:field="*{train}"  class="form-control1">
+                                       <select th:field="*{sad.train}"  class="form-control1">
                                            <option value="">Select a Train:</option>
                                             <option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>
                                        </select>
@@ -211,25 +199,25 @@
 
 
 
-                            <div class="form-group has-success">
-                                <label class="col-md-12 control-label">Available Date</label>
-                                <div class="col-md-12">
-                                    <div class="input-group">
-									<span class="input-group-addon">
-										<i class="fa fa-calendar"></i>
-									</span>
-                                        <select name="train" th:field="*{train}">
-                                            <option value="">Select a Train:</option>
-                                            <option th:each="t : ${trainlist}" th:value="${t.id}" th:text="${t.trainName}"></option>
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-12 control-label">Available Date</label>-->
+                                <!--<div class="col-md-12">-->
+                                    <!--<div class="input-group">-->
+									<!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-calendar"></i>-->
+									<!--</span>-->
+                                        <!--<select name="train" th:field="*{train}">-->
+                                            <!--<option value="">Select a Train:</option>-->
+                                            <!--<option th:each="t : ${trainlist}" th:value="${t.id}" th:text="${t.trainName}"></option>-->
 
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                                        <!--</select>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
                             <div class="form-group has-success">
-                                <label class="col-md-12 control-label">Available Date</label>
-                                <div class="col-md-12">
+                                <label class="col-md-1 control-label">Available Date</label>
+                                <div class="col-md-3">
                                     <div class="input-group">
 									<span class="input-group-addon">
 										<i class="fa fa-calendar"></i>
@@ -240,6 +228,20 @@
                                                placeholder="Enter Available Date">
                                         <span th:class="err" th:if="${#fields.hasErrors('availableDate')}"
                                               th:errors="*{availableDate}">Available Date</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group has-success">
+                                <!--<label class="col-md-1 control-label">Srea</label>-->
+                                <div class="col-md-3">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-search-minus"></i>
+									</span>
+                                        <input type="text"  value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}">
+                                        <!--<input type="submit" value="" class="fa fa-search">-->
                                     </div>
                                 </div>
                             </div>
@@ -264,13 +266,16 @@
                                     <!--</div>-->
                                 <!--</div>-->
                             <!--</div>-->
+                            <br>
+                            <br>
+                            <br>
 
-                            <div th:each="com : ${train.compartmentList}">
+                            <div th:each="com : ${sad.train.compartmentList}">
 
                                 <div id="container">
 
                                     <div class="seatside">
-                                        <input type="checkbox" onClick="checkAll(this);" class="checkbox2"/>
+                                        <!--<input type="checkbox" onClick="checkAll(this);" class="checkbox2"/>-->
 
                                         <h1 th:text="${com.compartmentName}"></h1>
                                         <div th:each=" sd , iter : ${com.seatDetailsList}" class="seat">
@@ -278,7 +283,7 @@
                                             <!--<button type="button" class="btn">FAKA</button>-->
                                             <!--</span>-->
                                             <span class="btn">
-                                                    <input type="checkbox" class="checkbox1" th:field="*{seatDetails}" th:value="${sd?.seatOrCabin?.seatNo}"/>
+                                                    <input type="checkbox"  th:field="*{seatDetails}" th:value="${sd?.seatOrCabin?.seatNo}"    th:class="${sad.status}+' '+checkbox1" >
                                                     <span type="button" th:text="${sd.seatOrCabin.seatNo}"></span>
 </span>
 

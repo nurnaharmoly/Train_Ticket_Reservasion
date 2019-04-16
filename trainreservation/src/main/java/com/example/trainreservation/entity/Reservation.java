@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -44,6 +45,19 @@ public class Reservation {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pasenger_id", nullable = false)
 	private User pasenger;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "availableTrainSchedule_id", nullable = false)
+	private AvailableTrainSchedule availableTrainSchedule;
+
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "reservation_seatdetails",
+			joinColumns = @JoinColumn(name = "reservation_id"),
+			inverseJoinColumns = @JoinColumn(name = "seatdetails_id")
+	)
+	private List<SeatDetails> seatDetails;
 
 
 
@@ -119,10 +133,26 @@ public class Reservation {
 		this.pasenger = pasenger;
 	}
 
+	public AvailableTrainSchedule getAvailableTrainSchedule() {
+		return availableTrainSchedule;
+	}
+
+	public void setAvailableTrainSchedule(AvailableTrainSchedule availableTrainSchedule) {
+		this.availableTrainSchedule = availableTrainSchedule;
+	}
+
+	public List<SeatDetails> getSeatDetails() {
+		return seatDetails;
+	}
+
+	public void setSeatDetails(List<SeatDetails> seatDetails) {
+		this.seatDetails = seatDetails;
+	}
+
 	public Reservation() {
 	}
 
-	public Reservation(String noOffSeats, double totalPrice, double unitPrice, Date journyDate, Ticket ticket, Compartment compartment, Train train, User pasenger) {
+	public Reservation(String noOffSeats, double totalPrice, double unitPrice, Date journyDate, Ticket ticket, Compartment compartment, Train train, User pasenger, AvailableTrainSchedule availableTrainSchedule, List<SeatDetails> seatDetails) {
 		this.noOffSeats = noOffSeats;
 		this.totalPrice = totalPrice;
 		this.unitPrice = unitPrice;
@@ -131,6 +161,8 @@ public class Reservation {
 		this.compartment = compartment;
 		this.train = train;
 		this.pasenger = pasenger;
+		this.availableTrainSchedule = availableTrainSchedule;
+		this.seatDetails = seatDetails;
 	}
 
 
@@ -147,13 +179,16 @@ public class Reservation {
 				Objects.equals(ticket, that.ticket) &&
 				Objects.equals(compartment, that.compartment) &&
 				Objects.equals(train, that.train) &&
-				Objects.equals(pasenger, that.pasenger);
+				Objects.equals(pasenger, that.pasenger) &&
+				Objects.equals(availableTrainSchedule, that.availableTrainSchedule) &&
+				Objects.equals(seatDetails, that.seatDetails);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, noOffSeats, totalPrice, unitPrice, journyDate, ticket, compartment, train, pasenger);
+		return Objects.hash(id, noOffSeats, totalPrice, unitPrice, journyDate, ticket, compartment, train, pasenger, availableTrainSchedule, seatDetails);
 	}
+
 
 	@Override
 	public String toString() {
@@ -166,7 +201,9 @@ public class Reservation {
 				", ticket=" + ticket +
 				", compartment=" + compartment +
 				", train=" + train +
-				", user=" + pasenger +
+				", pasenger=" + pasenger +
+				", availableTrainSchedule=" + availableTrainSchedule +
+				", seatDetails=" + seatDetails +
 				'}';
 	}
 }

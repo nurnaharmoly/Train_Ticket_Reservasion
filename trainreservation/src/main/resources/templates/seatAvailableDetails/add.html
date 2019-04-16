@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+
+<head>
+    <title>Role Create</title>
+</head>
+<body>
+<div layout:fragment="custom-content">
+    <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div class="content-main">
+
+            <!--banner-->
+            <div class="banner">
+
+                <h2>
+                    <a th:href="@{/}">Home</a>
+                    <i class="fa fa-angle-right"></i>
+                    <span>Dashboard</span>
+                </h2>
+            </div>
+
+
+            <div class="clearfix"> </div>
+
+            <div class="grid-form">
+                <div class="grid-form1 min-height">
+                    <div class="panel-body">
+
+                        <h3 id="forms-horizontal">Add Seat Details</h3>
+                        <span th:class="succes" th:text="${successMsg}"></span>
+
+                        <form th:object="${seatAvailableDetails}" th:action="@{/seatAvailableDetails/add}" th:method="POST">
+
+                            <div class="form-group has-success">
+                                <label class="col-md-6 control-label">Train</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{train}"  class="form-control1">
+                                            <option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>
+                                       </select>
+                                     </span>
+                                </div>
+                            </div>
+
+
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-6 control-label">Compartment</label>-->
+                                <!--<div class="col-sm-12">-->
+                                     <!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-dashcube"></i>-->
+                                       <!--<select th:field="*{compartment}"  class="form-control1">-->
+                                            <!--<option th:each="compartment : ${compartmentlist}" th:value="${compartment.id}"><span th:text="${compartment.compartmentName}"></span></option>-->
+                                       <!--</select>-->
+                                     <!--</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-6 control-label">Seat No</label>-->
+                                <!--<div class="col-sm-12">-->
+                                     <!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-dashcube"></i>-->
+                                       <!--<select th:field="*{seatOrCabin}"  class="form-control1">-->
+                                            <!--<option th:each="seatOrCabin : ${seatOrCabinlist}" th:value="${seatOrCabin.id}"><span th:text="${seatOrCabin.seatNo}"></span></option>-->
+                                       <!--</select>-->
+                                     <!--</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label">Journy Date</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</span>
+                                        <input type="date" th:text="${#dates.format(seatAvailableDetails.journyDate, 'yyyy-MM-dd')}" th:field="*{journyDate}"  class="fa-calendar" placeholder="Journy Date">
+                                        <span th:class="err" th:if="${#fields.hasErrors('journyDate')}" th:errors="*{journyDate}">Journy Date</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-6 control-label">Cabin No</label>-->
+                                <!--<div class="col-sm-12">-->
+                                     <!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-dashcube"></i>-->
+                                       <!--<select th:field="*{seatOrCabin}"  class="form-control1">-->
+                                            <!--<option th:each="seatOrCabin : ${seatOrCabinlist}" th:value="${seatOrCabin.id}"><span th:text="${seatOrCabin.cabinNo}"></span></option>-->
+                                       <!--</select>-->
+                                     <!--</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-12 control-label">Status</label>-->
+                                <!--<div class="col-md-12">-->
+                                    <!--<div class="input-group ">-->
+                                        <!--<ul>-->
+                                            <!--<li>-->
+
+                                                <!--<input type="radio" id="t" name="status" value="True" th:field="*{status}" class="has-success">-->
+                                                <!--<label for="t"><span></span>True</label>-->
+                                            <!--</li>-->
+                                            <!--<li>-->
+                                                <!--<input type="radio" id="f" name="status" value="False" th:field="*{status}" class="has-success">-->
+                                                <!--<label for="f"><span></span>False</label>-->
+                                            <!--</li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+                            <div class="clearfix"> </div>
+
+                            <div>
+                                <h1><button type="submit" class="label label-success">ADD</button>&nbsp;<button type="reset" class="label label-success">Reset</button></h1>
+
+                            </div>
+                            <div class="clearfix"> </div>
+                        </form>
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

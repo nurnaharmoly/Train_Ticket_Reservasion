@@ -91,6 +91,9 @@ public class Train {
 
     public Train() {
     }
+    public Train(Long id) {
+        this.id=id;
+    }
 
     public Train(String trainName, int trainNo, ScheduleTime sheduleTime, Route route, Station station) {
         this.trainName = trainName;

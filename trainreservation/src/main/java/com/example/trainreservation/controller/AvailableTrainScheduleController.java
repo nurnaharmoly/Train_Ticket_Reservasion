@@ -3,7 +3,7 @@ package com.example.trainreservation.controller;
 
 import com.example.trainreservation.entity.AvailableTrainSchedule;
 
-import com.example.trainreservation.entity.SeatDetails;
+
 import com.example.trainreservation.entity.Train;
 import com.example.trainreservation.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class AvailableTrainScheduleController {
     private AvailableTrainScheduleRepo repo;
 
     @Autowired
-    private SeatDetailsRepo seatDetailsRepo;
+    private SeatAvailableDetailsRepo seatAvailableDetailsRepo;
 
     @Autowired
     private TrainRepo trainRepo;
@@ -39,9 +39,9 @@ public class AvailableTrainScheduleController {
     public String viewAdd(Model model){
         model.addAttribute("availableTrainSchedule",new AvailableTrainSchedule());
 //        model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
-        model.addAttribute("train",this.trainRepo.findByTrainNo(734));
+        model.addAttribute("sad",this.seatAvailableDetailsRepo.findByTrain(new Train(10L)).get(0));
         model.addAttribute("trainlist",this.trainRepo.findAll());
-        model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
+//        model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
 
         return "availableTrainSchedule/add";
     }
@@ -58,9 +58,9 @@ public class AvailableTrainScheduleController {
         this.repo.save(availableTrainSchedule);
             model.addAttribute("availableTrainSchedule",new AvailableTrainSchedule());
             model.addAttribute("successMsg", "Successfully Saved!");
-            model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
+            model.addAttribute("seatAvailableDetails", seatAvailableDetailsRepo.findAll());
 
-        model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
+//        model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
         return "availableTrainSchedule/add";
     }
 
@@ -68,21 +68,20 @@ public class AvailableTrainScheduleController {
     @GetMapping(value = "edit/{id}")
     public String viewEdit(Model model, @PathVariable("id") Long id){
         model.addAttribute("availableTrainSchedule",repo.getOne(id));
-        model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
-        model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
+        model.addAttribute("seatAvailableDetailslist", seatAvailableDetailsRepo.findAll());
+//        model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
         return "availableTrainSchedule/edit";
     }
     @PostMapping(value = "edit/{id}")
     public String edit(@Valid AvailableTrainSchedule availableTrainSchedule, BindingResult result, Model model,@PathVariable("id") Long id){
         if(result.hasErrors()){
-            model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
-            model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
+            model.addAttribute("seatAvailableDetailslist", seatAvailableDetailsRepo.findAll());
+//            model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
             return "availableTrainSchedule/edit";
         } else {
             availableTrainSchedule.setId(id);
             this.repo.save(availableTrainSchedule);
-            model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
-            model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
+//            model.addAttribute("compartmentlist",this.compartmentRepo.findAll());
             return "redirect:/availableTrainSchedule/list";
         }
     }

@@ -25,13 +25,13 @@ public class AvailableTrainSchedule {
 	)
 	private List<SeatDetails> seatDetails;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(
-			name = "availabletrainschedule_compartment",
-			joinColumns = @JoinColumn(name = "av_trainsche_id"),
-			inverseJoinColumns = @JoinColumn(name = "compartment_id")
-	)
-	private List<Compartment> compartmentList;
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	@JoinTable(
+//			name = "availabletrainschedule_compartment",
+//			joinColumns = @JoinColumn(name = "av_trainsche_id"),
+//			inverseJoinColumns = @JoinColumn(name = "compartment_id")
+//	)
+//	private List<Compartment> compartmentList;
 
 
 
@@ -88,13 +88,13 @@ public class AvailableTrainSchedule {
 	}
 
 
-	public List<Compartment> getCompartmentList() {
-		return compartmentList;
-	}
-
-	public void setCompartmentList(List<Compartment> compartmentList) {
-		this.compartmentList = compartmentList;
-	}
+//	public List<Compartment> getCompartmentList() {
+//		return compartmentList;
+//	}
+//
+//	public void setCompartmentList(List<Compartment> compartmentList) {
+//		this.compartmentList = compartmentList;
+//	}
 
 
 	public AvailableTrainSchedule() {
@@ -103,7 +103,7 @@ public class AvailableTrainSchedule {
 
 	public AvailableTrainSchedule(List<SeatDetails> seatDetails, List<Compartment> compartmentList, Date availableDate, boolean status, Train train) {
 		this.seatDetails = seatDetails;
-		this.compartmentList = compartmentList;
+//		this.compartmentList = compartmentList;
 		this.availableDate = availableDate;
 		this.status = status;
 		this.train = train;
@@ -115,7 +115,7 @@ public class AvailableTrainSchedule {
 		return "AvailableTrainSchedule{" +
 				"id=" + id +
 				", seatDetails=" + seatDetails +
-				", compartmentList=" + compartmentList +
+//				", compartmentList=" + compartmentList +
 				", availableDate=" + availableDate +
 				", status=" + status +
 				", train=" + train +
@@ -131,13 +131,13 @@ public class AvailableTrainSchedule {
 		return status == that.status &&
 				Objects.equals(id, that.id) &&
 				Objects.equals(seatDetails, that.seatDetails) &&
-				Objects.equals(compartmentList, that.compartmentList) &&
+//				Objects.equals(compartmentList, that.compartmentList) &&
 				Objects.equals(availableDate, that.availableDate) &&
 				Objects.equals(train, that.train);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, seatDetails, compartmentList, availableDate, status, train);
+		return Objects.hash(id, seatDetails, availableDate, status, train);
 	}
 }
