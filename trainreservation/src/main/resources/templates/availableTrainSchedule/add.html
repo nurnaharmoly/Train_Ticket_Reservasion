@@ -197,7 +197,18 @@
                         <form th:object="${availableTrainSchedule}" th:action="@{/availableTrainSchedule/add}"
                               th:method="POST">
 
-
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-1 control-label">Train</label>-->
+                                <!--<div class="col-sm-3">-->
+                                     <!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-dashcube"></i>-->
+                                       <!--<select th:field="*{sad.train}"  class="form-control1">-->
+                                           <!--<option value="">Select a Train:</option>-->
+                                            <!--<option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>-->
+                                       <!--</select>-->
+                                     <!--</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
                             <!--<div class="form-group has-success">-->
                                 <!--<label class="col-md-12 control-label">Available Date</label>-->
@@ -240,7 +251,7 @@
 									<span class="input-group-addon">
 										<i class="fa fa-search-minus"></i>
 									</span>
-                                        <input type="text"  value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}">
+                                        <button type="submit" class="label label-success">Search</button>
                                         <!--<input type="submit" value="" class="fa fa-search">-->
                                     </div>
                                 </div>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/reservation/")
@@ -62,20 +63,24 @@ public class ReservationControllar {
 
     @PostMapping(value = "add")
     public String add(@Valid Reservation reservation, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            model.addAttribute("ticketlist", ticketRepo.findAll());
-            model.addAttribute("compartmentlist", compartmentRepo.findAll());
-            model.addAttribute("trainlist", trainRepo.findAll());
-            model.addAttribute("userlist", userRepo.findAll());
-            model.addAttribute("seatDetailslist", seatDetailsRepo.findAll());
-            model.addAttribute("availableTrainSchedulelist", availableTrainScheduleRepo.findAll());
-            return "reservation/add";
+        List<SeatDetails> detailsList = seatDetailsRepo.findAllByTrain(reservation.getTrain());
+        System.out.println("Size of seatsDetails: "+seatDetailsRepo.findAllByTrain(reservation.getTrain()).size());
+        for(SeatDetails sd : detailsList){
+            Reservation rv=new Reservation();
+            rv.setTrain(sd.getTrain());
+            rv.setCompartment(sd.getCompartment());
+            rv.setTotalPrice(reservation.getTotalPrice());
+            rv.setNoOffSeats(reservation.getNoOffSeats());
+            rv.setUnitPrice(reservation.getUnitPrice());
+            rv.setTicket(reservation.getTicket());
+            rv.setJournyDate(reservation.getJournyDate());
+            this.repo.save(rv);
         }
 //        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
 //        User user=this.userRepo.findByUserName(auth.getName());
 //        reservation.setPasenger(user);
 //        reservation.setJournyDate(new Date());
-            this.repo.save(reservation);
+//            this.repo.save(reservation);
             model.addAttribute("reservation", new Reservation());
             model.addAttribute("successMsg", "Successfully Saved!");
             model.addAttribute("ticketlist", ticketRepo.findAll());

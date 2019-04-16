@@ -42,9 +42,9 @@ public class Reservation {
 
 
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "pasenger_id", nullable = false)
-	private User pasenger;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "pasenger_id", nullable = false)
+//	private User pasenger;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "availableTrainSchedule_id", nullable = false)
@@ -125,13 +125,13 @@ public class Reservation {
 		this.train = train;
 	}
 
-	public User getPasenger() {
-		return pasenger;
-	}
-
-	public void setPasenger(User pasenger) {
-		this.pasenger = pasenger;
-	}
+//	public User getPasenger() {
+//		return pasenger;
+//	}
+//
+//	public void setPasenger(User pasenger) {
+//		this.pasenger = pasenger;
+//	}
 
 	public AvailableTrainSchedule getAvailableTrainSchedule() {
 		return availableTrainSchedule;
@@ -160,7 +160,7 @@ public class Reservation {
 		this.ticket = ticket;
 		this.compartment = compartment;
 		this.train = train;
-		this.pasenger = pasenger;
+//		this.pasenger = pasenger;
 		this.availableTrainSchedule = availableTrainSchedule;
 		this.seatDetails = seatDetails;
 	}
@@ -179,14 +179,14 @@ public class Reservation {
 				Objects.equals(ticket, that.ticket) &&
 				Objects.equals(compartment, that.compartment) &&
 				Objects.equals(train, that.train) &&
-				Objects.equals(pasenger, that.pasenger) &&
+//				Objects.equals(pasenger, that.pasenger) &&
 				Objects.equals(availableTrainSchedule, that.availableTrainSchedule) &&
 				Objects.equals(seatDetails, that.seatDetails);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, noOffSeats, totalPrice, unitPrice, journyDate, ticket, compartment, train, pasenger, availableTrainSchedule, seatDetails);
+		return Objects.hash(id, noOffSeats, totalPrice, unitPrice, journyDate, ticket, compartment, train, availableTrainSchedule, seatDetails);
 	}
 
 
@@ -201,7 +201,7 @@ public class Reservation {
 				", ticket=" + ticket +
 				", compartment=" + compartment +
 				", train=" + train +
-				", pasenger=" + pasenger +
+//				", pasenger=" + pasenger +
 				", availableTrainSchedule=" + availableTrainSchedule +
 				", seatDetails=" + seatDetails +
 				'}';

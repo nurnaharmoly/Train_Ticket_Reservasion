@@ -194,33 +194,114 @@
                             <!--</div>-->
                         <!--</div>-->
 
-                        <form th:object="${availableTrainSchedule}" th:action="@{/availableTrainSchedule/add}"
+                        <form th:object="${reservation}" th:action="@{/reservation/add}"
                               th:method="POST">
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="noOffSeats">No Off Seats</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{noOffSeats}"  id="noOffSeats" placeholder="NoOffSeats" oninput="callToatl()" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('noOffSeats')}" th:errors="*{noOffSeats}">NoOffSeats Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="unitPrice">Unit Price</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{unitPrice}"  id="unitPrice" placeholder="Unit Price" oninput="callToatl()" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}">Unit Price Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="totalPrice">Total Price</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{totalPrice}"   id="totalPrice" placeholder="Total Price"  required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('totalPrice')}" th:errors="*{totalPrice}">Total Price Error</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label">Journy Date</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</span>
+                                        <input type="date" th:text="${#dates.format(reservation.journyDate, 'yyyy-MM-dd')}" th:field="*{journyDate}"  class="fa-calendar" placeholder="Journy Date">
+                                        <span th:class="err" th:if="${#fields.hasErrors('journyDate')}" th:errors="*{journyDate}">Journy Date</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-6 control-label">Ticket No</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{ticket}"  class="form-control1">
+                                            <option th:each="ticket : ${ticketlist}" th:value="${ticket.id}"><span th:text="${ticket.ticketNo}"></span></option>
+                                       </select>
+                                     </span>
+                                </div>
+                            </div>
 
 
 
                             <!--<div class="form-group has-success">-->
-                                <!--<label class="col-md-12 control-label">Available Date</label>-->
-                                <!--<div class="col-md-12">-->
-                                    <!--<div class="input-group">-->
-									<!--<span class="input-group-addon">-->
-										<!--<i class="fa fa-calendar"></i>-->
-									<!--</span>-->
-                                        <!--<select name="train" th:field="*{train}">-->
-                                            <!--<option value="">Select a Train:</option>-->
-                                            <!--<option th:each="t : ${trainlist}" th:value="${t.id}" th:text="${t.trainName}"></option>-->
-
-                                        <!--</select>-->
-                                    <!--</div>-->
+                                <!--<label class="col-md-6 control-label">Compartment</label>-->
+                                <!--<div class="col-sm-12">-->
+                                     <!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-dashcube"></i>-->
+                                       <!--<select th:field="*{compartment}"  class="form-control1">-->
+                                            <!--<option th:each="compartment : ${compartmentlist}" th:value="${compartment.id}"><span th:text="${compartment.compartmentName}"></span></option>-->
+                                       <!--</select>-->
+                                     <!--</span>-->
                                 <!--</div>-->
                             <!--</div>-->
 
+
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-6 control-label">Train</label>-->
+                                <!--<div class="col-sm-12">-->
+                                     <!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-dashcube"></i>-->
+                                       <!--<select th:field="*{rv.train}"  class="form-control1">-->
+                                            <!--<option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>-->
+                                       <!--</select>-->
+                                     <!--</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+
+
+
+
                             <div class="form-group has-success">
-                                <label class="col-md-1 control-label">Train</label>
-                                <div class="col-sm-3">
+                                <label class="col-md-6 control-label">Train</label>
+                                <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
-                                       <select th:field="*{sad.train}"  class="form-control1">
+                                       <select th:field="*{rv.train}"  class="form-control1">
                                            <option value="">Select a Train:</option>
                                             <option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>
                                        </select>
@@ -228,36 +309,36 @@
                                 </div>
                             </div>
 
-                            <div class="form-group has-success">
-                                <label class="col-md-1 control-label">Available Date</label>
-                                <div class="col-md-3">
-                                    <div class="input-group">
-									<span class="input-group-addon">
-										<i class="fa fa-calendar"></i>
-									</span>
-                                        <input type="date"
-                                               th:text="${#dates.format(availableTrainSchedule.availableDate, 'yyyy-MM-dd')}"
-                                               th:field="*{availableDate}" class="fa-calendar"
-                                               placeholder="Enter Available Date">
-                                        <span th:class="err" th:if="${#fields.hasErrors('availableDate')}"
-                                              th:errors="*{availableDate}">Available Date</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-1 control-label">Available Date</label>-->
+                                <!--<div class="col-md-3">-->
+                                    <!--<div class="input-group">-->
+									<!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-calendar"></i>-->
+									<!--</span>-->
+                                        <!--<input type="date"-->
+                                               <!--th:text="${#dates.format(availableTrainSchedule.availableDate, 'yyyy-MM-dd')}"-->
+                                               <!--th:field="*{journyDate}" class="fa-calendar"-->
+                                               <!--placeholder="Enter Available Date">-->
+                                        <!--<span th:class="err" th:if="${#fields.hasErrors('availableDate')}"-->
+                                              <!--th:errors="*{journyDate}">Available Date</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
 
-                            <div class="form-group has-success">
-                                <!--<label class="col-md-1 control-label">Srea</label>-->
-                                <div class="col-md-3">
-                                    <div class="input-group">
-									<span class="input-group-addon">
-										<i class="fa fa-search-minus"></i>
-									</span>
-                                        <input type="text"  value="Search..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search...';}">
-                                        <!--<input type="submit" value="" class="fa fa-search">-->
-                                    </div>
-                                </div>
-                            </div>
+                            <!--<div class="form-group has-success">-->
+                                <!--&lt;!&ndash;<label class="col-md-1 control-label">Srea</label>&ndash;&gt;-->
+                                <!--<div class="col-md-3">-->
+                                    <!--<div class="input-group">-->
+									<!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-search-minus"></i>-->
+									<!--</span>-->
+                                        <!--<button type="submit" class="label label-success">Search</button>-->
+                                        <!--&lt;!&ndash;<input type="submit" value="" class="fa fa-search">&ndash;&gt;-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
                             <!--<div class="form-group has-success">-->
                                 <!--<label class="col-md-12 control-label">Status</label>-->
@@ -283,7 +364,7 @@
                             <br>
                             <br>
 
-                            <div th:each="com : ${sad.train.compartmentList}">
+                            <div th:each="com : ${rv.train.compartmentList}">
 
                                 <div id="container">
 
