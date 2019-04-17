@@ -92,9 +92,27 @@
         <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         <version>3.0.4.RELEASE</version>
         </dependency>
+ <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.7.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-support -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-support</artifactId>
+            <version>2.0.8</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+
     </dependencies>
 
-    <mvc:resources mapping="images/**" location="/WEB-INF/images/" />
+    <!--<mvc:resources mapping="images/**" location="/WEB-INF/images/" />-->
 
     <build>
         <plugins>
