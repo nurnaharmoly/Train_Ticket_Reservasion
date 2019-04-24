@@ -24,7 +24,7 @@ public class Reservation {
 
 
 //	@LastModifiedDate
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date journyDate;
 
@@ -33,7 +33,7 @@ public class Reservation {
 	private Ticket ticket;
 
 	@ManyToOne
-	@JoinColumn(name = "compartment_id", nullable = false)
+	@JoinColumn(name = "compartment_id", nullable = true)
 	private Compartment compartment;
 
 	@ManyToOne
@@ -46,9 +46,7 @@ public class Reservation {
 //	@JoinColumn(name = "pasenger_id", nullable = false)
 //	private User pasenger;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "availableTrainSchedule_id", nullable = false)
-	private AvailableTrainSchedule availableTrainSchedule;
+
 
 
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -133,13 +131,7 @@ public class Reservation {
 //		this.pasenger = pasenger;
 //	}
 
-	public AvailableTrainSchedule getAvailableTrainSchedule() {
-		return availableTrainSchedule;
-	}
 
-	public void setAvailableTrainSchedule(AvailableTrainSchedule availableTrainSchedule) {
-		this.availableTrainSchedule = availableTrainSchedule;
-	}
 
 	public List<SeatDetails> getSeatDetails() {
 		return seatDetails;
@@ -152,7 +144,8 @@ public class Reservation {
 	public Reservation() {
 	}
 
-	public Reservation(String noOffSeats, double totalPrice, double unitPrice, Date journyDate, Ticket ticket, Compartment compartment, Train train, User pasenger, AvailableTrainSchedule availableTrainSchedule, List<SeatDetails> seatDetails) {
+
+	public Reservation(String noOffSeats, double totalPrice, double unitPrice, Date journyDate, Ticket ticket, Compartment compartment, Train train, User pasenger, List<SeatDetails> seatDetails) {
 		this.noOffSeats = noOffSeats;
 		this.totalPrice = totalPrice;
 		this.unitPrice = unitPrice;
@@ -161,10 +154,9 @@ public class Reservation {
 		this.compartment = compartment;
 		this.train = train;
 //		this.pasenger = pasenger;
-		this.availableTrainSchedule = availableTrainSchedule;
+
 		this.seatDetails = seatDetails;
 	}
-
 
 	@Override
 	public boolean equals(Object o) {
@@ -179,31 +171,11 @@ public class Reservation {
 				Objects.equals(ticket, that.ticket) &&
 				Objects.equals(compartment, that.compartment) &&
 				Objects.equals(train, that.train) &&
-//				Objects.equals(pasenger, that.pasenger) &&
-				Objects.equals(availableTrainSchedule, that.availableTrainSchedule) &&
 				Objects.equals(seatDetails, that.seatDetails);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, noOffSeats, totalPrice, unitPrice, journyDate, ticket, compartment, train, availableTrainSchedule, seatDetails);
-	}
-
-
-	@Override
-	public String toString() {
-		return "Reservation{" +
-				"id=" + id +
-				", noOffSeats='" + noOffSeats + '\'' +
-				", totalPrice=" + totalPrice +
-				", unitPrice=" + unitPrice +
-				", journyDate=" + journyDate +
-				", ticket=" + ticket +
-				", compartment=" + compartment +
-				", train=" + train +
-//				", pasenger=" + pasenger +
-				", availableTrainSchedule=" + availableTrainSchedule +
-				", seatDetails=" + seatDetails +
-				'}';
+		return Objects.hash(id, noOffSeats, totalPrice, unitPrice, journyDate, ticket, compartment, train, seatDetails);
 	}
 }

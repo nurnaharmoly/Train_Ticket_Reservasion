@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface TicketRepo extends JpaRepository<Ticket, Long> {
-    Optional<Ticket> findByTicketNo(int ticketNo);
-    boolean existsTicketByTicketNo(int ticketNo);
+//    Optional<Ticket> findByTicketNo(int ticketNo);
+//    boolean existsTicketByTicketNo(int ticketNo);
 
 }

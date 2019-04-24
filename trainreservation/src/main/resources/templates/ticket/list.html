@@ -32,7 +32,7 @@
                 <tr>
                     <th>SL NO</th>
                     <th>Ticket NO</th>
-                    <th>Fare Categore</th>
+                    <!--<th>Fare Categore</th>-->
                     <th>Compartment</th>
                     <th>Seat No</th>
                     <th>Cabin No</th>
@@ -45,7 +45,7 @@
                 <tr th:each="ticket : ${list}">
                     <td th:text="${ticket.id}" class="has-success"></td>
                     <td th:text="${ticket.ticketNo}"></td>
-                    <td th:text="${ticket.fareCategore.fareCategoreName}"></td>
+                    <!--<td th:text="${ticket.fareCategore.fareCategoreName}"></td>-->
                     <td th:text="${ticket.compartment.compartmentName}"></td>
                     <td th:text="${ticket.seatOrCabin.seatNo}"></td>
                     <td th:text="${ticket.seatOrCabin.cabinNo}"></td>
@@ -80,7 +80,7 @@
                         <tr>
                             <th>SL NO</th>
                             <th>Ticket Categore</th>
-                            <th>Fare Categore</th>
+                            <!--<th>Fare Categore</th>-->
                             <th>Compartment</th>
                             <th>Seat No</th>
                             <th>Cabin No</th>

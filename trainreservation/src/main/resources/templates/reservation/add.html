@@ -21,12 +21,12 @@
 
         }
 
-        #train {
-            width: 60%;
-            height: 500px;
-            float: left;
+        /*#train {*/
+            /*width: 60%;*/
+            /*height: 500px;*/
+            /*float: left;*/
 
-        }
+        /*}*/
 
         #t-left {
             width: 25%;
@@ -135,10 +135,14 @@
         }
 
     </style>
-
+    <script>
+        function callToatl() {
+            document.getElementById("totalPrice").value = document.getElementById("unitPrice").value * document.getElementById("noOffSeats").value;
+        }
+    </script>
 
 </head>
-<body onload="disabledCheckBox()">
+<body>
 <div layout:fragment="custom-content">
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="content-main">
@@ -160,42 +164,29 @@
                 <div class="grid-form1 min-height">
                     <div class="panel-body">
 
-                        <h3 id="forms-horizontal">Add Available Train Schedule </h3>
+                        <h3 id="forms-horizontal">Add Reservation </h3>
                         <span th:class="succes" th:text="${successMsg}"></span>
 
-                        <!--<form action="">-->
 
-                        <!--</form>-->
-
-                        <!--<div class="form-group has-success">-->
-                        <!--<label class="col-md-6 control-label">Train</label>-->
-                        <!--<div class="col-sm-12">-->
-                        <!--<span>-->
-										<!--<i class="fa fa-dashcube"></i>-->
-                                       <!--<select name="train" onchange="showCustomer(this.value)" th:field="*{train}">-->
-                                <!--<option value="">Select a Train:</option>-->
-                                <!--<option th:each="t : ${trainlist}" th:value="${t.id}" th:text="${t.trainName}"></option>-->
-
-                            <!--</select>-->
-                                     <!--</span>-->
-                        <!--</div>-->
-                        <!--</div>-->
-
-                        <!--<div class="form-group has-success">-->
-                            <!--<label class="col-md-1 control-label">Train</label>-->
-                            <!--<div class="col-sm-3">-->
-                                     <!--<span class="input-group-addon">-->
-										<!--<i class="fa fa-dashcube"></i>-->
-                                       <!--<select th:field="*{sad.train}"  class="form-control1">-->
-                                           <!--<option value="">Select a Train:</option>-->
-                                            <!--<option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>-->
-                                       <!--</select>-->
-                                     <!--</span>-->
-                            <!--</div>-->
-                        <!--</div>-->
 
                         <form th:object="${reservation}" th:action="@{/reservation/add}"
                               th:method="POST">
+
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-6 control-label">Ticket No</label>
+                                <div class="col-sm-12">
+                                     <span class="input-group-addon">
+										<i class="fa fa-dashcube"></i>
+                                       <select th:field="*{ticket}"  class="form-control1">
+                                            <option th:each="tic : ${ticketlist}" th:value="${tic.id}" th:text="${tic.ticketNo}"></option>
+                                       </select>
+                                     </span>
+                                </div>
+                            </div>
+
+
 
                             <div class="form-group has-success">
                                 <label class="col-md-12 control-label" for="noOffSeats">No Off Seats</label>
@@ -254,17 +245,17 @@
 
 
 
-                            <div class="form-group has-success">
-                                <label class="col-md-6 control-label">Ticket No</label>
-                                <div class="col-sm-12">
-                                     <span class="input-group-addon">
-										<i class="fa fa-dashcube"></i>
-                                       <select th:field="*{ticket}"  class="form-control1">
-                                            <option th:each="ticket : ${ticketlist}" th:value="${ticket.id}"><span th:text="${ticket.ticketNo}"></span></option>
-                                       </select>
-                                     </span>
-                                </div>
-                            </div>
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-6 control-label">Ticket No</label>-->
+                                <!--<div class="col-sm-12">-->
+                                     <!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-dashcube"></i>-->
+                                       <!--<select th:field="*{ticket}"  class="form-control1">-->
+                                            <!--<option th:each="ticket : ${ticketlist}" th:value="${ticket.id}"><span th:text="${ticket.ticketNo}"></span></option>-->
+                                       <!--</select>-->
+                                     <!--</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
 
 
@@ -301,7 +292,7 @@
                                 <div class="col-sm-12">
                                      <span class="input-group-addon">
 										<i class="fa fa-dashcube"></i>
-                                       <select th:field="*{rv.train}"  class="form-control1">
+                                       <select th:field="*{train}"  class="form-control1" name="customers" onchange="showCustomer(this.value)">
                                            <option value="">Select a Train:</option>
                                             <option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>
                                        </select>
@@ -364,20 +355,20 @@
                             <br>
                             <br>
 
-                            <div th:each="com : ${rv.train.compartmentList}">
+                            <div th:each="com : ${sad.train.compartmentList}" >
 
                                 <div id="container">
 
                                     <div class="seatside">
                                         <!--<input type="checkbox" onClick="checkAll(this);" class="checkbox2"/>-->
 
-                                        <h1 th:text="${com.compartmentName}"></h1>
+                                        <h1 th:text="${com.compartmentName}" id="locality-dropdown" name="locality"></h1>
                                         <div th:each=" sd , iter : ${com.seatDetailsList}" class="seat">
                                             <!--<span th:if="${iter.index} % 2">-->
                                             <!--<button type="button" class="btn">FAKA</button>-->
                                             <!--</span>-->
                                             <span class="btn">
-                                                    <input type="checkbox"  th:field="*{seatDetails}" th:value="${sd?.seatOrCabin?.seatNo}"    th:class="${sad.status}+' '+checkbox1" >
+                                                    <input type="checkbox"  th:field="*{seatDetails}" th:value="${sd?.seatOrCabin?.id}"    th:class="${sad.status}+' '+checkbox1" >
                                                     <span type="button" th:text="${sd.seatOrCabin.seatNo}"></span>
 </span>
 
@@ -433,6 +424,47 @@
                         <!--</div>-->
 
                     </div>
+
+                    <script>
+
+
+                        ///////////////////
+                        function showCustomer(id) {
+                            var dropdown = document.getElementById('locality-dropdown');
+                            dropdown.length = 0;
+
+                            var defaultOption = document.createElement('option');
+                            defaultOption.text = 'Choose State/Province';
+                            defaultOption.value = '0';
+                            dropdown.add(defaultOption);
+                            dropdown.selectedIndex = 0;
+
+
+
+                            var xhttp;
+                            if (id == "") {
+                                document.getElementById("txtHint").innerHTML = "";
+                                return;
+                            }
+                            xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    document.getElementById("txtHint").innerHTML = this.responseText;
+                                    var data = JSON.parse(this.responseText);
+                                    var option;
+                                    for (var i = 0; i < data.length; i++) {
+                                        option = document.createElement('option');
+                                        option.text = data[i].city;
+                                        option.value = data[i].id;
+                                        dropdown.add(option);
+                                    }
+                                }
+                            };
+                            xhttp.open("GET", "http://localhost:5000/city?id="+id, true);
+                            xhttp.send();
+                        }
+                    </script>
+
                     <!--</div>-->
                     <!--</div>-->
                 </div>

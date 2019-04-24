@@ -33,14 +33,16 @@
                 <thead>
                 <thead>
                 <tr>
+                    <th>ID</th>
                     <th>No Off Seats</th>
-                    <th>Total Price</th>
+
                     <th>Unit Price</th>
+                    <th>Total Price</th>
                     <th>Journey Date</th>
                     <th>Ticket No</th>
-                    <th>Compartment</th>
+                    <!--<th>Compartment</th>-->
                     <th>Train</th>
-                    <th>User</th>
+                    <th>Seat</th>
                     <th>Edit</th>
                     <th>Delete</th>
 
@@ -50,12 +52,16 @@
                 <tr th:each="reservation : ${list}">
                     <td th:text="${reservation.id}" class="has-success"></td>
                     <td th:text="${reservation.noOffSeats}"></td>
-                    <td th:text="${reservation.totalPrice}"></td>
+
                     <td th:text="${reservation.unitPrice}"></td>
+                    <td th:text="${reservation.totalPrice}"></td>
                     <td th:text="${reservation.journyDate}"></td>
                     <td th:text="${reservation.ticket.ticketNo}"></td>
-                    <td th:text="${reservation.compartment.compartmentName}"></td>
+                    <!--<td th:text="${reservation.compartment.compartmentName}"></td>-->
                     <td th:text="${reservation.train.trainName}"></td>
+                    <td >
+                        <span th:each="r : ${reservation.seatDetails}" th:text="${r.seatOrCabin.seatNo}"></span>
+                    </td>
                     <!--<td th:text="${reservation.user.userName}"></td>-->
 
 
@@ -82,14 +88,16 @@
                 </tbody>
                 <tfoot>
                 <tr>
+                    <th>ID</th>
                     <th>No Off Seats</th>
-                    <th>Total Price</th>
+
                     <th>Unit Price</th>
+                    <th>Total Price</th>
                     <th>Journey Date</th>
                     <th>TicketNo</th>
-                    <th>Compartment</th>
+                    <!--<th>Compartment</th>-->
                     <th>Train</th>
-                    <th>User</th>
+                    <th>Seat</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>

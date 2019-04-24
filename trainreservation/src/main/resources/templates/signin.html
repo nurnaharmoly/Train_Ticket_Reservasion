@@ -47,20 +47,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--<div class="col-md-7 mid-content-top">-->
 		<div class="middle-content" th:style="'background-image:url(' + @{/images/b2.jpg} + ');' " >
              <div class="login min-height maindiv">
-
-				<h1><a th:href="@{/}">Train Ticket Reservation</a></h1>
+                   <h1><a th:href="@{/}">Train Ticket Reservation</a></h1>
 				<div class="login-bottom ">
 					<h2>Login</h2>
 					<form th:action="@{/login}" method="post">
 						<div class="col-md-6">
-							<br>
-							<br>
 							<div class="login-mail">
 								<input type="text" placeholder="User Name" name="username" required>
 								<i class="fa fa-user"></i>
 							</div>
-
-							<br>
 							<!--<div class="login-mail">-->
 								<!--<input type="email" placeholder="Email" name="email" required>-->
 								<!--<i class="fa fa-envelope-square"></i>-->
@@ -83,83 +78,144 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<a th:href="@{/signup}" class="hvr-shutter-in-horizontal">Signup</a>
 
 
-							<p>Forget your Password?</p>
+							<!--<p>Forget your Password?</p>-->
 
-							<a th:href="@{/forget}" class="hvr-shutter-in-horizontal checkbox1">Forget Password</a>
+							<!--<a th:href="@{/forget}" class="hvr-shutter-in-horizontal checkbox1">Forget Password</a>-->
 
 
 						</div>
-
-						<div class="clearfix"> </div>
-					</form>
+                         </form>
 				</div>
+
+				 <div class="col-md-7 mid-content-top pardiv">
+					 <div class="middle-content">
+
+						 <div id="owl-demo" class="owl-carousel text-center">
+							 <div class="item">
+								 <img class="lazyOwl img-responsive" data-src="images/t1.jpg" alt="name">
+							 </div>
+							 <div class="item">
+								 <img class="lazyOwl img-responsive" data-src="images/t6.jpg" alt="name">
+							 </div>
+							 <div class="item">
+								 <img class="lazyOwl img-responsive" data-src="images/t3.jpg" alt="name">
+							 </div>
+							 <div class="item">
+								 <img class="lazyOwl img-responsive" data-src="images/t5.jpg" alt="name">
+							 </div>
+							 <div class="item">
+								 <img class="lazyOwl img-responsive" data-src="images/t7.jpg" alt="name">
+							 </div>
+
+
+							 <div class="item">
+								 <img class="lazyOwl img-responsive" data-src="images/t1.jpg" alt="name">
+							 </div>
+
+							 <div class="item">
+								 <img class="lazyOwl img-responsive" data-src="images/t6.jpg" alt="name">
+							 </div>
+							 <div class="item">
+								 <img class="lazyOwl img-responsive" data-src="images/t3.jpg" alt="name">
+							 </div>
+							 <div class="item">
+								 <img class="lazyOwl img-responsive" data-src="images/t5.jpg" alt="name">
+							 </div>
+							 <div class="item">
+								 <img class="lazyOwl img-responsive" data-src="images/t7.jpg" alt="name">
+							 </div>
+							 <div class="item">
+								 <img class="lazyOwl img-responsive" data-src="images/t1.jpg" alt="name">
+							 </div>
+
+
+						 </div>
+						 <!--</div>-->
+						 <!--//sreen-gallery-cursual---->
+						 <!-- requried-jsfiles-for owl -->
+						 <link th:href="@{/css/owl.carousel.css}" rel="stylesheet">
+						 <script th:src="@{/js/owl.carousel.js}"></script>
+						 <script>
+                             $(document).ready(function() {
+                                 $("#owl-demo").owlCarousel({
+                                     items : 3,
+                                     lazyLoad : true,
+                                     autoPlay : true,
+                                     pagination : true,
+                                     nav:true,
+                                 });
+                             });
+						 </script>
+						 <!-- //requried-jsfiles-for owl -->
+					 </div>
+				 </div>
 
 			</div>
 
 
 
-			<div class="col-md-7 mid-content-top pardiv">
-				<div class="middle-content">
+			<!--<div class="col-md-7 mid-content-top pardiv">-->
+				<!--<div class="middle-content">-->
 
-			<div id="owl-demo" class="owl-carousel text-center">
-				<div class="item">
-					<img class="lazyOwl img-responsive" data-src="images/t1.jpg" alt="name">
-				</div>
-                <div class="item">
-					<img class="lazyOwl img-responsive" data-src="images/t6.jpg" alt="name">
-				</div>
-				<div class="item">
-					<img class="lazyOwl img-responsive" data-src="images/t3.jpg" alt="name">
-				</div>
-				<div class="item">
-					<img class="lazyOwl img-responsive" data-src="images/t5.jpg" alt="name">
-				</div>
-				<div class="item">
-					<img class="lazyOwl img-responsive" data-src="images/t7.jpg" alt="name">
-				</div>
-
-
-				<div class="item">
-					<img class="lazyOwl img-responsive" data-src="images/t1.jpg" alt="name">
-				</div>
-
-				<div class="item">
-					<img class="lazyOwl img-responsive" data-src="images/t6.jpg" alt="name">
-				</div>
-				<div class="item">
-					<img class="lazyOwl img-responsive" data-src="images/t3.jpg" alt="name">
-				</div>
-				<div class="item">
-					<img class="lazyOwl img-responsive" data-src="images/t5.jpg" alt="name">
-				</div>
-				<div class="item">
-					<img class="lazyOwl img-responsive" data-src="images/t7.jpg" alt="name">
-				</div>
-				<div class="item">
-					<img class="lazyOwl img-responsive" data-src="images/t1.jpg" alt="name">
-				</div>
+			<!--<div id="owl-demo" class="owl-carousel text-center">-->
+				<!--<div class="item">-->
+					<!--<img class="lazyOwl img-responsive" data-src="images/t1.jpg" alt="name">-->
+				<!--</div>-->
+                <!--<div class="item">-->
+					<!--<img class="lazyOwl img-responsive" data-src="images/t6.jpg" alt="name">-->
+				<!--</div>-->
+				<!--<div class="item">-->
+					<!--<img class="lazyOwl img-responsive" data-src="images/t3.jpg" alt="name">-->
+				<!--</div>-->
+				<!--<div class="item">-->
+					<!--<img class="lazyOwl img-responsive" data-src="images/t5.jpg" alt="name">-->
+				<!--</div>-->
+				<!--<div class="item">-->
+					<!--<img class="lazyOwl img-responsive" data-src="images/t7.jpg" alt="name">-->
+				<!--</div>-->
 
 
-			</div>
-		<!--</div>-->
-		<!--//sreen-gallery-cursual---->
-		<!-- requried-jsfiles-for owl -->
-		<link th:href="@{/css/owl.carousel.css}" rel="stylesheet">
-		<script th:src="@{/js/owl.carousel.js}"></script>
-		<script>
-            $(document).ready(function() {
-                $("#owl-demo").owlCarousel({
-                    items : 3,
-                    lazyLoad : true,
-                    autoPlay : true,
-                    pagination : true,
-                    nav:true,
-                });
-            });
-		</script>
-		<!-- //requried-jsfiles-for owl -->
-	</div>
-			</div>
+				<!--<div class="item">-->
+					<!--<img class="lazyOwl img-responsive" data-src="images/t1.jpg" alt="name">-->
+				<!--</div>-->
+
+				<!--<div class="item">-->
+					<!--<img class="lazyOwl img-responsive" data-src="images/t6.jpg" alt="name">-->
+				<!--</div>-->
+				<!--<div class="item">-->
+					<!--<img class="lazyOwl img-responsive" data-src="images/t3.jpg" alt="name">-->
+				<!--</div>-->
+				<!--<div class="item">-->
+					<!--<img class="lazyOwl img-responsive" data-src="images/t5.jpg" alt="name">-->
+				<!--</div>-->
+				<!--<div class="item">-->
+					<!--<img class="lazyOwl img-responsive" data-src="images/t7.jpg" alt="name">-->
+				<!--</div>-->
+				<!--<div class="item">-->
+					<!--<img class="lazyOwl img-responsive" data-src="images/t1.jpg" alt="name">-->
+				<!--</div>-->
+
+
+			<!--</div>-->
+		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+		<!--&lt;!&ndash;//sreen-gallery-cursual&#45;&#45;&ndash;&gt;-->
+		<!--&lt;!&ndash; requried-jsfiles-for owl &ndash;&gt;-->
+		<!--<link th:href="@{/css/owl.carousel.css}" rel="stylesheet">-->
+		<!--<script th:src="@{/js/owl.carousel.js}"></script>-->
+		<!--<script>-->
+            <!--$(document).ready(function() {-->
+                <!--$("#owl-demo").owlCarousel({-->
+                    <!--items : 3,-->
+                    <!--lazyLoad : true,-->
+                    <!--autoPlay : true,-->
+                    <!--pagination : true,-->
+                    <!--nav:true,-->
+                <!--});-->
+            <!--});-->
+		<!--</script>-->
+		<!--&lt;!&ndash; //requried-jsfiles-for owl &ndash;&gt;-->
+	<!--</div>-->
+			<!--</div>-->
 
 		</div>
 <!--</div>-->
@@ -214,37 +270,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 </html>
 
-<!--<div id="dp-container"  th:style="'background-image:url(' + @{/images/t4.jpg} + ');'">-->
-<!--<div class="login min-height">-->
-	<!--<h1><a th:href="@{/}">Train Ticket Reservation</a></h1>-->
-	<!--<div class="login-bottom">-->
-		<!--<h2>Login</h2>-->
-		<!--<form th:action="@{/login}" method="post">-->
-			<!--<div class="col-md-6">-->
-				<!--<div class="login-mail">-->
-					<!--<input type="text" placeholder="User Name" name="username" required>-->
-					<!--<i class="fa fa-user"></i>-->
-				<!--</div>-->
-				<!--<div class="login-mail">-->
-					<!--<input type="password" placeholder="Password" name="password" required>-->
-					<!--<i class="fa fa-lock"></i>-->
-				<!--</div>-->
-				<!--<a class="news-letter " href="#">-->
-					<!--<label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>Forget Password</label>-->
-				<!--</a>-->
-
-
-			<!--</div>-->
-			<!--<div class="col-md-6 login-do">-->
-				<!--<label class="hvr-shutter-in-horizontal login-sub">-->
-					<!--<input type="submit" value="login">-->
-				<!--</label>-->
-				<!--<p>Do not have an account?</p>-->
-				<!--<a th:href="@{/signup}" class="hvr-shutter-in-horizontal">Signup</a>-->
-			<!--</div>-->
-
-			<!--<div class="clearfix"> </div>-->
-		<!--</form>-->
-	<!--</div>-->
-
-<!--</div>-->

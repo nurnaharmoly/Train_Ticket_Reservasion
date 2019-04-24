@@ -56,10 +56,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
                 .antMatchers("/css/**","/fonts/**","/images/**","/js/**","/404/**","/login/**","/user-save","/signup/**","/confirm/**").permitAll()
-                .antMatchers("/role/**","/user/**",  "/seatOrCabin/**").hasRole("SUPERADMIN")
-                .antMatchers("/super/**").hasRole("SUPERADMIN")
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasRole("USER")
+                .antMatchers( "/user/**", "/availableseat/**", "/availableTrainSchedule/**","/compartment/**", "/route/**", "/reservation/**", "/scheduleTime/**", "/seatDetails/**", "/seatOrCabin/**", "/station/**", "/ticket/**", "/trainclass/**", "/train/**").hasRole("SUPERADMIN")
+//                .antMatchers("/super/**","/role/**","/user/**", "/availableseat/**", "/availableTrainSchedule/**","/compartment/**", "/route/**", "/reservation/**", "/scheduleTime/**", "/seatDetails/**", "/seatOrCabin/**", "/station/**", "/ticket/**", "/trainclass/**", "/train/**").hasRole("SUPERADMIN")
+                .antMatchers("/admin/**","/role/**", "/user/**", "/availableseat/**", "/availableTrainSchedule/**","/compartment/**", "/route/**", "/reservation/**", "/scheduleTime/**", "/seatDetails/**", "/seatOrCabin/**", "/station/**", "/ticket/**", "/trainclass/**", "/train/**").hasRole("ADMIN")
+                .antMatchers("/user/**", "/reservation/**", "/availableTrainSchedule/**").hasRole("USER")
 
                 .anyRequest()
                 .authenticated()

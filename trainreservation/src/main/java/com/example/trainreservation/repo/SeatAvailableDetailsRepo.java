@@ -12,4 +12,5 @@ import java.util.List;
 public interface SeatAvailableDetailsRepo extends JpaRepository<SeatAvailableDetails, Long> {
 
    List<SeatAvailableDetails> findByTrain(Train train);
+
 }

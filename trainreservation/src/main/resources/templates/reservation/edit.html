@@ -5,6 +5,141 @@
 
 <head>
     <title>Role Create</title>
+    <style type="text/css">
+        #container {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            padding: 0px 0px 0px 0px;
+        }
+
+        #con-left {
+            width: 20%;
+            height: auto;
+            margin: 0 auto;
+            float: left;
+
+        }
+
+        /*#train {*/
+        /*width: 60%;*/
+        /*height: 500px;*/
+        /*float: left;*/
+
+        /*}*/
+
+        #t-left {
+            width: 25%;
+            height: 500px;
+            float: left;
+            background: #54e;
+
+        }
+
+        #t-middle {
+            width: 10%;
+            height: 500px;
+            float: left;
+            background: rgba(115, 115, 116, 0.69);
+
+        }
+
+        #t-right {
+            width: 66%;
+            height: 500px;
+            float: left;
+            background: #54e;
+
+        }
+
+        #con-right {
+            width: 20%;
+            height: auto;
+            margin: 0 auto;
+            float: left;
+
+        }
+
+        .seatside {
+            width: 30%;
+            height: 550px;
+            float: left;
+            background: #bbbcb9;
+            padding: 15px 25px;
+            margin: 10px 10px;
+            border: #0d0d0d;
+
+        }
+
+        .seat {
+            width: 20%;
+            float: left;
+
+        }
+
+        .btn {
+            width: 50px;
+            height: 50px;
+            background-color: #a6ea7d;
+            border: none;
+            color: #8a8acb;
+            padding: 1px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 12px;
+            margin: 10px 4px;
+            cursor: pointer;
+            bottom: 50px;
+        }
+
+        .btnNo {
+            width: 40px;
+            height: 25px;
+            background-color: #bbbcb9;
+            border: none;
+            color: white;
+            padding: 15px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 10px 4px;
+            cursor: pointer;
+        }
+
+        .checkbox1 {
+
+            left: 0px;
+            top: 12px;
+            width: 30px;
+            height: 30px;
+            float: right;
+            background-color: #ccc;
+        }
+
+        .checkbox2 {
+
+            left: 0px;
+            top: 12px;
+            width: 38px;
+            height: 38px;
+            float: right;
+            background-color: #ccc;
+        }
+        .true{
+            background: #2b542c!important;
+        }
+        .false{
+            background: #a94442!important;
+        }
+
+    </style>
+    <script>
+        function callToatl() {
+            document.getElementById("totalPrice").value = document.getElementById("unitPrice").value * document.getElementById("noOffSeats").value;
+        }
+    </script>
 </head>
 <body>
 <div layout:fragment="custom-content">
@@ -40,12 +175,27 @@
 									<span class="input-group-addon">
 										<i class="fa fa-navicon"></i>
 									</span>
-                                        <input class="form-control1" type="text" th:field="*{noOffSeats}" id="noOffSeats" placeholder="NoOffSeats" required>
+                                        <input class="form-control1" type="text" th:field="*{noOffSeats}" id="noOffSeats" placeholder="NoOffSeats" oninput="callToatl()" required>
                                         <span th:class="err" th:if="${#fields.hasErrors('noOffSeats')}" th:errors="*{noOffSeats}">NoOffSeats Error</span>
                                     </div>
                                 </div>
                             </div>
 
+
+
+
+                            <div class="form-group has-success">
+                                <label class="col-md-12 control-label" for="unitPrice">Unit Price</label>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-navicon"></i>
+									</span>
+                                        <input class="form-control1" type="text" th:field="*{unitPrice}" id="unitPrice" placeholder="Unit Price" oninput="callToatl()" required>
+                                        <span th:class="err" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}">Unit Price Error</span>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="form-group has-success">
                                 <label class="col-md-12 control-label" for="totalPrice">Total Price</label>
@@ -56,19 +206,6 @@
 									</span>
                                         <input class="form-control1" type="text" th:field="*{totalPrice}" id="totalPrice" placeholder="Total Price" required>
                                         <span th:class="err" th:if="${#fields.hasErrors('totalPrice')}" th:errors="*{totalPrice}">Total Price Error</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group has-success">
-                                <label class="col-md-12 control-label" for="unitPrice">Unit Price</label>
-                                <div class="col-md-12">
-                                    <div class="input-group">
-									<span class="input-group-addon">
-										<i class="fa fa-navicon"></i>
-									</span>
-                                        <input class="form-control1" type="text" th:field="*{unitPrice}" id="unitPrice" placeholder="Unit Price" required>
-                                        <span th:class="err" th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}">Unit Price Error</span>
                                     </div>
                                 </div>
                             </div>
@@ -102,17 +239,17 @@
 
 
 
-                            <div class="form-group has-success">
-                                <label class="col-md-6 control-label">Compartment</label>
-                                <div class="col-sm-12">
-                                     <span class="input-group-addon">
-										<i class="fa fa-dashcube"></i>
-                                       <select th:field="*{compartment}"  class="form-control1">
-                                            <option th:each="compartment : ${compartmentlist}" th:value="${compartment.id}"><span th:text="${compartment.compartmentName}"></span></option>
-                                       </select>
-                                     </span>
-                                </div>
-                            </div>
+                            <!--<div class="form-group has-success">-->
+                                <!--<label class="col-md-6 control-label">Compartment</label>-->
+                                <!--<div class="col-sm-12">-->
+                                     <!--<span class="input-group-addon">-->
+										<!--<i class="fa fa-dashcube"></i>-->
+                                       <!--<select th:field="*{compartment}"  class="form-control1">-->
+                                            <!--<option th:each="compartment : ${compartmentlist}" th:value="${compartment.id}"><span th:text="${compartment.compartmentName}"></span></option>-->
+                                       <!--</select>-->
+                                     <!--</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
 
 
                             <div class="form-group has-success">
@@ -127,6 +264,27 @@
                                 </div>
                             </div>
 
+                            <div th:each="com : ${sad.train.compartmentList}">
+
+                                <div id="container">
+
+                                    <div class="seatside">
+                                        <!--<input type="checkbox" onClick="checkAll(this);" class="checkbox2"/>-->
+
+                                        <h1 th:text="${com.compartmentName}"></h1>
+                                        <div th:each=" sd , iter : ${com.seatDetailsList}" class="seat">
+                                            <!--<span th:if="${iter.index} % 2">-->
+                                            <!--<button type="button" class="btn">FAKA</button>-->
+                                            <!--</span>-->
+                                            <span class="btn">
+                                                    <input type="checkbox"  th:field="*{seatDetails}" th:value="${sd?.seatOrCabin?.id}"    th:class="${sad.status}+' '+checkbox1" >
+                                                    <span type="button" th:text="${sd.seatOrCabin.seatNo}"></span>
+</span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <!--<div class="form-group has-success">-->
                                 <!--<label class="col-md-6 control-label">User Name</label>-->

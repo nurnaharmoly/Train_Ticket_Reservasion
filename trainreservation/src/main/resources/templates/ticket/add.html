@@ -47,23 +47,6 @@
                             </div>
 
 
-
-
-
-
-                            <div class="form-group has-success">
-                                <label class="col-md-6 control-label">Fare Category</label>
-                                <div class="col-sm-12">
-                                     <span class="input-group-addon">
-										<i class="fa fa-dashcube"></i>
-                                       <select th:field="*{fareCategore}"  class="form-control1">
-                                            <option th:each="fareCategory : ${fareCategorylist}" th:value="${fareCategory.id}"><span th:text="${fareCategory.fareCategoreName}"></span></option>
-                                       </select>
-                                     </span>
-                                </div>
-                            </div>
-
-
                             <div class="form-group has-success">
                                 <label class="col-md-6 control-label">Compartment</label>
                                 <div class="col-sm-12">

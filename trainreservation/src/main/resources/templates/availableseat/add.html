@@ -5,6 +5,12 @@
 
 <head>
     <title></title>
+    <script>
+        function callToatl() {
+            document.getElementById("totalSeats").value = document.getElementById("availSeat").value - document.getElementById("soldSeats").value;
+        }
+    </script>
+
 </head>
 <body>
 <div layout:fragment="custom-content">
@@ -40,7 +46,7 @@
 									<span class="input-group-addon">
 										<i class="fa fa-navicon"></i>
 									</span>
-                                        <input class="form-control1" type="text" th:field="*{availSeat}" id="availSeat" placeholder="AvailableSeats" required>
+                                        <input class="form-control1" type="text" th:field="*{availSeat}" id="availSeat" placeholder="AvailableSeats" oninput="callToatl()" required>
                                         <span th:class="err" th:if="${#fields.hasErrors('availSeat')}" th:errors="*{availSeat}">AvailableSeats Error</span>
                                     </div>
                                 </div>
@@ -54,7 +60,7 @@
 									<span class="input-group-addon">
 										<i class="fa fa-navicon"></i>
 									</span>
-                                        <input class="form-control1" type="text" th:field="*{soldSeats}" id="soldSeats" placeholder="Sold Seats" required>
+                                        <input class="form-control1" type="text" th:field="*{soldSeats}" id="soldSeats" placeholder="Sold Seats" oninput="callToatl()" required>
                                         <span th:class="err" th:if="${#fields.hasErrors('soldSeats')}" th:errors="*{soldSeats}">Sold Seats Error</span>
                                     </div>
                                 </div>
@@ -62,18 +68,7 @@
 
 
 
-                            <!--<div class="form-group has-success">-->
-                                <!--<label class="col-md-12 control-label" for="soldSeats">Sold Seats</label>-->
-                                <!--<div class="col-md-12">-->
-                                    <!--<div class="input-group">-->
-									<!--<span class="input-group-addon">-->
-										<!--<i class="fa fa-navicon"></i>-->
-									<!--</span>-->
-                                        <!--<input class="form-control1" type="text" th:field="*{soldSeats}" id="soldSeats" placeholder="Sold Seats" required>-->
-                                        <!--<span th:class="err" th:if="${#fields.hasErrors('soldSeats')}" th:errors="*{soldSeats}">Sold Seats Error</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
+
 
 
                             <div class="form-group has-success">

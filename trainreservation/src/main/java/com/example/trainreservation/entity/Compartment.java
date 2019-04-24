@@ -65,7 +65,9 @@ public class Compartment {
 
 	public Compartment() {
 	}
-
+	public Compartment(Long id) {
+		this.id=id;
+	}
 	public Compartment(String compartmentName, int compartmentNo, Train train) {
 		this.compartmentName = compartmentName;
 		this.compartmentNo = compartmentNo;

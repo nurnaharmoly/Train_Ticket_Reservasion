@@ -4,7 +4,11 @@ import com.example.trainreservation.entity.*;
 import com.example.trainreservation.jasper.MediaUtils;
 import com.example.trainreservation.jasper.TaskService;
 import com.example.trainreservation.repo.*;
-
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.HtmlExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -18,25 +22,21 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
-
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.HtmlExporter;
-import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.export.PdfExporterConfiguration;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+//import net.sf.jasperreports.engine.*;
+//import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+//import net.sf.jasperreports.engine.export.HtmlExporter;
+//import net.sf.jasperreports.engine.export.JRXlsExporter;
+//import net.sf.jasperreports.export.PdfExporterConfiguration;
+//import net.sf.jasperreports.export.SimpleExporterInput;
+//import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
+
 
 @Controller
 @RequestMapping(value = "/seatOrCabin/")
@@ -142,10 +142,12 @@ public class SeatOrCabinControllar {
         return "seatOrCabin/list";
     }
 
+
+
 //    @RequestMapping(value = "report", method = RequestMethod.GET)
 //    public void report(HttpServletResponse response) throws Exception {
 //        response.setContentType("text/html");
-//        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(taskService.seatreport());
+//        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(taskService.report());
 //        InputStream inputStream = this.getClass().getResourceAsStream("/report.jrxml");
 //        JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
 //        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, dataSource);
@@ -154,54 +156,6 @@ public class SeatOrCabinControllar {
 //        exporter.setExporterOutput(new SimpleHtmlExporterOutput(response.getWriter()));
 //        exporter.exportReport();
 //    }
-
-
-
-
-//
-//    @RequestMapping(value = "pdf", method = RequestMethod.GET,
-//            produces = MediaType.APPLICATION_PDF_VALUE)
-//    public void reportPdf(HttpServletResponse response) throws Exception {
-//        String source = "D:\\Train_Ticket_Reservasion\\trainreservation\\src\\main\\resources\\report.jrxml";
-//        try {
-//                JasperCompileManager.compileReportToFile(source);
-//        } catch (JRException e) {
-//            e.printStackTrace();
-//        }
-//
-//        String sourceFileName = "D:\\Train_Ticket_Reservasion\\trainreservation\\src\\main\\resources\\report1.jasper";
-//
-//
-//        String printFileName = null;
-//        String destFileName = "D:\\Train_Ticket_Reservasion\\trainreservation\\src\\main\\resources\\report.pdf";
-//        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(taskService.seatreport());
-//        Map parameters = new HashMap();
-//        try {
-//            printFileName = JasperFillManager.fillReportToFile(sourceFileName,
-//                    parameters, dataSource);
-//            if (printFileName != null) {
-//                JasperExportManager.exportReportToPdfFile(printFileName,
-//                        destFileName);
-//
-//
-//            }
-//        } catch (JRException e) {
-//            e.printStackTrace();
-//        }
-//
-
-//        /////////////////download
-//        InputStream inputStream = this.getClass().getResourceAsStream("/report.jrxml");
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.add("Content-Disposition", "inline; filename=report.pdf");
-//
-//        return ResponseEntity
-//                .ok()
-//                .headers(headers)
-//                .contentType(MediaType.APPLICATION_PDF)
-//                .body(new InputStreamResource(inputStream));
-
-
 
 
 
@@ -271,14 +225,6 @@ public class SeatOrCabinControllar {
                 .body(resource);
     }
 
+
+
 }
-
-
-
-
-
-
-
-
-
-

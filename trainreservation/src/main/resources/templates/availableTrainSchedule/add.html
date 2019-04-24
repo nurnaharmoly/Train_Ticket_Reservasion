@@ -13,28 +13,6 @@
             padding: 0px 0px 0px 0px;
         }
 
-        #con-left {
-            width: 20%;
-            height: auto;
-            margin: 0 auto;
-            float: left;
-
-        }
-
-        #train {
-            width: 60%;
-            height: 500px;
-            float: left;
-
-        }
-
-        #t-left {
-            width: 25%;
-            height: 500px;
-            float: left;
-            background: #54e;
-
-        }
 
         #t-middle {
             width: 10%;
@@ -44,21 +22,7 @@
 
         }
 
-        #t-right {
-            width: 66%;
-            height: 500px;
-            float: left;
-            background: #54e;
 
-        }
-
-        #con-right {
-            width: 20%;
-            height: auto;
-            margin: 0 auto;
-            float: left;
-
-        }
 
         .seatside {
             width: 30%;
@@ -163,23 +127,7 @@
                         <h3 id="forms-horizontal">Add Available Train Schedule </h3>
                         <span th:class="succes" th:text="${successMsg}"></span>
 
-                        <!--<form action="">-->
 
-                        <!--</form>-->
-
-                        <!--<div class="form-group has-success">-->
-                        <!--<label class="col-md-6 control-label">Train</label>-->
-                        <!--<div class="col-sm-12">-->
-                        <!--<span>-->
-										<!--<i class="fa fa-dashcube"></i>-->
-                                       <!--<select name="train" onchange="showCustomer(this.value)" th:field="*{train}">-->
-                                <!--<option value="">Select a Train:</option>-->
-                                <!--<option th:each="t : ${trainlist}" th:value="${t.id}" th:text="${t.trainName}"></option>-->
-
-                            <!--</select>-->
-                                     <!--</span>-->
-                        <!--</div>-->
-                        <!--</div>-->
 
                         <div class="form-group has-success">
                             <label class="col-md-1 control-label">Train</label>
@@ -197,34 +145,8 @@
                         <form th:object="${availableTrainSchedule}" th:action="@{/availableTrainSchedule/add}"
                               th:method="POST">
 
-                            <!--<div class="form-group has-success">-->
-                                <!--<label class="col-md-1 control-label">Train</label>-->
-                                <!--<div class="col-sm-3">-->
-                                     <!--<span class="input-group-addon">-->
-										<!--<i class="fa fa-dashcube"></i>-->
-                                       <!--<select th:field="*{sad.train}"  class="form-control1">-->
-                                           <!--<option value="">Select a Train:</option>-->
-                                            <!--<option th:each="train : ${trainlist}" th:value="${train.id}"><span th:text="${train.trainName}"></span></option>-->
-                                       <!--</select>-->
-                                     <!--</span>-->
-                                <!--</div>-->
-                            <!--</div>-->
 
-                            <!--<div class="form-group has-success">-->
-                                <!--<label class="col-md-12 control-label">Available Date</label>-->
-                                <!--<div class="col-md-12">-->
-                                    <!--<div class="input-group">-->
-									<!--<span class="input-group-addon">-->
-										<!--<i class="fa fa-calendar"></i>-->
-									<!--</span>-->
-                                        <!--<select name="train" th:field="*{train}">-->
-                                            <!--<option value="">Select a Train:</option>-->
-                                            <!--<option th:each="t : ${trainlist}" th:value="${t.id}" th:text="${t.trainName}"></option>-->
 
-                                        <!--</select>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
 
                             <div class="form-group has-success">
                                 <label class="col-md-1 control-label">Available Date</label>
@@ -251,32 +173,12 @@
 									<span class="input-group-addon">
 										<i class="fa fa-search-minus"></i>
 									</span>
-                                        <button type="submit" class="label label-success">Search</button>
+                                        <button type="submit" class="label label-success"><a th:href="@{/reservation/add}">Search</a></button>
                                         <!--<input type="submit" value="" class="fa fa-search">-->
                                     </div>
                                 </div>
                             </div>
 
-                            <!--<div class="form-group has-success">-->
-                                <!--<label class="col-md-12 control-label">Status</label>-->
-                                <!--<div class="col-md-12">-->
-                                    <!--<div class="input-group ">-->
-                                        <!--<ul>-->
-                                            <!--<li>-->
-
-                                                <!--<input type="radio" id="t" name="status" value="true"-->
-                                                       <!--th:field="*{seatDetails.status}" class="has-success">-->
-                                                <!--<label for="t"><span></span>True</label>-->
-                                            <!--</li>-->
-                                            <!--<li>-->
-                                                <!--<input type="radio" id="f" name="status" value="false"-->
-                                                       <!--th:field="*{seatDetails.status}" class="has-success">-->
-                                                <!--<label for="f"><span></span>False</label>-->
-                                            <!--</li>-->
-                                        <!--</ul>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
                             <br>
                             <br>
                             <br>

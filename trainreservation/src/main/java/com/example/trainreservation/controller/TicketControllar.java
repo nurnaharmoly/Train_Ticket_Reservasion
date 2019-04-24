@@ -47,36 +47,35 @@ public class TicketControllar {
         model.addAttribute("routelist", routeRepo.findAll());
         return "ticket/add";
     }
-    @PostMapping(value = "add")
-    public String add(@Valid Ticket ticket, BindingResult result, Model model){
-        if(result.hasErrors()){
-            model.addAttribute("userlist", userRepo.findAll());
-            model.addAttribute("fareCategorylist", fareCategoryRepo.findAll());
-            model.addAttribute("compartmentlist", compartmentRepo.findAll());
-            model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
-            model.addAttribute("routelist", routeRepo.findAll());
-            return "ticket/add";
-        }
-        if(repo.existsTicketByTicketNo(ticket.getTicketNo())){
-            model.addAttribute("rejectMsg","Already Have This Entry");
-        }else{
 
+    @PostMapping(value = "add")
+    public String add(@Valid Ticket ticket, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+
+
+         model.addAttribute("compartmentlist", compartmentRepo.findAll());
+         model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
+           model.addAttribute("routelist", routeRepo.findAll());
+            return "ticket/add";
+
+        }else{
             this.repo.save(ticket);
-            model.addAttribute("successMsg","Successfully Saved!");
-            model.addAttribute("userlist", userRepo.findAll());
-            model.addAttribute("fareCategorylist", fareCategoryRepo.findAll());
+            model.addAttribute("successMsg", "Successfully Saved!");
+
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
             model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
             model.addAttribute("routelist", routeRepo.findAll());
+            model.addAttribute("ticket", new Ticket());
+
         }
 
         return "ticket/add";
     }
+
+
     @GetMapping(value = "edit/{id}")
     public String viewEdit(Model model, @PathVariable("id") Long id){
         model.addAttribute("ticket",repo.getOne(id));
-        model.addAttribute("userlist", userRepo.findAll());
-        model.addAttribute("fareCategorylist", fareCategoryRepo.findAll());
         model.addAttribute("compartmentlist", compartmentRepo.findAll());
         model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
         model.addAttribute("routelist", routeRepo.findAll());
@@ -85,24 +84,81 @@ public class TicketControllar {
     @PostMapping(value = "edit/{id}")
     public String edit(@Valid Ticket ticket, BindingResult result, Model model,@PathVariable("id") Long id){
         if(result.hasErrors()){
-            return "ticket/edit";
-        }
-        Optional<Ticket> ticket1 = this.repo.findByTicketNo(ticket.getTicketNo());
-        if(ticket1.get().getId() != id){
-            model.addAttribute("rejectMsg","Already Have This Entry");
-            return "ticket/edit";
-        }else{
-            ticket.setId(id);
-            this.repo.save(ticket);
-            model.addAttribute("userlist", userRepo.findAll());
-            model.addAttribute("fareCategorylist", fareCategoryRepo.findAll());
+
             model.addAttribute("compartmentlist", compartmentRepo.findAll());
             model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
             model.addAttribute("routelist", routeRepo.findAll());
+            return "ticket/edit";
+        } else {
+            ticket.setId(id);
+            this.repo.save(ticket);
+
+            model.addAttribute("compartmentlist", compartmentRepo.findAll());
+            model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
+            model.addAttribute("routelist", routeRepo.findAll());
+            return "redirect:/ticket/list";
         }
 
-        return "redirect:/ticket/list";
+
     }
+
+
+//    @PostMapping(value = "add")
+//    public String add(@Valid Ticket ticket, BindingResult result, Model model){
+//        if(result.hasErrors()){
+//            model.addAttribute("userlist", userRepo.findAll());
+//            model.addAttribute("fareCategorylist", fareCategoryRepo.findAll());
+//            model.addAttribute("compartmentlist", compartmentRepo.findAll());
+//            model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
+//            model.addAttribute("routelist", routeRepo.findAll());
+//            return "ticket/add";
+//        }
+//        if(repo.existsTicketByTicketNo(ticket.getTicketNo())){
+//            model.addAttribute("rejectMsg","Already Have This Entry");
+//        }else{
+//
+//            this.repo.save(ticket);
+//            model.addAttribute("successMsg","Successfully Saved!");
+//            model.addAttribute("userlist", userRepo.findAll());
+//            model.addAttribute("fareCategorylist", fareCategoryRepo.findAll());
+//            model.addAttribute("compartmentlist", compartmentRepo.findAll());
+//            model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
+//            model.addAttribute("routelist", routeRepo.findAll());
+//        }
+//
+//        return "ticket/add";
+//    }
+//    @GetMapping(value = "edit/{id}")
+//    public String viewEdit(Model model, @PathVariable("id") Long id){
+//        model.addAttribute("ticket",repo.getOne(id));
+//        model.addAttribute("userlist", userRepo.findAll());
+//        model.addAttribute("fareCategorylist", fareCategoryRepo.findAll());
+//        model.addAttribute("compartmentlist", compartmentRepo.findAll());
+//        model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
+//        model.addAttribute("routelist", routeRepo.findAll());
+//        return "ticket/edit";
+//    }
+//    @PostMapping(value = "edit/{id}")
+//    public String edit(@Valid Ticket ticket, BindingResult result, Model model,@PathVariable("id") Long id){
+//        if(result.hasErrors()){
+//            return "ticket/edit";
+//        }
+//        Optional<Ticket> ticket1 = this.repo.findByTicketNo(ticket.getTicketNo());
+//        if(ticket1.get().getId() != id){
+//            model.addAttribute("rejectMsg","Already Have This Entry");
+//            return "ticket/edit";
+//        }else{
+//            ticket.setId(id);
+//            this.repo.save(ticket);
+//            model.addAttribute("userlist", userRepo.findAll());
+//            model.addAttribute("fareCategorylist", fareCategoryRepo.findAll());
+//            model.addAttribute("compartmentlist", compartmentRepo.findAll());
+//            model.addAttribute("seatOrCabinlist", seatOrCabinRepo.findAll());
+//            model.addAttribute("routelist", routeRepo.findAll());
+//        }
+//
+//        return "redirect:/ticket/list";
+//    }
 
     @GetMapping(value = "del/{id}")
     public String del(@PathVariable("id") Long id){
